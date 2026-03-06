@@ -69,7 +69,8 @@ namespace IllRequestPortal.Logic.Http
         protected virtual async Task<HttpResponseMessage> Send(HttpRequestMessage request)
         {
             var client = clientFactory.CreateClient();
-            client.SetBearerTokenIfExists(settings.BearerToken);
+            if(settings.BearerToken.Contains(':')) client.SetBasicAuthTokenIfExists(settings.BearerToken);
+            else client.SetBearerTokenIfExists(settings.BearerToken);
             return await client.SendAsync(request);        
         }
 
@@ -153,6 +154,10 @@ namespace IllRequestPortal.Logic.Http
         public static void SetBearerTokenIfExists(this System.Net.Http.HttpClient client, string bearerToken)
         {
             if (!string.IsNullOrEmpty(bearerToken)) client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", bearerToken);
+        }
+        public static void SetBasicAuthTokenIfExists(this System.Net.Http.HttpClient client, string basicAuth)
+        {
+            if (!string.IsNullOrEmpty(basicAuth)) client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.ASCII.GetBytes(basicAuth)));
         }
     }
 

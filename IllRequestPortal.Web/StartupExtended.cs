@@ -46,7 +46,10 @@ namespace Web
 
         protected override void CustomServiceConfiguration(IServiceCollection services)
         {
+            services.Configure<KohaApiSettings>(Configuration.GetSection("KohaApiSettings"));
+
             services.AddTransient<IIllRequestService, IllRequestServiceExtended>();
+            services.AddTransient<IKohaPatronGetHttpService, KohaPatronGetHttpService>();
             services.Configure<RouteOptions>(options =>
             {
                 options.LowercaseUrls = true;

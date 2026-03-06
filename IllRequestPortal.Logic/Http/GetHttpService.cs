@@ -4,6 +4,7 @@
 // Generator version: 0.0.1.0
 //-------------------------------------------------------------------------------------------------------------------- 
 
+using Logic.Model;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
