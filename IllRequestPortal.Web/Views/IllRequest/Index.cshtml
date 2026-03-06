@@ -1,0 +1,137 @@
+@* --------------------------------------------------------------------*@
+@* Warning! This is an auto generated file. Changes may be overwritten *@
+@* --------------------------------------------------------------------*@
+@using Localization
+@inject LocService SharedLocalizer
+@model IEnumerable<IllRequestPortal.Web.ViewModel.IllRequestViewModel>
+
+@{
+    ViewData["Title"] = $"{SharedLocalizer.GetLocalizedHtmlString("List")} {SharedLocalizer.GetLocalizedHtmlString("IllRequest")}";
+}
+
+<h1>@SharedLocalizer.GetLocalizedHtmlString("IllRequest")</h1>
+
+<a asp-controller="IllRequest" asp-action="Create">
+    <button type="button" class="btn btn-info btn-lg"><span class="bi bi-plus-circle"></span>@SharedLocalizer.GetLocalizedHtmlString("Create New")</button>
+</a>
+<hr />
+<table class="table data-table">
+    <thead>
+        <tr>
+            <th>
+                @SharedLocalizer.GetLocalizedHtmlString("Title")
+            </th>
+            <th>
+                @SharedLocalizer.GetLocalizedHtmlString("Author")
+            </th>
+            <th>
+                @SharedLocalizer.GetLocalizedHtmlString("PublicationYear")
+            </th>
+            <th>
+                @SharedLocalizer.GetLocalizedHtmlString("Edition")
+            </th>
+            <th>
+                @SharedLocalizer.GetLocalizedHtmlString("Isbn")
+            </th>
+            <th>
+                @SharedLocalizer.GetLocalizedHtmlString("Issn")
+            </th>
+            <th>
+                @SharedLocalizer.GetLocalizedHtmlString("MaterialType")
+            </th>
+            <th>
+                @SharedLocalizer.GetLocalizedHtmlString("RequestType")
+            </th>
+            <th>
+                @SharedLocalizer.GetLocalizedHtmlString("RequesterName")
+            </th>
+            <th>
+                @SharedLocalizer.GetLocalizedHtmlString("RequesterEmail")
+            </th>
+            <th>
+                @SharedLocalizer.GetLocalizedHtmlString("CardNumber")
+            </th>
+            <th>
+                @SharedLocalizer.GetLocalizedHtmlString("Status")
+            </th>
+            <th>
+                @SharedLocalizer.GetLocalizedHtmlString("ExternalRequestId")
+            </th>
+            <th>
+                @SharedLocalizer.GetLocalizedHtmlString("ExportedOn")
+            </th>
+            <th>
+                @SharedLocalizer.GetLocalizedHtmlString("ExportError")
+            </th>
+            <th>
+                @SharedLocalizer.GetLocalizedHtmlString("CreatedOn")
+            </th>
+            <th>
+                @SharedLocalizer.GetLocalizedHtmlString("UpdatedOn")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model) {
+        <tr>
+            <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.Title">
+                @item.Title
+            </td>
+            <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.Author">
+                @item.Author
+            </td>
+            <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.PublicationYear">
+                @item.PublicationYear
+            </td>
+            <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.Edition">
+                @item.Edition
+            </td>
+            <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.Isbn">
+                @item.Isbn
+            </td>
+            <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.Issn">
+                @item.Issn
+            </td>
+            <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.MaterialType">
+                @item.MaterialType
+            </td>
+            <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.RequestType">
+                @item.RequestType
+            </td>
+            <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.RequesterName">
+                @item.RequesterName
+            </td>
+            <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.RequesterEmail">
+                @item.RequesterEmail
+            </td>
+            <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.CardNumber">
+                @item.CardNumber
+            </td>
+            <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.Status">
+                @item.Status
+            </td>
+            <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.ExternalRequestId">
+                @item.ExternalRequestId
+            </td>
+            <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.ExportedOn">
+                @item.ExportedOn
+            </td>
+            <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.ExportError">
+                @item.ExportError
+            </td>
+            <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.CreatedOn">
+                @item.CreatedOn
+            </td>
+            <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.UpdatedOn">
+                @item.UpdatedOn
+            </td>
+  
+            <td>
+                <a asp-controller="IllRequest" asp-action="Edit" asp-route-id="@item.Id">@SharedLocalizer.GetLocalizedHtmlString("Edit")</a> | 
+                <a asp-controller="IllRequest" asp-action="Remove" asp-route-id="@item.Id">@SharedLocalizer.GetLocalizedHtmlString("Delete")</a> 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

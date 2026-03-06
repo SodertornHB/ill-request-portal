@@ -1,0 +1,71 @@
+@* --------------------------------------------------------------------*@
+@* Warning! This is an auto generated file. Changes may be overwritten *@
+@* --------------------------------------------------------------------*@
+@using Localization
+@inject LocService SharedLocalizer
+@model IEnumerable<IllRequestPortal.Web.ViewModel.LogViewModel>
+
+@{
+    ViewData["Title"] = $"{SharedLocalizer.GetLocalizedHtmlString("List")} {SharedLocalizer.GetLocalizedHtmlString("Log")}";
+}
+
+<h1>@SharedLocalizer.GetLocalizedHtmlString("Log")</h1>
+
+<a asp-controller="Log" asp-action="Create">
+    <button type="button" class="btn btn-info btn-lg"><span class="bi bi-plus-circle"></span>@SharedLocalizer.GetLocalizedHtmlString("Create New")</button>
+</a>
+<hr />
+<table class="table data-table">
+    <thead>
+        <tr>
+            <th>
+                @SharedLocalizer.GetLocalizedHtmlString("Origin")
+            </th>
+            <th>
+                @SharedLocalizer.GetLocalizedHtmlString("Message")
+            </th>
+            <th>
+                @SharedLocalizer.GetLocalizedHtmlString("LogLevel")
+            </th>
+            <th>
+                @SharedLocalizer.GetLocalizedHtmlString("CreatedOn")
+            </th>
+            <th>
+                @SharedLocalizer.GetLocalizedHtmlString("Exception")
+            </th>
+            <th>
+                @SharedLocalizer.GetLocalizedHtmlString("Trace")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model) {
+        <tr>
+            <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.Origin">
+                @item.Origin
+            </td>
+            <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.Message">
+                @item.Message
+            </td>
+            <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.LogLevel">
+                @item.LogLevel
+            </td>
+            <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.CreatedOn">
+                @item.CreatedOn
+            </td>
+            <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.Exception">
+                @item.Exception
+            </td>
+            <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.Trace">
+                @item.Trace
+            </td>
+  
+            <td>
+                <a asp-controller="Log" asp-action="Edit" asp-route-id="@item.Id">@SharedLocalizer.GetLocalizedHtmlString("Edit")</a> | 
+                <a asp-controller="Log" asp-action="Remove" asp-route-id="@item.Id">@SharedLocalizer.GetLocalizedHtmlString("Delete")</a> 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

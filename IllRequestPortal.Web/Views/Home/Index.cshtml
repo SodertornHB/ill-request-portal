@@ -1,0 +1,14 @@
+@* --------------------------------------------------------------------*@
+@* Warning! This is an auto generated file. Changes may be overwritten *@
+@* --------------------------------------------------------------------*@
+@using Localization
+@using IllRequestPortal.Logic.Settings
+@using Microsoft.Extensions.Options
+@inject IOptions<ApplicationSettings> settings
+@inject LocService SharedLocalizer
+<ul>
+    <li><a asp-controller="IllRequest" asp-action="Index">IllRequest</a></li>
+    <li><a asp-controller="Log" asp-action="Index">Log</a></li>
+    <li><a asp-controller="Migration" asp-action="Index">Migration</a></li>
+  
+</ul>

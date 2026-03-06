@@ -1,0 +1,56 @@
+# Build results
+bin/
+obj/
+out/
+
+# Visual Studio files
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider / JetBrains
+.idea/
+*.sln.iml
+
+# VS Code
+.vscode/
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+.nuget/
+*.nuget.props
+*.nuget.targets
+
+# Publish output
+publish/
+*.publishsettings
+
+# Logs
+*.log
+logs/
+
+# Test results
+TestResults/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env.*
+
+# IIS Express
+iisexpress/
+*.dbmdl
+
+# Local configuration overrides
+appsettings.Development.json
+appsettings.Local.json
+
+# NLog / other runtime logs
+*.nlog

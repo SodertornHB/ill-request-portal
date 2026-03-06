@@ -1,0 +1,51 @@
+@* --------------------------------------------------------------------*@
+@* Warning! This is an auto generated file. Changes may be overwritten *@
+@* --------------------------------------------------------------------*@
+@using Localization
+@using Microsoft.Extensions.Options
+@using IllRequestPortal.Logic.Settings
+@inject LocService SharedLocalizer
+@inject IOptions<ApplicationSettings> applicationSettingsOptions
+@model IllRequestPortal.Web.ViewModel.MigrationViewModel
+
+@{
+    ViewData["Title"] = $"{SharedLocalizer.GetLocalizedHtmlString("Edit")} {SharedLocalizer.GetLocalizedHtmlString("Migration")}";
+}
+
+<h1>@($"{SharedLocalizer.GetLocalizedHtmlString("Edit")} {@SharedLocalizer.GetLocalizedHtmlString("Migration")}")</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md">
+        <form method="post"  enctype="multipart/form-data" asp-controller="Migration" asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ClientVersion" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("ClientVersion")</label>
+                <input asp-for="ClientVersion" value="@Model.ClientVersion" />
+                <span asp-validation-for="ClientVersion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DatabaseVersion" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("DatabaseVersion")</label>
+                <input asp-for="DatabaseVersion" value="@Model.DatabaseVersion" />
+                <span asp-validation-for="DatabaseVersion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreatedOn" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("CreatedOn")</label>
+                <input asp-for="CreatedOn" value="@Model.CreatedOn" />
+                <span asp-validation-for="CreatedOn" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="Id" value="@Model.Id" />
+            <div class="form-group">
+                <input type="submit" value="@SharedLocalizer.GetLocalizedHtmlString("Edit")" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+        <a asp-controller="Migration" asp-action="Index">@SharedLocalizer.GetLocalizedHtmlString("Back to List")</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

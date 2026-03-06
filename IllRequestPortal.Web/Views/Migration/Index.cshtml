@@ -1,0 +1,53 @@
+@* --------------------------------------------------------------------*@
+@* Warning! This is an auto generated file. Changes may be overwritten *@
+@* --------------------------------------------------------------------*@
+@using Localization
+@inject LocService SharedLocalizer
+@model IEnumerable<IllRequestPortal.Web.ViewModel.MigrationViewModel>
+
+@{
+    ViewData["Title"] = $"{SharedLocalizer.GetLocalizedHtmlString("List")} {SharedLocalizer.GetLocalizedHtmlString("Migration")}";
+}
+
+<h1>@SharedLocalizer.GetLocalizedHtmlString("Migration")</h1>
+
+<a asp-controller="Migration" asp-action="Create">
+    <button type="button" class="btn btn-info btn-lg"><span class="bi bi-plus-circle"></span>@SharedLocalizer.GetLocalizedHtmlString("Create New")</button>
+</a>
+<hr />
+<table class="table data-table">
+    <thead>
+        <tr>
+            <th>
+                @SharedLocalizer.GetLocalizedHtmlString("ClientVersion")
+            </th>
+            <th>
+                @SharedLocalizer.GetLocalizedHtmlString("DatabaseVersion")
+            </th>
+            <th>
+                @SharedLocalizer.GetLocalizedHtmlString("CreatedOn")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model) {
+        <tr>
+            <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.ClientVersion">
+                @item.ClientVersion
+            </td>
+            <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.DatabaseVersion">
+                @item.DatabaseVersion
+            </td>
+            <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.CreatedOn">
+                @item.CreatedOn
+            </td>
+  
+            <td>
+                <a asp-controller="Migration" asp-action="Edit" asp-route-id="@item.Id">@SharedLocalizer.GetLocalizedHtmlString("Edit")</a> | 
+                <a asp-controller="Migration" asp-action="Remove" asp-route-id="@item.Id">@SharedLocalizer.GetLocalizedHtmlString("Delete")</a> 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

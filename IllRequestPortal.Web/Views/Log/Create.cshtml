@@ -1,0 +1,63 @@
+@* --------------------------------------------------------------------*@
+@* Warning! This is an auto generated file. Changes may be overwritten *@
+@* --------------------------------------------------------------------*@
+@using Localization
+@using Microsoft.Extensions.Options
+@inject LocService SharedLocalizer
+@model IllRequestPortal.Web.ViewModel.LogViewModel
+
+@{
+    ViewData["Title"] = $"{SharedLocalizer.GetLocalizedHtmlString("Create")} {SharedLocalizer.GetLocalizedHtmlString("Log")}";
+}
+
+<h1>@($"{SharedLocalizer.GetLocalizedHtmlString("Create")} {@SharedLocalizer.GetLocalizedHtmlString("Log")}")</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md">
+        <form method="post"  enctype="multipart/form-data" asp-controller="Log" asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Origin" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Origin")</label>
+                <input name="Origin" asp-for="Origin" class="form-control" />
+                <span asp-validation-for="Origin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Message" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Message")</label>
+                <input name="Message" asp-for="Message" class="form-control" />
+                <span asp-validation-for="Message" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LogLevel" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("LogLevel")</label>
+                <input name="LogLevel" asp-for="LogLevel" class="form-control" />
+                <span asp-validation-for="LogLevel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreatedOn" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("CreatedOn")</label>
+                <input name="CreatedOn" asp-for="CreatedOn" class="form-control" />
+                <span asp-validation-for="CreatedOn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Exception" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Exception")</label>
+                <input name="Exception" asp-for="Exception" class="form-control" />
+                <span asp-validation-for="Exception" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Trace" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Trace")</label>
+                <input name="Trace" asp-for="Trace" class="form-control" />
+                <span asp-validation-for="Trace" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="@SharedLocalizer.GetLocalizedHtmlString("Create")" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="Log" asp-action="Index">@SharedLocalizer.GetLocalizedHtmlString("Back to List")</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
