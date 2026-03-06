@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
     })
     let url = getBaseUrl();
     $.get(url, function (json) {
+        if (json === 'No manifests exist for the current culture.') return;
         let data = JSON.parse(json);
         $('.data-table').DataTable({
             'language': {

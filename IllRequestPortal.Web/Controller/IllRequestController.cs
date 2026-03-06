@@ -41,13 +41,13 @@ namespace IllRequestPortal.Web.Controllers
         
         public ActionResult Create()
         {
-            return View(new IllRequestViewModel());
+            return View(new IllRequestViewModelExtended());
         }
 
         [HttpPost]
-        public virtual async Task<ActionResult> Create([FromForm]IllRequestViewModel viewModel)
+        public virtual async Task<ActionResult> Create([FromForm]IllRequestViewModelExtended viewModel)
         {
-            var model = mapper.Map<IllRequest>(viewModel);
+            IllRequest model = mapper.Map<IllRequestExtended>(viewModel);
             await service.Insert(model);
             return RedirectToAction(nameof(Index));
         }

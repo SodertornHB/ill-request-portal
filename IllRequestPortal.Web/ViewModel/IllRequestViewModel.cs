@@ -14,8 +14,9 @@ namespace IllRequestPortal.Web.ViewModel
         public virtual string Title {get;set;}  = ""; 
         public virtual string Author {get;set;}  = ""; 
         public virtual string PublicationYear {get;set;}  = ""; 
-        public virtual string Edition {get;set;}  = ""; 
-        public virtual string Isbn {get;set;}  = ""; 
+        public virtual string Edition {get;set;}  = "";
+        public virtual string IsbnIssn { get; set; } = "";
+        public virtual string Isbn { get; set; } = "";
         public virtual string Issn {get;set;}  = ""; 
         public virtual string MaterialType {get;set;}  = ""; 
         public virtual string RequestType {get;set;}  = ""; 

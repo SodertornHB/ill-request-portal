@@ -12,6 +12,7 @@ using NLog;
 using NLog.Web;
 using System;
 using System.IO;
+using Web;
 
 namespace IllRequestPortal.Web
 {    
@@ -42,14 +43,6 @@ namespace IllRequestPortal.Web
             {
                 logger.Info("Init main");
 
-                //uncomment this if you want to use SQLite
-                //const string DB_NAME = "<name>.sqlite";
-                //var config = host.Services.GetService(typeof(IConfiguration)) as IConfiguration;
-                //var dbFilePath = Path.Combine(Environment.CurrentDirectory, "App_Data", DB_NAME);
-                //Directory.CreateDirectory(Path.GetDirectoryName(dbFilePath)!);
-                //var resolvedConnectionString = $"Data Source={dbFilePath}";
-                //logger.Info("Resolved connection string: " + resolvedConnectionString);
-
                 CreateHostBuilder(args).Build().Run();
             }
             catch (Exception ex)
@@ -74,7 +67,7 @@ namespace IllRequestPortal.Web
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<StartupExtended>();
                     //webBuilder.ConfigureKestrel(options =>
                     //{
                     //});
