@@ -29,3 +29,28 @@
 .form-group {
     margin-bottom: 16px;
 }
+
+.loading-spinner {
+    display: none;
+    margin-left: 6px;
+    width: 14px;
+    height: 14px;
+    border: 2px solid #ddd;
+    border-top: 2px solid #555;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.lookup-error {
+    color: #b00020;
+}
+
+.lookup-ok {
+    color: #2a7a2a;
+}

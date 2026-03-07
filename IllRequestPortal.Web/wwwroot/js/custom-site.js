@@ -4,23 +4,54 @@
 
         var cardNumber = $(this).val();
 
-        if (!cardNumber) {
+        if (!cardNumber)
             return;
-        }
+
+        $('#RequesterName').prop('disabled', true);
+        $('#RequesterEmail').prop('disabled', true);
+
+        $('#patronLookupSpinner').show();
+        $('#patronLookupStatus')
+            .removeClass('lookup-error lookup-ok')
+            .text('Looking up patron...');
 
         $.get('/api/v1/patrons?cardNumber=' + encodeURIComponent(cardNumber))
+
             .done(function (data) {
 
-                $('#RequesterName').val((data.firstname || '') + ' ' + (data.surname || ''));
+                $('#RequesterName').val(((data.firstname || '') + ' ' + (data.surname || '')).trim());
                 $('#RequesterEmail').val(data.email || '');
-                $('#CardNumber').val(data.cardnumber || cardNumber);
+
+                $('#patronLookupStatus')
+                    .addClass('lookup-ok')
+                    .text('Patron found');
 
             })
-            .fail(function () {
+
+            .fail(function (xhr) {
 
                 $('#RequesterName').val('');
                 $('#RequesterEmail').val('');
-                console.log('Could not fetch patron');
+
+                if (xhr.status === 404) {
+                    $('#patronLookupStatus')
+                        .addClass('lookup-error')
+                        .text('No patron found with that card number');
+                }
+                else {
+                    $('#patronLookupStatus')
+                        .addClass('lookup-error')
+                        .text('Could not contact library system');
+                }
+
+            })
+
+            .always(function () {
+
+                $('#RequesterName').prop('disabled', false);
+                $('#RequesterEmail').prop('disabled', false);
+
+                $('#patronLookupSpinner').hide();
 
             });
 
