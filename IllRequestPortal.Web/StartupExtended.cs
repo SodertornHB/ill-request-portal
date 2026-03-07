@@ -51,6 +51,8 @@ namespace Web
 
             services.AddTransient<IIllRequestService, IllRequestServiceExtended>();
             services.AddTransient<IKohaGetHttpService, KohaGetHttpService>();
+            services.AddTransient<ILibrisService, LibrisService>();
+            services.AddTransient<IJsonGetHttpService, JsonGetHttpService>();
             services.Configure<RouteOptions>(options =>
             {
                 options.LowercaseUrls = true;

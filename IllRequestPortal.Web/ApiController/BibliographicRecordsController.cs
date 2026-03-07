@@ -12,6 +12,7 @@ using System;
 using System.Collections;
 using Logic.Model;
 using System.Collections.Generic;
+using IllRequestPortal.Logic.Services;
 
 namespace IllRequestPortal.Web.ApiController
 {
@@ -21,14 +22,17 @@ namespace IllRequestPortal.Web.ApiController
     {
         protected readonly ILogger<BibliographicRecordsController> logger;
         private readonly IKohaGetHttpService kohaGetHttpService;
+        private readonly ILibrisService librisService;
         private readonly KohaApiSettings kohaApiSettings;
 
         public BibliographicRecordsController(ILogger<BibliographicRecordsController> logger,
             IKohaGetHttpService kohaGetHttpService,
+            ILibrisService librisService,
             IOptions<KohaApiSettings> kohaApiSettingsOptions)
         {
             this.logger = logger;
             this.kohaGetHttpService = kohaGetHttpService;
+            this.librisService = librisService;
             this.kohaApiSettings = kohaApiSettingsOptions.Value;
         }
 
@@ -49,7 +53,7 @@ namespace IllRequestPortal.Web.ApiController
                 });
             }
 
-            var librisMatch = await librisBibliographicService.FindByStandardNumber(normalized);
+            var librisMatch = await librisService.FetchBiblio(standardNumber);
 
             if (librisMatch != null)
             {

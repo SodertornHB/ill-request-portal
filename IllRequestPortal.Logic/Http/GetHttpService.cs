@@ -30,7 +30,7 @@ namespace IllRequestPortal.Logic.Http
 
         public virtual async Task<TResonseModel> FetchSingle(string url) => await GenericGet(url, JsonConvert.DeserializeObject<TResonseModel>);
 
-        private async Task<T> GenericGet<T>(string url, Func<string, T> mapper)
+        protected async Task<T> GenericGet<T>(string url, Func<string, T> mapper)
         {
             try
             {
