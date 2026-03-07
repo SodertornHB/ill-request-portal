@@ -57,4 +57,80 @@
 
     });
 
+    $('#IsbnIssn').on('change', function () {
+
+        var standardNumber = $(this).val();
+
+        if (!standardNumber)
+            return;
+
+        $('#Title').prop('disabled', true);
+        $('#Author').prop('disabled', true);
+        $('#PublicationYear').prop('disabled', true);
+        $('#Edition').prop('disabled', true);
+        $('#MaterialType').prop('disabled', true);
+
+        $('#bibliographicLookupSpinner').show();
+
+        $('#bibliographicLookupStatus')
+            .removeClass('lookup-error lookup-ok')
+            .text('Looking up bibliographic record...');
+
+        $.get('/api/v1/bibliographic-records/lookup?standardNumber=' + encodeURIComponent(standardNumber))
+
+            .done(function (data) {
+
+                if (data.status === 'FoundInKoha') {
+
+                    $('#bibliographicLookupStatus')
+                        .addClass('lookup-ok')
+                        .text('Item already exists in Koha');
+
+                }
+
+                else if (data.status === 'FoundInLibris') {
+
+                    $('#Title').val(data.title || '');
+                    $('#Author').val(data.author || '');
+                    $('#PublicationYear').val(data.publicationYear || '');
+                    $('#Edition').val(data.edition || '');
+                    $('#MaterialType').val(data.materialType || '');
+
+                    $('#bibliographicLookupStatus')
+                        .addClass('lookup-ok')
+                        .text('Bibliographic information found in Libris');
+
+                }
+
+                else {
+
+                    $('#bibliographicLookupStatus')
+                        .text('No record found in Koha or Libris');
+
+                }
+
+            })
+
+            .fail(function () {
+
+                $('#bibliographicLookupStatus')
+                    .addClass('lookup-error')
+                    .text('Could not contact library system');
+
+            })
+
+            .always(function () {
+
+                $('#Title').prop('disabled', false);
+                $('#Author').prop('disabled', false);
+                $('#PublicationYear').prop('disabled', false);
+                $('#Edition').prop('disabled', false);
+                $('#MaterialType').prop('disabled', false);
+
+                $('#bibliographicLookupSpinner').hide();
+
+            });
+
+    });
+
 });

@@ -1,5 +1,6 @@
 ﻿// This is an organization specific file 
 using AutoMapper;
+using IllRequestPortal.Logic.Http;
 using IllRequestPortal.Logic.Model;
 using IllRequestPortal.Logic.Services;
 using IllRequestPortal.Logic.Settings;
@@ -49,7 +50,7 @@ namespace Web
             services.Configure<KohaApiSettings>(Configuration.GetSection("KohaApiSettings"));
 
             services.AddTransient<IIllRequestService, IllRequestServiceExtended>();
-            services.AddTransient<IKohaPatronGetHttpService, KohaPatronGetHttpService>();
+            services.AddTransient<IKohaGetHttpService, KohaGetHttpService>();
             services.Configure<RouteOptions>(options =>
             {
                 options.LowercaseUrls = true;

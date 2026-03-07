@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using IllRequestPortal.Logic.Settings;
+using IllRequestPortal.Logic.Http;
 
 namespace IllRequestPortal.Web.ApiController
 {
@@ -12,15 +13,15 @@ namespace IllRequestPortal.Web.ApiController
     public partial class PatronController: ControllerBase
     {
         protected readonly ILogger<PatronController> logger;
-        private readonly IKohaPatronGetHttpService kohaPatronGetHttpService;
+        private readonly IKohaGetHttpService kohaGetHttpService;
         private readonly KohaApiSettings kohaApiSettings;
 
         public PatronController(ILogger<PatronController> logger,
-            IKohaPatronGetHttpService kohaPatronGetHttpService,
+            IKohaGetHttpService kohaPatronGetHttpService,
             IOptions<KohaApiSettings> kohaApiSettingsOptions)
         {
             this.logger = logger;
-            this.kohaPatronGetHttpService = kohaPatronGetHttpService;
+            this.kohaGetHttpService = kohaPatronGetHttpService;
             this.kohaApiSettings = kohaApiSettingsOptions.Value;
         }
 
@@ -32,9 +33,9 @@ namespace IllRequestPortal.Web.ApiController
 
             string url = $"{kohaApiSettings.BaseUrl}/patrons?cardnumber={cardNumber}";
 
-            kohaPatronGetHttpService.OverrideDefaultBearerToken(kohaApiSettings.AuthenticationHeaderValue);
+            kohaGetHttpService.OverrideDefaultBearerToken(kohaApiSettings.AuthenticationHeaderValue);
 
-            var patrons = await kohaPatronGetHttpService.FetchAll(url);
+            var patrons = await kohaGetHttpService.FetchAll(url);
 
             var patron = patrons.FirstOrDefault();
 
