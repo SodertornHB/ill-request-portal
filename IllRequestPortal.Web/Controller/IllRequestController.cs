@@ -45,11 +45,25 @@ namespace IllRequestPortal.Web.Controllers
         }
 
         [HttpPost]
-        public virtual async Task<ActionResult> Create([FromForm]IllRequestViewModelExtended viewModel)
+        public virtual async Task<ActionResult> Create([FromForm] IllRequestViewModelExtended viewModel)
         {
-            IllRequest model = mapper.Map<IllRequestExtended>(viewModel);
-            await service.Insert(model);
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                if (!ModelState.IsValid)
+                    return View(viewModel);
+
+                IllRequest model = mapper.Map<IllRequestExtended>(viewModel);
+
+                await service.Insert(model);
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, "Something went wrong while saving the request.");
+
+                return View(viewModel);
+            }
         }
 
         public virtual async Task<ActionResult> Edit(int id)
