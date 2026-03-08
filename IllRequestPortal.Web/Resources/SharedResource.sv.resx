@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ApplicationName" xml:space="preserve">
+    <value>IllRequestPortal</value>
+  </data>
+  <data name="TableLang" xml:space="preserve">
+    <value>//cdn.datatables.net/plug-ins/1.12.1/i18n/sv-SE.json</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+  <value>Skapa</value>
+</data>
+
+  <data name="Create New" xml:space="preserve">
+  <value>Skapa ny</value>
+</data>
+
+  <data name="Edit" xml:space="preserve">
+  <value>Redigera</value>
+</data>
+
+  <data name="Delete" xml:space="preserve">
+  <value>Ta bort</value>
+</data>
+
+  <data name="Save" xml:space="preserve">
+  <value>Spara</value>
+</data>
+
+  <data name="Home" xml:space="preserve">
+  <value>Startsida</value>
+</data>
+
+  <data name="List" xml:space="preserve">
+  <value>Lista</value>
+</data>
+
+  <data name="Back to List" xml:space="preserve">
+  <value>Tillbaka till listan</value>
+</data>
+
+  <data name="ErrorHeader" xml:space="preserve">
+  <value>Fel</value>
+</data>
+
+  <data name="ErrorDescription" xml:space="preserve">
+  <value>Ett fel inträffade</value>
+</data>
+
+  <data name="Are you sure you want to delete this?" xml:space="preserve">
+  <value>Är du säker på att du vill ta bort detta?</value>
+</data>
+
+  <data name="IllRequest" xml:space="preserve">
+  <value>Fjärrlånebeställning</value>
+</data>
+
+  <data name="Id" xml:space="preserve">
+  <value>Id</value>
+</data>
+
+  <data name="Title" xml:space="preserve">
+  <value>Titel</value>
+</data>
+
+  <data name="Author" xml:space="preserve">
+  <value>Författare</value>
+</data>
+
+  <data name="PublicationYear" xml:space="preserve">
+  <value>Utgivningsår</value>
+</data>
+
+  <data name="Edition" xml:space="preserve">
+  <value>Upplaga</value>
+</data>
+
+  <data name="Isbn" xml:space="preserve">
+  <value>ISBN</value>
+</data>
+
+  <data name="Issn" xml:space="preserve">
+  <value>ISSN</value>
+</data>
+
+  <data name="MaterialType" xml:space="preserve">
+  <value>Materialtyp</value>
+</data>
+
+  <data name="RequestType" xml:space="preserve">
+  <value>Beställningstyp</value>
+</data>
+
+  <data name="RequesterName" xml:space="preserve">
+  <value>Beställarens namn</value>
+</data>
+
+  <data name="RequesterEmail" xml:space="preserve">
+  <value>Beställarens e-post</value>
+</data>
+
+  <data name="CardNumber" xml:space="preserve">
+  <value>Lånekortsnummer</value>
+</data>
+
+  <data name="Status" xml:space="preserve">
+  <value>Status</value>
+</data>
+
+  <data name="ExternalRequestId" xml:space="preserve">
+  <value>Externt beställnings-ID</value>
+</data>
+
+  <data name="ExportedOn" xml:space="preserve">
+  <value>Exporterad</value>
+</data>
+
+  <data name="ExportError" xml:space="preserve">
+  <value>Exportfel</value>
+</data>
+
+  <data name="CreatedOn" xml:space="preserve">
+  <value>Skapad</value>
+</data>
+
+  <data name="UpdatedOn" xml:space="preserve">
+  <value>Uppdaterad</value>
+</data>
+
+  <data name="Log" xml:space="preserve">
+  <value>Logg</value>
+</data>
+
+  <data name="Origin" xml:space="preserve">
+  <value>Ursprung</value>
+</data>
+
+  <data name="Message" xml:space="preserve">
+  <value>Meddelande</value>
+</data>
+
+  <data name="LogLevel" xml:space="preserve">
+  <value>Loggnivå</value>
+</data>
+
+  <data name="Exception" xml:space="preserve">
+  <value>Undantag</value>
+</data>
+
+  <data name="Trace" xml:space="preserve">
+  <value>Spårning</value>
+</data>
+
+  <data name="Migration" xml:space="preserve">
+  <value>Migrering</value>
+</data>
+
+  <data name="ClientVersion" xml:space="preserve">
+  <value>Klientversion</value>
+</data>
+
+  <data name="DatabaseVersion" xml:space="preserve">
+  <value>Databasversion</value>
+</data>
+  <data name="Create" xml:space="preserve">
+  <value>Skapa</value>
+</data>
+
+  <data name="IllRequest" xml:space="preserve">
+  <value>Fjärrlånebeställning</value>
+</data>
+
+  <data name="BibliographicLookup" xml:space="preserve">
+  <value>Bibliografisk uppslagning</value>
+</data>
+
+  <data name="EnterIsbnIssnFirst" xml:space="preserve">
+  <value>Ange ISBN eller ISSN först</value>
+</data>
+
+  <data name="IsbnIssn" xml:space="preserve">
+  <value>ISBN eller ISSN</value>
+</data>
+
+  <data name="RequestInformation" xml:space="preserve">
+  <value>Beställningsinformation</value>
+</data>
+
+  <data name="Title" xml:space="preserve">
+  <value>Titel</value>
+</data>
+
+  <data name="Author" xml:space="preserve">
+  <value>Författare</value>
+</data>
+
+  <data name="PublicationYear" xml:space="preserve">
+  <value>Utgivningsår</value>
+</data>
+
+  <data name="Edition" xml:space="preserve">
+  <value>Upplaga</value>
+</data>
+
+  <data name="MaterialType" xml:space="preserve">
+  <value>Materialtyp</value>
+</data>
+
+  <data name="Book" xml:space="preserve">
+  <value>Bok</value>
+</data>
+
+  <data name="Article" xml:space="preserve">
+  <value>Artikel</value>
+</data>
+
+  <data name="Chapter" xml:space="preserve">
+  <value>Bokkapitel</value>
+</data>
+
+  <data name="Journal" xml:space="preserve">
+  <value>Tidskrift</value>
+</data>
+
+  <data name="Other" xml:space="preserve">
+  <value>Annat</value>
+</data>
+
+  <data name="RequestType" xml:space="preserve">
+  <value>Typ av beställning</value>
+</data>
+
+  <data name="Loan" xml:space="preserve">
+  <value>Lån</value>
+</data>
+
+  <data name="Copy" xml:space="preserve">
+  <value>Kopia</value>
+</data>
+
+  <data name="RequesterInformation" xml:space="preserve">
+  <value>Beställaruppgifter</value>
+</data>
+
+  <data name="EnterCardNumberFirst" xml:space="preserve">
+  <value>Ange lånekortsnummer först</value>
+</data>
+
+  <data name="CardNumber" xml:space="preserve">
+  <value>Lånekortsnummer</value>
+</data>
+
+  <data name="RequesterName" xml:space="preserve">
+  <value>Namn</value>
+</data>
+
+  <data name="RequesterEmail" xml:space="preserve">
+  <value>E-postadress</value>
+</data>
+  </root>
