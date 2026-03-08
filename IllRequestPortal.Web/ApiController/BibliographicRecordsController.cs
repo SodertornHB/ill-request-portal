@@ -9,9 +9,7 @@ using IllRequestPortal.Web.ViewModel;
 using IllRequestPortal.Logic.Http;
 using System.Linq;
 using System;
-using System.Collections;
 using Logic.Model;
-using System.Collections.Generic;
 using IllRequestPortal.Logic.Services;
 
 namespace IllRequestPortal.Web.ApiController
@@ -21,17 +19,20 @@ namespace IllRequestPortal.Web.ApiController
     public partial class BibliographicRecordsController: ControllerBase
     {
         protected readonly ILogger<BibliographicRecordsController> logger;
-        private readonly IKohaGetHttpService kohaGetHttpService;
+        private readonly IKohaPatronGetHttpService kohaGetHttpService;
+        private readonly IKohaBiblioGetHttpService kohaBiblioGetHttpService;
         private readonly ILibrisService librisService;
         private readonly KohaApiSettings kohaApiSettings;
 
         public BibliographicRecordsController(ILogger<BibliographicRecordsController> logger,
-            IKohaGetHttpService kohaGetHttpService,
+            IKohaPatronGetHttpService kohaGetHttpService,
+            IKohaBiblioGetHttpService kohaBiblioGetHttpService,
             ILibrisService librisService,
             IOptions<KohaApiSettings> kohaApiSettingsOptions)
         {
             this.logger = logger;
             this.kohaGetHttpService = kohaGetHttpService;
+            this.kohaBiblioGetHttpService = kohaBiblioGetHttpService;
             this.librisService = librisService;
             this.kohaApiSettings = kohaApiSettingsOptions.Value;
         }
@@ -42,14 +43,20 @@ namespace IllRequestPortal.Web.ApiController
             if (string.IsNullOrWhiteSpace(standardNumber))
                 return BadRequest();
 
-            var records = await FetchFromKoha(standardNumber);
+            KohaBiblio record = await FetchFromKoha(standardNumber);
 
-            if (records.Any())
+            if (record!=null)
             {
-                return Ok(new LookupBibliographicRecordResponse
+                return base.Ok(new LookupBibliographicRecordResponse
                 {
                     Status = LookupStatuses.FoundInKoha,
-                    Message = "Item already exists in Koha"
+                    Message = "Item already exists in Koha",
+                    BiblioId = record.BiblioId,
+                    Title = record.GetTitleAndSubtitle(),
+                    Author = record.Author,
+                    PublicationYear = record.PublicationYear,
+                    Edition = string.Empty,
+                    MaterialType = string.Empty
                 });
             }
 
@@ -76,22 +83,21 @@ namespace IllRequestPortal.Web.ApiController
             });
         }
 
-        private async Task<IEnumerable<KohaPatronEntity>> FetchFromKoha(string standardNumber)
+        private async Task<KohaBiblio> FetchFromKoha(string standardNumber)
         {
             // den här funkar https://kosodertorn-opac.prod.imcode.com/api/v1/app.pl/api/v1/biblios?q={%22isbn%22%3A%229789100139117%22}
             // måste har accept header application/json satt 
-            return new List<KohaPatronEntity>();
             // har inte hittat något sätt att hämta från koha vi isbn 
 
-            //var normalized = StandardNumberUtility.Normalize(standardNumber);
-            //var queryField = StandardNumberUtility.Detect(normalized) == "ISSN" ? "issn" : "isbn";
-            //var q = Uri.EscapeDataString($"{{\"{queryField}\":\"{normalized}\"}}");
-            //string url = $"{kohaApiSettings.BaseUrl}/biblios?q={q}";
+            var normalized = StandardNumberUtility.Normalize(standardNumber);
+            var queryField = StandardNumberUtility.Detect(normalized) == "ISSN" ? "issn" : "isbn";
+            var q = Uri.EscapeDataString($"{{\"{queryField}\":\"{normalized}\"}}");
+            string url = $"{kohaApiSettings.BaseUrl}/biblios?q={q}";
 
-            //kohaGetHttpService.OverrideDefaultBearerToken(kohaApiSettings.AuthenticationHeaderValue);
+            kohaBiblioGetHttpService.OverrideDefaultBearerToken(kohaApiSettings.AuthenticationHeaderValue);
 
-            //var records = await kohaGetHttpService.FetchAll(url);
-            //return records;
+            var records = await kohaBiblioGetHttpService.FetchAll(url);
+            return records.FirstOrDefault();
 
         }
     }

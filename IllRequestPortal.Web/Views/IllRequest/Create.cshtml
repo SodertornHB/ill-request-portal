@@ -17,31 +17,35 @@
 <div class="row">
     <div class="col-md-8">
         <form method="post" enctype="multipart/form-data" asp-controller="IllRequest" asp-action="Create">
-            <div class="ill-feedback">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @if (ViewBag.Message != null || ViewBag.Error != null || !ViewData.ModelState.IsValid)
+            {
+                <div class="ill-feedback">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                @if (ViewBag.Message != null)
-                {
-                    <div class="alert alert-info mb-0">@ViewBag.Message</div>
-                }
+                    @if (ViewBag.Message != null)
+                    {
+                        <div class="alert alert-info mb-0">@ViewBag.Message</div>
+                    }
 
-                @if (ViewBag.Error != null)
-                {
-                    <div class="alert alert-danger mb-0">@ViewBag.Error</div>
-                }
-            </div>
+                    @if (ViewBag.Error != null)
+                    {
+                        <div class="alert alert-danger mb-0">@ViewBag.Error</div>
+                    }
+                </div>
+            }
 
             <div class="ill-section">
                 <div class="ill-section-title">@SharedLocalizer.GetLocalizedHtmlString("BibliographicLookup")</div>
                 <div class="ill-helper-text">@SharedLocalizer.GetLocalizedHtmlString("EnterIsbnIssnFirst")</div>
 
                 <div class="form-group">
+                    <div id="bibliographicLookupStatus" class="text-muted small mb-2"></div>
                     <label asp-for="IsbnIssn" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("IsbnIssn")</label>
                     <input asp-for="IsbnIssn" class="form-control" />
+                    <span id="bibliographicLookupSpinner" class="loading-spinner"></span>
                     <span asp-validation-for="IsbnIssn" class="text-danger"></span>
                 </div>
             </div>
-
             <div class="ill-section">
                 <div class="ill-section-title">@SharedLocalizer.GetLocalizedHtmlString("RequestInformation")</div>
 
@@ -123,10 +127,6 @@
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-controller="IllRequest" asp-action="Index">@SharedLocalizer.GetLocalizedHtmlString("Back to List")</a>
 </div>
 
 @section Scripts {

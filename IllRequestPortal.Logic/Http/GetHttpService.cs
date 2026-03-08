@@ -37,7 +37,8 @@ namespace IllRequestPortal.Logic.Http
                 var response = await client.Get(new Uri(url));
                 response.CheckStatus();
                 logger.LogDebug($"Get data from {url}: {response.Content}");
-                return mapper(response.Content);
+                var mapped = mapper(response.Content);
+                return mapped;
             }
             catch (HttpRequestException e)
             {

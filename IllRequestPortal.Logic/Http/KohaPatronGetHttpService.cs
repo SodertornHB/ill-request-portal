@@ -3,13 +3,13 @@ using Microsoft.Extensions.Logging;
 
 namespace IllRequestPortal.Logic.Http
 {
-    public interface IKohaGetHttpService : IGetHttpService<KohaPatronEntity>
+    public interface IKohaPatronGetHttpService : IGetHttpService<KohaPatronEntity>
     {
     }
 
-    public class KohaGetHttpService : GetHttpService<KohaPatronEntity>, IKohaGetHttpService
+    public class KohaPatronGetHttpService : GetHttpService<KohaPatronEntity>, IKohaPatronGetHttpService
     {
-        public KohaGetHttpService(
+        public KohaPatronGetHttpService(
             IHttpClient client,
             ILogger<HttpService<GetHttpService<KohaPatronEntity>>> logger)
             : base(client, logger)

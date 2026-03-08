@@ -50,9 +50,10 @@ namespace Web
             services.Configure<KohaApiSettings>(Configuration.GetSection("KohaApiSettings"));
 
             services.AddTransient<IIllRequestService, IllRequestServiceExtended>();
-            services.AddTransient<IKohaGetHttpService, KohaGetHttpService>();
+            services.AddTransient<IKohaPatronGetHttpService, KohaPatronGetHttpService>();
             services.AddTransient<ILibrisService, LibrisService>();
             services.AddTransient<IJsonGetHttpService, JsonGetHttpService>();
+            services.AddTransient<IKohaBiblioGetHttpService, BiblioPatronGetHttpService>();
             services.Configure<RouteOptions>(options =>
             {
                 options.LowercaseUrls = true;

@@ -79,16 +79,14 @@
         $.get('/api/v1/bibliographic-records/lookup?standardNumber=' + encodeURIComponent(standardNumber))
 
             .done(function (data) {
+                console.log(data);
+                const $status = $('#bibliographicLookupStatus');
 
-                if (data.status === 'FoundInKoha') {
+                $status
+                    .removeClass('lookup-ok lookup-error')
+                    .text('');
 
-                    $('#bibliographicLookupStatus')
-                        .addClass('lookup-ok')
-                        .text('Item already exists in Koha');
-
-                }
-
-                else if (data.status === 'FoundInLibris') {
+                if (data.status === 'FoundInKoha' || data.status === 'FoundInLibris') {
 
                     $('#Title').val(data.title || '');
                     $('#Author').val(data.author || '');
@@ -96,10 +94,21 @@
                     $('#Edition').val(data.edition || '');
                     $('#MaterialType').val(data.materialType || '');
 
-                    $('#bibliographicLookupStatus')
+                }
+
+                if (data.status === 'FoundInKoha') {
+                    $status
+                        .removeClass('lookup-error')
+                        .addClass('lookup-ok')
+                        .html(`<a href="https://soh-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=SOH_KOHA${data.biblioId}&vid=SOH_main&lang=sv_SE">
+                                     Item already exists in Koha. Click here to borrow the book
+                                 </a>`);
+                }
+                else if (data.status === 'FoundInLibris') {
+                    $status
+                        .removeClass('lookup-error')
                         .addClass('lookup-ok')
                         .text('Bibliographic information found in Libris');
-
                 }
 
                 else {

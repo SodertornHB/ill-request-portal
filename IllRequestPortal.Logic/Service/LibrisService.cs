@@ -1,6 +1,4 @@
-using IllRequestPortal.Logic.DataAccess;
 using IllRequestPortal.Logic.Http;
-using IllRequestPortal.Logic.Model;
 using Logic.Model;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;

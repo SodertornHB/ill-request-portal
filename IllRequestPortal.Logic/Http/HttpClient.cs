@@ -80,10 +80,18 @@ namespace IllRequestPortal.Logic.Http
         {
             logger.LogDebug($"Sending {method} request to {url}. Content: {requestContent}");
             var request = new HttpRequestMessage(method, url);
-            if (!string.IsNullOrEmpty(requestContent)) request.Content = new StringContent(requestContent, Encoding.UTF8, "application/json");
+
+            request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            if (!string.IsNullOrEmpty(requestContent))
+                request.Content = new StringContent(requestContent, Encoding.UTF8, "application/json");
+
             var response = await Send(request);
+
             string responseContent = await GetContent(response);
+
             logger.LogDebug($"Response code {response.StatusCode}. Content: {responseContent}");
+
             return new HttpResponse(response.StatusCode, response.IsSuccessStatusCode, responseContent, response.Headers);
         }
 

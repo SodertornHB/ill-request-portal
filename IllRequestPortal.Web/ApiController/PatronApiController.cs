@@ -13,11 +13,11 @@ namespace IllRequestPortal.Web.ApiController
     public partial class PatronController: ControllerBase
     {
         protected readonly ILogger<PatronController> logger;
-        private readonly IKohaGetHttpService kohaGetHttpService;
+        private readonly IKohaPatronGetHttpService kohaGetHttpService;
         private readonly KohaApiSettings kohaApiSettings;
 
         public PatronController(ILogger<PatronController> logger,
-            IKohaGetHttpService kohaPatronGetHttpService,
+            IKohaPatronGetHttpService kohaPatronGetHttpService,
             IOptions<KohaApiSettings> kohaApiSettingsOptions)
         {
             this.logger = logger;

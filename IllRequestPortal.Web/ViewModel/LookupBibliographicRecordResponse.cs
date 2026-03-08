@@ -2,6 +2,7 @@
 {
     public class LookupBibliographicRecordResponse
     {
+        public int BiblioId { get; set; }
         public string Status { get; set; } = "";
         public string Message { get; set; } = "";
         public string Title { get; set; } = "";
