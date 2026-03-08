@@ -9,5 +9,7 @@
         public string Edition { get; set; } = "";
         public string IsbnIssn { get; set; } = "";
         public string MaterialType { get; set; } = "";
+        public bool ExistsInLocalCatalog { get; set; }
+
     }
 }

@@ -165,6 +165,17 @@ namespace IllRequestPortal.Logic.Services
                 _ => materialType
             };
 
+            var holdings = instance["@reverse"]?["itemOf"] as JArray;
+
+            if (holdings != null)
+            {
+                result.ExistsInLocalCatalog = holdings
+                    .OfType<JObject>()
+                    .Any(h =>
+                        ((string)h["heldBy"]?["@id"])?
+                        .EndsWith("/library/D", StringComparison.OrdinalIgnoreCase) == true);
+            }
+
             return result;
         }
         public static LibrisBiblioLookupResult ConvertFromGraph(string json)

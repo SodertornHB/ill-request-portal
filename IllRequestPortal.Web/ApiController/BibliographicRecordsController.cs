@@ -78,6 +78,8 @@ namespace IllRequestPortal.Web.ApiController
 
         private async Task<IEnumerable<KohaPatronEntity>> FetchFromKoha(string standardNumber)
         {
+            // den här funkar https://kosodertorn-opac.prod.imcode.com/api/v1/app.pl/api/v1/biblios?q={%22isbn%22%3A%229789100139117%22}
+            // måste har accept header application/json satt 
             return new List<KohaPatronEntity>();
             // har inte hittat något sätt att hämta från koha vi isbn 
 
