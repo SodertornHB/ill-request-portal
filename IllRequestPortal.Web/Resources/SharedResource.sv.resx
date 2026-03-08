@@ -314,4 +314,20 @@
   <data name="RequesterEmail" xml:space="preserve">
   <value>E-postadress</value>
 </data>
+  
+  <data name="FoundInKohaMessage" xml:space="preserve">
+  <value>Posten finns redan i Koha.</value>
+</data>
+
+  <data name="FoundInLibrisMessage" xml:space="preserve">
+  <value>Bibliografisk information hittades i Libris.</value>
+</data>
+
+  <data name="KohaBorrowLinkText" xml:space="preserve">
+  <value>Posten finns redan i Koha. Klicka här för att låna boken.</value>
+</data>
+
+  <data name="MissingBiblioIdMessage" xml:space="preserve">
+  <value>Posten finns i Koha, men biblio-id saknas i svaret.</value>
+</data>
   </root>

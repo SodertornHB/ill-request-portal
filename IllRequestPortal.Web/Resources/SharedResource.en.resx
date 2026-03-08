@@ -276,4 +276,19 @@
   <data name="RequesterEmail" xml:space="preserve">
   <value>Requester Email</value>
 </data>
+  <data name="FoundInKohaMessage" xml:space="preserve">
+  <value>Item already exists in Koha</value>
+</data>
+
+  <data name="FoundInLibrisMessage" xml:space="preserve">
+  <value>Bibliographic information found in Libris</value>
+</data>
+
+  <data name="KohaBorrowLinkText" xml:space="preserve">
+  <value>Item already exists in Koha. Click here to borrow the book</value>
+</data>
+
+  <data name="MissingBiblioIdMessage" xml:space="preserve">
+  <value>Item exists in Koha, but biblio ID is missing in the response.</value>
+</data>
   </root>

@@ -3,6 +3,7 @@
 @* --------------------------------------------------------------------*@
 @using Localization
 @using Microsoft.Extensions.Options
+@using System.Text.Json
 @inject LocService SharedLocalizer
 @model IllRequestPortal.Web.ViewModel.IllRequestViewModelExtended
 
@@ -128,6 +129,16 @@
         </form>
     </div>
 </div>
+
+<script>
+    window.illTexts = @Html.Raw(JsonSerializer.Serialize(new
+        {
+            foundInKohaMessage = SharedLocalizer.GetLocalizedHtmlString("FoundInKohaMessage").Value,
+            foundInLibrisMessage = SharedLocalizer.GetLocalizedHtmlString("FoundInLibrisMessage").Value,
+            kohaBorrowLinkText = SharedLocalizer.GetLocalizedHtmlString("KohaBorrowLinkText").Value,
+            missingBiblioIdMessage = SharedLocalizer.GetLocalizedHtmlString("MissingBiblioIdMessage").Value
+        }));
+</script>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

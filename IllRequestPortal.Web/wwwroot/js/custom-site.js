@@ -1,5 +1,7 @@
 ﻿$(document).ready(function () {
 
+    const texts = window.illTexts;
+
     $('#CardNumber').on('change', function () {
 
         var cardNumber = $(this).val();
@@ -97,24 +99,25 @@
                 }
 
                 if (data.status === 'FoundInKoha') {
+                    const biblioId = data.biblioId || data.BiblioId || data.biblio_id;
                     $status
                         .removeClass('lookup-error')
                         .addClass('lookup-ok')
-                        .html(`<a href="https://soh-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=SOH_KOHA${data.biblioId}&vid=SOH_main&lang=sv_SE">
-                                     Item already exists in Koha. Click here to borrow the book
-                                 </a>`);
+                        .html(
+                            `<a target="_blank" href="https://soh-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=SOH_KOHA${biblioId}&vid=SOH_main&lang=sv_SE">${texts.kohaBorrowLinkText}</a>`
+                        );
                 }
                 else if (data.status === 'FoundInLibris') {
                     $status
                         .removeClass('lookup-error')
                         .addClass('lookup-ok')
-                        .text('Bibliographic information found in Libris');
+                        .text(texts.foundInLibrisMessage);
                 }
 
                 else {
 
                     $('#bibliographicLookupStatus')
-                        .text('No record found in Koha or Libris');
+                        .text(texts.missingBiblioIdMessage);
 
                 }
 
