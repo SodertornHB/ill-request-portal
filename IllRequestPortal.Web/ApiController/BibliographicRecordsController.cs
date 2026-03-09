@@ -55,8 +55,7 @@ namespace IllRequestPortal.Web.ApiController
                     Title = record.GetTitleAndSubtitle(),
                     Author = record.Author,
                     PublicationYear = record.PublicationYear,
-                    Edition = string.Empty,
-                    MaterialType = string.Empty
+                    Edition = string.Empty
                 });
             }
 
@@ -71,8 +70,7 @@ namespace IllRequestPortal.Web.ApiController
                     Title = librisMatch.Title,
                     Author = librisMatch.Author,
                     PublicationYear = librisMatch.PublicationYear,
-                    Edition = librisMatch.Edition,
-                    MaterialType = librisMatch.MaterialType
+                    Edition = librisMatch.Edition
                 });
             }
 

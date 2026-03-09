@@ -29,20 +29,39 @@
 .form-group {
     margin-bottom: 16px;
 }
+.lookup-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.lookup-input {
+    flex: 1 1 auto;
+    min-width: 0;
+}
 
 .loading-spinner {
-    display: none;
-    margin-left: 6px;
-    width: 14px;
-    height: 14px;
-    border: 2px solid #ddd;
-    border-top: 2px solid #555;
+    display: inline-block !important;
+    width: 18px;
+    height: 18px;
+    flex: 0 0 18px;
+    box-sizing: border-box;
+    border: 3px solid #d0d0d0;
+    border-top-color: #333333;
     border-radius: 50%;
-    animation: spin 0.7s linear infinite;
+    animation: spin 0.8s linear infinite;
+}
+
+.hidden {
+    display: none !important;
 }
 
 @keyframes spin {
-    100% {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
         transform: rotate(360deg);
     }
 }

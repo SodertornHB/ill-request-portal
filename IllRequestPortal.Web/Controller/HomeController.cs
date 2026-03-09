@@ -26,7 +26,13 @@ namespace Web.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("Create", "IllRequest");
+        }
+
+        [HttpGet("admin")]
+        public IActionResult Admin()
+        {
+            return RedirectToAction("Index", "IllRequest");
         }
 
         [HttpPost]

@@ -12,10 +12,11 @@
         $('#RequesterName').prop('disabled', true);
         $('#RequesterEmail').prop('disabled', true);
 
-        $('#patronLookupSpinner').show();
+        $('#patronLookupSpinner').removeClass('hidden');
+
         $('#patronLookupStatus')
             .removeClass('lookup-error lookup-ok')
-            .text('Looking up patron...');
+            .text(texts.lookingUpPatron);
 
         $.get('/api/v1/patrons?cardNumber=' + encodeURIComponent(cardNumber))
 
@@ -25,8 +26,9 @@
                 $('#RequesterEmail').val(data.email || '');
 
                 $('#patronLookupStatus')
+                    .removeClass('lookup-error')
                     .addClass('lookup-ok')
-                    .text('Patron found');
+                    .text(texts.patronFound);
 
             })
 
@@ -37,13 +39,15 @@
 
                 if (xhr.status === 404) {
                     $('#patronLookupStatus')
+                        .removeClass('lookup-ok')
                         .addClass('lookup-error')
-                        .text('No patron found with that card number');
+                        .text(texts.noPatronFound);
                 }
                 else {
                     $('#patronLookupStatus')
+                        .removeClass('lookup-ok')
                         .addClass('lookup-error')
-                        .text('Could not contact library system');
+                        .text(texts.librarySystemErrorMessage);
                 }
 
             })
@@ -53,7 +57,7 @@
                 $('#RequesterName').prop('disabled', false);
                 $('#RequesterEmail').prop('disabled', false);
 
-                $('#patronLookupSpinner').hide();
+                $('#patronLookupSpinner').addClass('hidden');
 
             });
 
@@ -72,16 +76,16 @@
         $('#Edition').prop('disabled', true);
         $('#MaterialType').prop('disabled', true);
 
-        $('#bibliographicLookupSpinner').show();
+        $('#bibliographicLookupSpinner').removeClass('hidden');
 
         $('#bibliographicLookupStatus')
             .removeClass('lookup-error lookup-ok')
-            .text('Looking up bibliographic record...');
+            .text(texts.lookingUpBibliographicRecord);
 
         $.get('/api/v1/bibliographic-records/lookup?standardNumber=' + encodeURIComponent(standardNumber))
 
             .done(function (data) {
-                console.log(data);
+
                 const $status = $('#bibliographicLookupStatus');
 
                 $status
@@ -94,18 +98,28 @@
                     $('#Author').val(data.author || '');
                     $('#PublicationYear').val(data.publicationYear || '');
                     $('#Edition').val(data.edition || '');
-                    $('#MaterialType').val(data.materialType || '');
 
                 }
 
                 if (data.status === 'FoundInKoha') {
+
                     const biblioId = data.biblioId || data.BiblioId || data.biblio_id;
-                    $status
-                        .removeClass('lookup-error')
-                        .addClass('lookup-ok')
-                        .html(
-                            `<a target="_blank" href="https://soh-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=SOH_KOHA${biblioId}&vid=SOH_main&lang=sv_SE">${texts.kohaBorrowLinkText}</a>`
-                        );
+
+                    if (biblioId) {
+                        $status
+                            .removeClass('lookup-error')
+                            .addClass('lookup-ok')
+                            .html(
+                                `${texts.foundInKohaMessage} <a target="_blank" href="https://soh-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=SOH_KOHA${biblioId}&vid=SOH_main&lang=sv_SE">${texts.kohaBorrowLinkText}</a>`
+                            );
+                    }
+                    else {
+                        $status
+                            .removeClass('lookup-ok')
+                            .addClass('lookup-error')
+                            .text(texts.missingBiblioIdMessage);
+                    }
+
                 }
                 else if (data.status === 'FoundInLibris') {
                     $status
@@ -113,12 +127,11 @@
                         .addClass('lookup-ok')
                         .text(texts.foundInLibrisMessage);
                 }
-
                 else {
-
-                    $('#bibliographicLookupStatus')
-                        .text(texts.missingBiblioIdMessage);
-
+                    $status
+                        .removeClass('lookup-ok')
+                        .addClass('lookup-error')
+                        .text(texts.noBibliographicRecordFoundMessage);
                 }
 
             })
@@ -126,8 +139,9 @@
             .fail(function () {
 
                 $('#bibliographicLookupStatus')
+                    .removeClass('lookup-ok')
                     .addClass('lookup-error')
-                    .text('Could not contact library system');
+                    .text(texts.librarySystemErrorMessage);
 
             })
 
@@ -139,7 +153,7 @@
                 $('#Edition').prop('disabled', false);
                 $('#MaterialType').prop('disabled', false);
 
-                $('#bibliographicLookupSpinner').hide();
+                $('#bibliographicLookupSpinner').addClass('hidden');
 
             });
 
