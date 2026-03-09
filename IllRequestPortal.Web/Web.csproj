@@ -44,6 +44,26 @@
     </Content>
   </ItemGroup>
 
+
+  <Target Name="CopyOrgSpecificFiles" BeforeTargets="Build">
+    <ItemGroup>
+      <OrgSpecificFiles Include="..\organizational-specific\web\**\*.css" />
+      <OrgSpecificFiles Include="..\organizational-specific\web\**\*.js" />
+      <OrgSpecificFiles Include="..\organizational-specific\web\**\*.cs" />
+      <OrgSpecificFiles Include="..\organizational-specific\web\**\*.png" />
+      <OrgSpecificFiles Include="..\organizational-specific\web\*.json" />
+      <OrgSpecificFiles Include="..\organizational-specific\web\*.csproj" />
+      <OrgSpecificFiles Include="..\organizational-specific\web\*.ps1" />
+      <OrgSpecificFiles Include="..\organizational-specific\web\**\*.resx" />
+      <OrgSpecificFiles Include="..\organizational-specific\web\**\*.xml" />
+      <OrgSpecificFiles Include="..\organizational-specific\web\**\*.cshtml" />
+    </ItemGroup>
+
+    <Message Text="Copying @(OrgSpecificFiles) to $(ProjectDir)%(OrgSpecificFiles.RecursiveDir)%(Filename)%(Extension)" Importance="high" />
+
+    <Copy SourceFiles="@(OrgSpecificFiles)" DestinationFiles="@(OrgSpecificFiles->'$(ProjectDir)%(RecursiveDir)%(Filename)%(Extension)')" OverwriteReadOnlyFiles="true" />
+  </Target>
+
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="echo  -------------------------------------------------------------------------------------------- &#xD;&#xA;echo  *** Start custom post build events *** &#xD;&#xA;echo  --------------------------------------------------------------------------------------------&#xD;&#xA;echo.&#xD;&#xA;echo  If you are making changes to files that are updated by the code generator application&#xD;&#xA;echo  it's a good idea to wite protect them here. E.g. attrib +r &quot;/{path}/Web.csproj&quot; &#xD;&#xA;echo.&#xD;&#xA;echo  -------------------------------------------------------------------------------------------- &#xD;&#xA;echo  *** End custom post build events *** &#xD;&#xA;echo  --------------------------------------------------------------------------------------------" />
   </Target>
