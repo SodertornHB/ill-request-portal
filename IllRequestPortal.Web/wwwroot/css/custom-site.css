@@ -1,4 +1,8 @@
-﻿.ill-section {
+﻿.container {
+    max-width:100% !important;
+}
+
+.ill-section {
     border: 1px solid #ddd;
     border-radius: 6px;
     padding: 20px;
@@ -72,4 +76,11 @@
 
 .lookup-ok {
     color: #2a7a2a;
+}
+
+.truncate {
+    max-width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
