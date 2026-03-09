@@ -46,6 +46,7 @@
       </xsd:complexType>
     </xsd:element>
   </xsd:schema>
+
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -53,302 +54,230 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
+
   <data name="ApplicationName" xml:space="preserve">
     <value>IllRequestPortal</value>
   </data>
+
   <data name="TableLang" xml:space="preserve">
     <value>//cdn.datatables.net/plug-ins/1.12.1/i18n/sv-SE.json</value>
   </data>
+
   <data name="Create" xml:space="preserve">
-  <value>Skapa</value>
-</data>
+    <value>Skapa</value>
+  </data>
 
   <data name="Create New" xml:space="preserve">
-  <value>Skapa ny</value>
-</data>
+    <value>Skapa ny</value>
+  </data>
 
   <data name="Edit" xml:space="preserve">
-  <value>Redigera</value>
-</data>
+    <value>Redigera</value>
+  </data>
 
   <data name="Delete" xml:space="preserve">
-  <value>Ta bort</value>
-</data>
+    <value>Ta bort</value>
+  </data>
 
   <data name="Save" xml:space="preserve">
-  <value>Spara</value>
-</data>
+    <value>Spara</value>
+  </data>
 
   <data name="Home" xml:space="preserve">
-  <value>Startsida</value>
-</data>
+    <value>Startsida</value>
+  </data>
 
   <data name="List" xml:space="preserve">
-  <value>Lista</value>
-</data>
+    <value>Lista</value>
+  </data>
 
   <data name="Back to List" xml:space="preserve">
-  <value>Tillbaka till listan</value>
-</data>
+    <value>Tillbaka till listan</value>
+  </data>
 
   <data name="ErrorHeader" xml:space="preserve">
-  <value>Fel</value>
-</data>
+    <value>Fel</value>
+  </data>
 
   <data name="ErrorDescription" xml:space="preserve">
-  <value>Ett fel inträffade</value>
-</data>
+    <value>Ett fel inträffade</value>
+  </data>
 
   <data name="Are you sure you want to delete this?" xml:space="preserve">
-  <value>Är du säker på att du vill ta bort detta?</value>
-</data>
+    <value>Är du säker på att du vill ta bort detta?</value>
+  </data>
 
   <data name="IllRequest" xml:space="preserve">
-  <value>Fjärrlånebeställning</value>
-</data>
+    <value>Fjärrlånebeställning</value>
+  </data>
 
   <data name="Id" xml:space="preserve">
-  <value>Id</value>
-</data>
+    <value>Id</value>
+  </data>
 
   <data name="Title" xml:space="preserve">
-  <value>Titel</value>
-</data>
+    <value>Titel</value>
+  </data>
 
   <data name="Author" xml:space="preserve">
-  <value>Författare</value>
-</data>
+    <value>Författare</value>
+  </data>
 
   <data name="PublicationYear" xml:space="preserve">
-  <value>Utgivningsår</value>
-</data>
+    <value>Utgivningsår</value>
+  </data>
 
   <data name="Edition" xml:space="preserve">
-  <value>Upplaga</value>
-</data>
+    <value>Upplaga</value>
+  </data>
 
   <data name="Isbn" xml:space="preserve">
-  <value>ISBN</value>
-</data>
+    <value>ISBN</value>
+  </data>
 
   <data name="Issn" xml:space="preserve">
-  <value>ISSN</value>
-</data>
+    <value>ISSN</value>
+  </data>
 
   <data name="MaterialType" xml:space="preserve">
-  <value>Materialtyp</value>
-</data>
+    <value>Materialtyp</value>
+  </data>
 
   <data name="RequestType" xml:space="preserve">
-  <value>Beställningstyp</value>
-</data>
+    <value>Typ av beställning</value>
+  </data>
 
   <data name="RequesterName" xml:space="preserve">
-  <value>Beställarens namn</value>
-</data>
+    <value>Namn</value>
+  </data>
 
   <data name="RequesterEmail" xml:space="preserve">
-  <value>Beställarens e-post</value>
-</data>
+    <value>E-postadress</value>
+  </data>
 
   <data name="CardNumber" xml:space="preserve">
-  <value>Lånekortsnummer</value>
-</data>
+    <value>Lånekortsnummer</value>
+  </data>
 
   <data name="Status" xml:space="preserve">
-  <value>Status</value>
-</data>
+    <value>Status</value>
+  </data>
 
   <data name="ExternalRequestId" xml:space="preserve">
-  <value>Externt beställnings-ID</value>
-</data>
+    <value>Externt beställnings-ID</value>
+  </data>
 
   <data name="ExportedOn" xml:space="preserve">
-  <value>Exporterad</value>
-</data>
+    <value>Exporterad</value>
+  </data>
 
   <data name="ExportError" xml:space="preserve">
-  <value>Exportfel</value>
-</data>
+    <value>Exportfel</value>
+  </data>
 
   <data name="CreatedOn" xml:space="preserve">
-  <value>Lagd</value>
-</data>
+    <value>Lagd</value>
+  </data>
 
   <data name="UpdatedOn" xml:space="preserve">
-  <value>Uppdaterad</value>
-</data>
-
-  <data name="Log" xml:space="preserve">
-  <value>Logg</value>
-</data>
-
-  <data name="Origin" xml:space="preserve">
-  <value>Ursprung</value>
-</data>
-
-  <data name="Message" xml:space="preserve">
-  <value>Meddelande</value>
-</data>
-
-  <data name="LogLevel" xml:space="preserve">
-  <value>Loggnivå</value>
-</data>
-
-  <data name="Exception" xml:space="preserve">
-  <value>Undantag</value>
-</data>
-
-  <data name="Trace" xml:space="preserve">
-  <value>Spårning</value>
-</data>
-
-  <data name="Migration" xml:space="preserve">
-  <value>Migrering</value>
-</data>
-
-  <data name="ClientVersion" xml:space="preserve">
-  <value>Klientversion</value>
-</data>
-
-  <data name="DatabaseVersion" xml:space="preserve">
-  <value>Databasversion</value>
-</data>
-  <data name="Create" xml:space="preserve">
-  <value>Skapa</value>
-</data>
-
-  <data name="IllRequest" xml:space="preserve">
-  <value>Fjärrlånebeställning</value>
-</data>
+    <value>Uppdaterad</value>
+  </data>
 
   <data name="BibliographicLookup" xml:space="preserve">
-  <value>Bibliografisk uppslagning</value>
-</data>
+    <value>Bibliografisk uppslagning</value>
+  </data>
 
   <data name="EnterIsbnIssnFirst" xml:space="preserve">
-  <value>Ange ISBN eller ISSN först</value>
-</data>
+    <value>Ange ISBN eller ISSN först</value>
+  </data>
 
   <data name="IsbnIssn" xml:space="preserve">
-  <value>ISBN eller ISSN</value>
-</data>
+    <value>ISBN eller ISSN</value>
+  </data>
 
   <data name="RequestInformation" xml:space="preserve">
-  <value>Beställningsinformation</value>
-</data>
-
-  <data name="Title" xml:space="preserve">
-  <value>Titel</value>
-</data>
-
-  <data name="Author" xml:space="preserve">
-  <value>Författare</value>
-</data>
-
-  <data name="PublicationYear" xml:space="preserve">
-  <value>Utgivningsår</value>
-</data>
-
-  <data name="Edition" xml:space="preserve">
-  <value>Upplaga</value>
-</data>
-
-  <data name="MaterialType" xml:space="preserve">
-  <value>Materialtyp</value>
-</data>
+    <value>Beställningsinformation</value>
+  </data>
 
   <data name="Book" xml:space="preserve">
-  <value>Bok</value>
-</data>
+    <value>Bok</value>
+  </data>
 
   <data name="Article" xml:space="preserve">
-  <value>Artikel</value>
-</data>
+    <value>Artikel</value>
+  </data>
 
   <data name="Chapter" xml:space="preserve">
-  <value>Bokkapitel</value>
-</data>
+    <value>Bokkapitel</value>
+  </data>
 
   <data name="Journal" xml:space="preserve">
-  <value>Tidskrift</value>
-</data>
+    <value>Tidskrift</value>
+  </data>
 
   <data name="Other" xml:space="preserve">
-  <value>Annat</value>
-</data>
-
-  <data name="RequestType" xml:space="preserve">
-  <value>Typ av beställning</value>
-</data>
+    <value>Annat</value>
+  </data>
 
   <data name="Loan" xml:space="preserve">
-  <value>Lån</value>
-</data>
+    <value>Lån</value>
+  </data>
 
   <data name="Copy" xml:space="preserve">
-  <value>Kopia</value>
-</data>
+    <value>Kopia</value>
+  </data>
 
   <data name="RequesterInformation" xml:space="preserve">
-  <value>Beställaruppgifter</value>
-</data>
+    <value>Beställaruppgifter</value>
+  </data>
 
   <data name="EnterCardNumberFirst" xml:space="preserve">
-  <value>Ange lånekortsnummer först</value>
-</data>
-
-  <data name="CardNumber" xml:space="preserve">
-  <value>Lånekortsnummer</value>
-</data>
-
-  <data name="RequesterName" xml:space="preserve">
-  <value>Namn</value>
-</data>
-
-  <data name="RequesterEmail" xml:space="preserve">
-  <value>E-postadress</value>
-</data>
+    <value>Ange lånekortsnummer först</value>
+  </data>
 
   <data name="FoundInKohaMessage" xml:space="preserve">
-  <value>Posten finns redan i Koha.</value>
-</data>
+    <value>Materialet finns i bibliotekets katalog.</value>
+  </data>
 
   <data name="FoundInLibrisMessage" xml:space="preserve">
-  <value>Bibliografisk information hittades i Libris.</value>
-</data>
+    <value>Posten hittades i Libris och uppgifterna har fyllts i automatiskt.</value>
+  </data>
 
   <data name="KohaBorrowLinkText" xml:space="preserve">
-  <value>Posten finns redan i Koha. Klicka här för att låna boken.</value>
-</data>
+    <value>Gå till posten i bibliotekskatalogen</value>
+  </data>
 
   <data name="MissingBiblioIdMessage" xml:space="preserve">
-  <value>Posten finns i Koha, men biblio-id saknas i svaret.</value>
-</data>
-  <data name="FoundInKohaMessage" xml:space="preserve">
-  <value>Materialet finns i bibliotekets katalog.</value>
-</data>
-  <data name="FoundInLibrisMessage" xml:space="preserve">
-  <value>Posten hittades i Libris och uppgifterna har fyllts i automatiskt.</value>
-</data>
-  <data name="KohaBorrowLinkText" xml:space="preserve">
-  <value>Gå till posten i bibliotekskatalogen</value>
-</data>
-  <data name="MissingBiblioIdMessage" xml:space="preserve">
-  <value>Kunde inte identifiera posten i katalogen. Fyll i uppgifter nedan.</value>
-</data>
+    <value>Kunde inte identifiera posten i katalogen. Fyll i uppgifter nedan.</value>
+  </data>
+
   <data name="NoPatronFoundWithCardNumber" xml:space="preserve">
-  <value>Ingen låntagare hittades med det kortnumret. Skriv in beställarens namn och e-post nedan.</value>
-</data>
+    <value>Ingen låntagare hittades med det kortnumret. Skriv in beställarens namn och e-post nedan.</value>
+  </data>
+
   <data name="PatronFound" xml:space="preserve">
-  <value>Låntagare hittad.</value>
-</data>
+    <value>Låntagare hittad.</value>
+  </data>
+
   <data name="LookingUpPatron" xml:space="preserve">
-  <value>Söker efter låntagare...</value>
-</data>
+    <value>Söker efter låntagare...</value>
+  </data>
+
+  <data name="ThankYouPageTitle" xml:space="preserve">
+    <value>Tack</value>
+  </data>
+
+  <data name="ThankYouHeader" xml:space="preserve">
+    <value>Tack för din beställning</value>
+  </data>
+
+  <data name="ThankYouMessage" xml:space="preserve">
+    <value>Din fjärrlånebeställning har registrerats och kommer att hanteras vidare.</value>
+  </data>
+
 </root>

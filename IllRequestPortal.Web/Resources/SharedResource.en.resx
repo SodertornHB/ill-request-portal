@@ -280,40 +280,42 @@
   </data>
 
   <data name="FoundInKohaMessage" xml:space="preserve">
-    <value>Item already exists in Koha</value>
+    <value>The item exists in the library catalogue.</value>
   </data>
 
   <data name="FoundInLibrisMessage" xml:space="preserve">
-    <value>Bibliographic information found in Libris</value>
+    <value>A record was found in Libris and the information has been filled in automatically.</value>
   </data>
 
   <data name="KohaBorrowLinkText" xml:space="preserve">
-    <value>Item already exists in Koha. Click here to borrow the book</value>
+    <value>View the record in the library catalogue</value>
   </data>
 
   <data name="MissingBiblioIdMessage" xml:space="preserve">
-    <value>Item exists in Koha, but biblio ID is missing in the response.</value>
+    <value>Could not identify the catalogue record.</value>
   </data>
-  <data name="FoundInKohaMessage" xml:space="preserve">
-  <value>The item exists in the library catalogue.</value>
-</data>
-  <data name="FoundInLibrisMessage" xml:space="preserve">
-  <value>A record was found in Libris and the information has been filled in automatically.</value>
-</data>
-  <data name="KohaBorrowLinkText" xml:space="preserve">
-  <value>View the record in the library catalogue</value>
-</data>
-  <data name="MissingBiblioIdMessage" xml:space="preserve">
-  <value>Could not identify the catalogue record.</value>
-</data>
+
   <data name="NoPatronFoundWithCardNumber" xml:space="preserve">
-  <value>No patron found with that card number.</value>
-</data>
-  <data name="PatronFound" xml:space="preserve">
-  <value>Patron found.</value>
-</data>
-  <data name="LookingUpPatron" xml:space="preserve">
-  <value>Looking up patron...</value>
-</data>
+    <value>No patron found with that card number.</value>
+  </data>
 
+  <data name="PatronFound" xml:space="preserve">
+    <value>Patron found.</value>
+  </data>
+
+  <data name="LookingUpPatron" xml:space="preserve">
+    <value>Looking up patron...</value>
+  </data>
+
+  <data name="ThankYouPageTitle" xml:space="preserve">
+    <value>Thank you</value>
+  </data>
+
+  <data name="ThankYouHeader" xml:space="preserve">
+    <value>Thank you for your request</value>
+  </data>
+
+  <data name="ThankYouMessage" xml:space="preserve">
+    <value>Your interlibrary loan request has been registered and will be processed further.</value>
+  </data>
 </root>

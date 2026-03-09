@@ -23,8 +23,8 @@ namespace IllRequestPortal.Web.Controllers
         private readonly IIllRequestService service;
         private readonly IMapper mapper;
 
-        public IllRequestController(ILogger<IllRequestController> logger, 
-        IIllRequestService service, 
+        public IllRequestController(ILogger<IllRequestController> logger,
+        IIllRequestService service,
         IMapper mapper)
         {
             this.logger = logger;
@@ -38,7 +38,7 @@ namespace IllRequestPortal.Web.Controllers
             var viewModels = mapper.Map<IEnumerable<IllRequestViewModel>>(list);
             return View(viewModels.OrderByDescending(x => x.Id));
         }
-        
+
         public ActionResult Create()
         {
             return View(new IllRequestViewModelExtended());
@@ -56,10 +56,17 @@ namespace IllRequestPortal.Web.Controllers
 
                 await service.Insert(model);
 
-                return RedirectToAction(nameof(Index));
+                return View("Feedback", new FeedbackViewModel
+                {
+                    PageTitle = "ThankYouPageTitle",
+                    Header = "ThankYouHeader",
+                    Message = "ThankYouMessage"
+                });
             }
             catch (Exception ex)
             {
+                logger.LogError(ex, "Error while creating a new request.");
+
                 ModelState.AddModelError(string.Empty, "Something went wrong while saving the request.");
 
                 return View(viewModel);
@@ -74,25 +81,25 @@ namespace IllRequestPortal.Web.Controllers
 
 
         [HttpPost]
-        public virtual async Task<ActionResult> Edit([FromForm]IllRequestViewModel viewModel)
+        public virtual async Task<ActionResult> Edit([FromForm] IllRequestViewModel viewModel)
         {
             var model = mapper.Map<IllRequest>(viewModel);
             await service.Update(model);
-            return RedirectToAction(nameof(Index));         
+            return RedirectToAction(nameof(Index));
         }
 
         public virtual async Task<ActionResult> Remove(int id)
         {
             var entity = await service.Get(id);
-            return View(mapper.Map<IllRequestViewModel>(entity));        
+            return View(mapper.Map<IllRequestViewModel>(entity));
         }
 
         [HttpPost]
-        public virtual async Task<ActionResult> Remove([FromForm]IllRequestViewModel viewModel)
+        public virtual async Task<ActionResult> Remove([FromForm] IllRequestViewModel viewModel)
         {
             var model = mapper.Map<IllRequest>(viewModel);
             await service.Delete(viewModel.Id);
-            return RedirectToAction(nameof(Index));         
+            return RedirectToAction(nameof(Index));
         }
     }
 }

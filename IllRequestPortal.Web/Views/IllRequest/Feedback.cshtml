@@ -1,0 +1,10 @@
+@using Localization
+@inject LocService SharedLocalizer
+@model IllRequestPortal.Web.ViewModel.FeedbackViewModel
+
+@{
+    ViewData["Title"] = $"{SharedLocalizer.GetLocalizedHtmlString(Model.PageTitle)} {SharedLocalizer.GetLocalizedHtmlString("IllRequest")}";
+}
+
+<h1>@SharedLocalizer.GetLocalizedHtmlString(Model.Header)</h1>
+<p>@SharedLocalizer.GetLocalizedHtmlString(Model.Message)</p>
