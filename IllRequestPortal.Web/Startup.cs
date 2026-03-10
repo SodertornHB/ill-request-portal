@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection; 
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -39,7 +39,7 @@ using System.Data.SqlClient;
 namespace IllRequestPortal.Web
 {
     public class Startup
-    {       
+    {
         public Startup(IConfiguration configuration, IWebHostEnvironment environment)
         {
             Configuration = configuration;
@@ -79,14 +79,24 @@ namespace IllRequestPortal.Web
             services.Configure<AuthenticationSettings>(Configuration.GetSection("Authentication"));
             services.Configure<ApplicationSettings>(Configuration.GetSection("Application"));
             services.AddTransient<ISqlDataAccess, SqlDataAccess>();
-            
+
             services.AddHttpClient();
             services.AddSingleton(GetMapper());
             ConfigureLocalization(services);
             services.AddLocalization(x => x.ResourcesPath = "Resources");
             CustomServiceConfiguration(services);
-            services.AddControllersWithViews()
-                .AddViewLocalization();
+            services
+    .AddControllersWithViews()
+    .AddViewLocalization()
+    .AddDataAnnotationsLocalization(options =>
+    {
+        options.DataAnnotationLocalizerProvider = (type, factory) =>
+        {
+            var sharedType = typeof(Localization.SharedResource);
+            var assemblyName = new AssemblyName(sharedType.GetTypeInfo().Assembly.FullName);
+            return factory.Create("SharedResource", assemblyName.Name);
+        };
+    });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IOptions<ApplicationSettings> applicationSettingsOptions)
@@ -95,10 +105,10 @@ namespace IllRequestPortal.Web
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
-            app.UseRequestLocalization();  
+            app.UseRequestLocalization();
             RegisterMiddleware(app);
             ConfigureExceptionHandler(app);
-            CustomConfiguration(app, env); 
+            CustomConfiguration(app, env);
 
             app.UseEndpoints(endpoints =>
             {
@@ -125,8 +135,8 @@ namespace IllRequestPortal.Web
             app.UseMiddleware<RedirectNotFound>();
             app.UseMiddleware<RedirectTablelang>();
         }
-        
-         protected void ConfigureLocalization(IServiceCollection services)
+
+        protected void ConfigureLocalization(IServiceCollection services)
         {
             var supportedCultures = GetSupportedLanguages();
 
@@ -185,20 +195,20 @@ namespace IllRequestPortal.Web
     {
         public MappingConfiguration()
         {
-        
-                CreateMap<IllRequest, IllRequestViewModel>();
 
-                CreateMap<IllRequestViewModel, IllRequest>();
-        
-                CreateMap<Log, LogViewModel>();
+            CreateMap<IllRequest, IllRequestViewModel>();
 
-                CreateMap<LogViewModel, Log>();
-        
-                CreateMap<Migration, MigrationViewModel>();
+            CreateMap<IllRequestViewModel, IllRequest>();
 
-                CreateMap<MigrationViewModel, Migration>();
-        
-    
+            CreateMap<Log, LogViewModel>();
+
+            CreateMap<LogViewModel, Log>();
+
+            CreateMap<Migration, MigrationViewModel>();
+
+            CreateMap<MigrationViewModel, Migration>();
+
+
         }
     }
 
@@ -235,7 +245,7 @@ namespace IllRequestPortal.Web
         public async Task InvokeAsync(HttpContext context)
         {
             await next.Invoke(context);
-            
+
             if (context.Response.StatusCode == 404 && !context.Response.HasStarted && !context.Request.Path.Value.Contains("notfound"))
             {
                 context.Response.Redirect($"/notfound?page={context.Request.Path}");
@@ -272,7 +282,7 @@ namespace IllRequestPortal.Web
         }
     }
 
-    
+
 
     #region clean-up
     public interface ICleanUp
@@ -336,7 +346,7 @@ namespace IllRequestPortal.Web
     }
 
     #endregion
-    
+
     #region version middleware
 
 

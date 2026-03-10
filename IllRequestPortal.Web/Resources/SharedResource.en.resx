@@ -327,8 +327,41 @@
     <value>Registered in Libris</value>
   </data>
 
-
   <data name="Exported" xml:space="preserve">
     <value>Done</value>
   </data>
+
+  <data name="Create IllRequest" xml:space="preserve">
+    <value>Create ill request</value>
+  </data>
+  <data name="TitleRequired" xml:space="preserve">
+  <value>Title is required.</value>
+</data>
+<data name="IsbnIssnRequired" xml:space="preserve">
+  <value>ISBN or ISSN is required.</value>
+</data>
+<data name="IsbnIssnTooShort" xml:space="preserve">
+  <value>ISBN or ISSN seems too short.</value>
+</data>
+<data name="MaterialTypeRequired" xml:space="preserve">
+  <value>Material type is required.</value>
+</data>
+<data name="RequestTypeRequired" xml:space="preserve">
+  <value>Request type is required.</value>
+</data>
+<data name="CardNumberRequired" xml:space="preserve">
+  <value>Card number is required.</value>
+</data>
+<data name="CardNumberMustBe10Digits" xml:space="preserve">
+  <value>Card number must contain exactly 10 digits.</value>
+</data>
+<data name="RequesterNameRequired" xml:space="preserve">
+  <value>Requester name is required.</value>
+</data>
+<data name="RequesterEmailRequired" xml:space="preserve">
+  <value>Requester email is required.</value>
+</data>
+<data name="RequesterEmailInvalid" xml:space="preserve">
+  <value>Please enter a valid email address.</value>
+</data>
 </root>

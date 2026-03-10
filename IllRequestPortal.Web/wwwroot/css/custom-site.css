@@ -44,6 +44,26 @@
     margin-top: 12px;
 }
 
+.lookup-status-panel {
+    margin-top: 8px;
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-size: 0.92rem;
+    border: 1px solid transparent;
+}
+
+.lookup-status-neutral {
+    background-color: #f4f8ff;
+    border-color: #cfe2ff;
+    color: #2c4a6b;
+}
+
+.lookup-status-success {
+    background-color: #f3fbf4;
+    border-color: #cfe8d2;
+    color: #245c2a;
+}
+
 .ill-edit-form input[readonly] {
     background-color: #f5f5f5;
 }

@@ -291,4 +291,51 @@
   <data name="Exported" xml:space="preserve">
     <value>Klar</value>
   </data>
+  
+  <data name="Create IllRequest" xml:space="preserve">
+    <value>Beställ fjärrlån</value>
+  </data>
+  <data name="Create IllRequest" xml:space="preserve">
+  <value>Skapa fjärrlånebeställning</value>
+</data>
+
+  <data name="TitleRequired" xml:space="preserve">
+  <value>Titel måste anges.</value>
+</data>
+
+  <data name="IsbnIssnRequired" xml:space="preserve">
+  <value>ISBN eller ISSN måste anges.</value>
+</data>
+
+  <data name="IsbnIssnTooShort" xml:space="preserve">
+  <value>ISBN eller ISSN verkar vara för kort.</value>
+</data>
+
+  <data name="MaterialTypeRequired" xml:space="preserve">
+  <value>Materialtyp måste anges.</value>
+</data>
+
+  <data name="RequestTypeRequired" xml:space="preserve">
+  <value>Beställningstyp måste anges.</value>
+</data>
+
+  <data name="CardNumberRequired" xml:space="preserve">
+  <value>Lånekortsnummer måste anges.</value>
+</data>
+
+  <data name="CardNumberMustBe10Digits" xml:space="preserve">
+  <value>Lånekortsnummer måste bestå av exakt 10 siffror.</value>
+</data>
+
+  <data name="RequesterNameRequired" xml:space="preserve">
+  <value>Beställarens namn måste anges.</value>
+</data>
+
+  <data name="RequesterEmailRequired" xml:space="preserve">
+  <value>Beställarens e-postadress måste anges.</value>
+</data>
+
+  <data name="RequesterEmailInvalid" xml:space="preserve">
+  <value>Ange en giltig e-postadress.</value>
+</data>
 </root>

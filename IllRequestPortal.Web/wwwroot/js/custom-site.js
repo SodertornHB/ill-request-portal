@@ -15,7 +15,8 @@
         $('#patronLookupSpinner').removeClass('hidden');
 
         $('#patronLookupStatus')
-            .removeClass('lookup-error lookup-ok')
+            .removeClass('hidden lookup-status-success')
+            .addClass('lookup-status-neutral')
             .text(texts.lookingUpPatron);
 
         $.get('/api/v1/patrons?cardNumber=' + encodeURIComponent(cardNumber))
@@ -89,8 +90,9 @@
                 const $status = $('#bibliographicLookupStatus');
 
                 $status
-                    .removeClass('lookup-ok lookup-error')
-                    .text('');
+                    .removeClass('hidden lookup-status-success')
+                    .addClass('lookup-status-neutral')
+                    .text(texts.lookingUpBibliographicRecord);
 
                 if (data.status === 'FoundInKoha' || data.status === 'FoundInLibris') {
 
@@ -109,21 +111,14 @@
                     if (biblioId) {
 
                         $status
-                            .removeClass('lookup-error')
-                            .addClass('lookup-ok');
+                            .removeClass('hidden lookup-status-neutral')
+                            .addClass('lookup-status-success');
 
                         if (template) {
-
                             const discoveryUrl = template.replace('{biblioId}', biblioId);
-
-                            $status.html(
-                                `${texts.foundInKohaMessage} <a target="_blank" href="${discoveryUrl}">${texts.kohaBorrowLinkText}</a>`
-                            );
-
+                            $status.html(`${texts.foundInKohaMessage} <a target="_blank" href="${discoveryUrl}">${texts.kohaBorrowLinkText}</a>`);
                         } else {
-
                             $status.text(texts.foundInKohaMessage);
-
                         }
 
                     } else {
@@ -138,8 +133,8 @@
                 }
                 else if (data.status === 'FoundInLibris') {
                     $status
-                        .removeClass('lookup-error')
-                        .addClass('lookup-ok')
+                        .removeClass('hidden lookup-status-neutral')
+                        .addClass('lookup-status-success')
                         .text(texts.foundInLibrisMessage);
                 }
                 else {
