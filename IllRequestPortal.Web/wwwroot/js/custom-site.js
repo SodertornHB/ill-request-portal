@@ -104,21 +104,35 @@
                 if (data.status === 'FoundInKoha') {
 
                     const biblioId = data.biblioId || data.BiblioId || data.biblio_id;
+                    const template = texts.discoveryRecordUrlTemplate;
 
                     if (biblioId) {
-                        const discoveryUrl = texts.discoveryRecordUrlTemplate.replace('{biblioId}', biblioId);
 
                         $status
                             .removeClass('lookup-error')
-                            .addClass('lookup-ok')
-                            .html(
+                            .addClass('lookup-ok');
+
+                        if (template) {
+
+                            const discoveryUrl = template.replace('{biblioId}', biblioId);
+
+                            $status.html(
                                 `${texts.foundInKohaMessage} <a target="_blank" href="${discoveryUrl}">${texts.kohaBorrowLinkText}</a>`
                             );
+
+                        } else {
+
+                            $status.text(texts.foundInKohaMessage);
+
+                        }
+
                     } else {
+
                         $status
                             .removeClass('lookup-ok')
                             .addClass('lookup-error')
                             .text(texts.missingBiblioIdMessage);
+
                     }
 
                 }
