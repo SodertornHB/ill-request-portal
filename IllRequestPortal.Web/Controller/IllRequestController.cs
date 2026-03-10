@@ -35,7 +35,7 @@ namespace IllRequestPortal.Web.Controllers
         public virtual async Task<IActionResult> Index()
         {
             var list = await service.GetAll();
-            var viewModels = mapper.Map<IEnumerable<IllRequestViewModel>>(list);
+            var viewModels = mapper.Map<IEnumerable<IllRequestViewModel>>(list.OrderByDescending(x => x.CreatedOn));
             return View(viewModels.OrderByDescending(x => x.Id));
         }
 

@@ -1,5 +1,5 @@
 ﻿.container {
-    max-width:100% !important;
+    max-width: 100% !important;
 }
 
 .ill-section {
@@ -30,9 +30,40 @@
     margin-bottom: 24px;
 }
 
+.ill-table {
+    font-size: 0.85rem;
+}
+
+    .ill-table th,
+    .ill-table td {
+        padding: 0.35rem 0.45rem;
+        white-space: nowrap;
+        vertical-align: middle;
+    }
+
+    .ill-table .truncate {
+        max-width: 180px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+.ill-actions {
+    white-space: nowrap;
+}
+
+    .ill-actions .icon-btn {
+        padding: 0.2rem 0.35rem;
+        margin-right: 4px;
+    }
+
+    .ill-actions i {
+        font-size: 0.9rem;
+    }
+
 .form-group {
     margin-bottom: 16px;
 }
+
 .lookup-row {
     display: flex;
     align-items: center;

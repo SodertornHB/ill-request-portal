@@ -61,7 +61,7 @@
   </resheader>
 
   <data name="ApplicationName" xml:space="preserve">
-    <value>IllRequestPortal</value>
+    <value>Fjärrlånebeställning</value>
   </data>
 
   <data name="TableLang" xml:space="preserve">
@@ -280,4 +280,7 @@
     <value>Din fjärrlånebeställning har registrerats och kommer att hanteras vidare.</value>
   </data>
 
+  <data name="RegisterInLibris" xml:space="preserve">
+    <value>Registrera i Libris</value>
+  </data>
 </root>
