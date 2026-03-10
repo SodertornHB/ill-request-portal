@@ -364,4 +364,8 @@
 <data name="RequesterEmailInvalid" xml:space="preserve">
   <value>Please enter a valid email address.</value>
 </data>
+
+  <data name="Toggle language" xml:space="preserve">
+  <value>På svenska</value>
+</data>
 </root>

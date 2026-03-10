@@ -338,4 +338,8 @@
   <data name="RequesterEmailInvalid" xml:space="preserve">
   <value>Ange en giltig e-postadress.</value>
 </data>
+
+  <data name="Toggle language" xml:space="preserve">
+  <value>In english</value>
+</data>
 </root>

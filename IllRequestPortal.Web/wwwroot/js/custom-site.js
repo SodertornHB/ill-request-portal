@@ -4,9 +4,13 @@
 
     $('#CardNumber').on('change', function () {
 
-        var cardNumber = $(this).val();
+        const $field = $(this);
+        const cardNumber = $field.val();
 
         if (!cardNumber)
+            return;
+
+        if (!$field.valid())
             return;
 
         $('#RequesterName').prop('disabled', true);
@@ -15,7 +19,7 @@
         $('#patronLookupSpinner').removeClass('hidden');
 
         $('#patronLookupStatus')
-            .removeClass('hidden lookup-status-success')
+            .removeClass('hidden lookup-status-success lookup-error')
             .addClass('lookup-status-neutral')
             .text(texts.lookingUpPatron);
 
@@ -27,8 +31,8 @@
                 $('#RequesterEmail').val(data.email || '');
 
                 $('#patronLookupStatus')
-                    .removeClass('lookup-error')
-                    .addClass('lookup-ok')
+                    .removeClass('lookup-status-neutral lookup-error')
+                    .addClass('lookup-status-success')
                     .text(texts.patronFound);
 
             })
@@ -40,13 +44,13 @@
 
                 if (xhr.status === 404) {
                     $('#patronLookupStatus')
-                        .removeClass('lookup-ok')
+                        .removeClass('lookup-status-neutral lookup-ok')
                         .addClass('lookup-error')
                         .text(texts.noPatronFound);
                 }
                 else {
                     $('#patronLookupStatus')
-                        .removeClass('lookup-ok')
+                        .removeClass('lookup-status-neutral lookup-ok')
                         .addClass('lookup-error')
                         .text(texts.librarySystemErrorMessage);
                 }
@@ -66,9 +70,13 @@
 
     $('#IsbnIssn').on('change', function () {
 
-        var standardNumber = $(this).val();
+        const $field = $(this);
+        const standardNumber = $field.val();
 
         if (!standardNumber)
+            return;
+
+        if (!$field.valid())
             return;
 
         $('#Title').prop('disabled', true);
@@ -80,7 +88,8 @@
         $('#bibliographicLookupSpinner').removeClass('hidden');
 
         $('#bibliographicLookupStatus')
-            .removeClass('lookup-error lookup-ok')
+            .removeClass('hidden lookup-status-success lookup-error')
+            .addClass('lookup-status-neutral')
             .text(texts.lookingUpBibliographicRecord);
 
         $.get('/api/v1/bibliographic-records/lookup?standardNumber=' + encodeURIComponent(standardNumber))
@@ -88,11 +97,6 @@
             .done(function (data) {
 
                 const $status = $('#bibliographicLookupStatus');
-
-                $status
-                    .removeClass('hidden lookup-status-success')
-                    .addClass('lookup-status-neutral')
-                    .text(texts.lookingUpBibliographicRecord);
 
                 if (data.status === 'FoundInKoha' || data.status === 'FoundInLibris') {
 
@@ -111,7 +115,7 @@
                     if (biblioId) {
 
                         $status
-                            .removeClass('hidden lookup-status-neutral')
+                            .removeClass('hidden lookup-status-neutral lookup-error')
                             .addClass('lookup-status-success');
 
                         if (template) {
@@ -124,7 +128,7 @@
                     } else {
 
                         $status
-                            .removeClass('lookup-ok')
+                            .removeClass('hidden lookup-status-neutral lookup-ok')
                             .addClass('lookup-error')
                             .text(texts.missingBiblioIdMessage);
 
@@ -133,13 +137,13 @@
                 }
                 else if (data.status === 'FoundInLibris') {
                     $status
-                        .removeClass('hidden lookup-status-neutral')
+                        .removeClass('hidden lookup-status-neutral lookup-error')
                         .addClass('lookup-status-success')
                         .text(texts.foundInLibrisMessage);
                 }
                 else {
                     $status
-                        .removeClass('lookup-ok')
+                        .removeClass('hidden lookup-status-neutral lookup-ok')
                         .addClass('lookup-error')
                         .text(texts.noBibliographicRecordFoundMessage);
                 }
@@ -149,7 +153,7 @@
             .fail(function () {
 
                 $('#bibliographicLookupStatus')
-                    .removeClass('lookup-ok')
+                    .removeClass('hidden lookup-status-neutral lookup-ok')
                     .addClass('lookup-error')
                     .text(texts.librarySystemErrorMessage);
 
