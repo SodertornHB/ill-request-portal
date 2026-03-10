@@ -1,6 +1,8 @@
 using IllRequestPortal.Logic.Http;
+using IllRequestPortal.Logic.Settings;
 using Logic.Model;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Linq;
@@ -18,17 +20,20 @@ namespace IllRequestPortal.Logic.Services
     public partial class LibrisService :  ILibrisService
     {
         private readonly IJsonGetHttpService jsonGetHttpService;
+        private readonly LibrisApiSettings librisApiSettings;
 
         public LibrisService(ILogger<LibrisService> logger,
-           IJsonGetHttpService jsonGetHttpService)
+           IJsonGetHttpService jsonGetHttpService,
+           IOptions<LibrisApiSettings> apiSettingsOption)
         {
             this.jsonGetHttpService = jsonGetHttpService;
+            this.librisApiSettings = apiSettingsOption.Value;
         }
 
         public async Task<LibrisBiblioLookupResult> FetchBiblio(string standardNumber)
         {
             var normalized = StandardNumberUtility.Normalize(standardNumber);
-            var url = $"https://libris.kb.se/find?q={normalized}&_limit=1";
+            var url = $"{librisApiSettings.BaseUrl}/find?q={normalized}&_limit=1";
 
             var json = await jsonGetHttpService.FetchSingle(url);
             var result = Convert(json);
@@ -68,7 +73,7 @@ namespace IllRequestPortal.Logic.Services
             var clean = id.Split('#')[0];
 
             if (!clean.StartsWith("http", StringComparison.OrdinalIgnoreCase))
-                clean = $"https://libris.kb.se/{clean}";
+                clean = $"{librisApiSettings.BaseUrl}/{clean}";
 
             if (!clean.EndsWith("/data.jsonld", StringComparison.OrdinalIgnoreCase))
                 clean = clean.TrimEnd('/') + "/data.jsonld";

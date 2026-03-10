@@ -48,6 +48,8 @@ namespace Web
         protected override void CustomServiceConfiguration(IServiceCollection services)
         {
             services.Configure<KohaApiSettings>(Configuration.GetSection("KohaApiSettings"));
+            services.Configure<LibrisApiSettings>(Configuration.GetSection("LibrisApiSettings"));
+            services.Configure<DiscoverySettings>(Configuration.GetSection("DiscoverySettings"));
 
             services.AddTransient<IIllRequestService, IllRequestServiceExtended>();
             services.AddTransient<IKohaPatronGetHttpService, KohaPatronGetHttpService>();

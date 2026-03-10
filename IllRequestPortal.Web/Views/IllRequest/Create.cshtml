@@ -1,9 +1,11 @@
 @* --------------------------------------------------------------------*@
 @* Warning! This is an auto generated file. Changes may be overwritten *@
 @* --------------------------------------------------------------------*@
+@using IllRequestPortal.Logic.Settings
 @using Localization
 @using Microsoft.Extensions.Options
 @using System.Text.Json
+@inject IOptions<DiscoverySettings> DiscoverySettings
 @inject LocService SharedLocalizer
 @model IllRequestPortal.Web.ViewModel.IllRequestViewModelExtended
 
@@ -144,7 +146,8 @@
             noPatronFound = SharedLocalizer.GetLocalizedHtmlString("NoPatronFoundWithCardNumber").Value,
             patronFound = SharedLocalizer.GetLocalizedHtmlString("PatronFound").Value,
             lookingUpPatron = SharedLocalizer.GetLocalizedHtmlString("LookingUpPatron").Value,
-            lookingUpBibliographicRecord = SharedLocalizer.GetLocalizedHtmlString("LookingUpBibliographicRecord").Value
+            lookingUpBibliographicRecord = SharedLocalizer.GetLocalizedHtmlString("LookingUpBibliographicRecord").Value,
+            discoveryRecordUrlTemplate = DiscoverySettings.Value.RecordUrlTemplate
         }));
 </script>
 

@@ -83,10 +83,6 @@ namespace IllRequestPortal.Web.ApiController
 
         private async Task<KohaBiblio> FetchFromKoha(string standardNumber)
         {
-            // den här funkar https://kosodertorn-opac.prod.imcode.com/api/v1/app.pl/api/v1/biblios?q={%22isbn%22%3A%229789100139117%22}
-            // måste har accept header application/json satt 
-            // har inte hittat något sätt att hämta från koha vi isbn 
-
             var normalized = StandardNumberUtility.Normalize(standardNumber);
             var queryField = StandardNumberUtility.Detect(normalized) == "ISSN" ? "issn" : "isbn";
             var q = Uri.EscapeDataString($"{{\"{queryField}\":\"{normalized}\"}}");
@@ -96,7 +92,6 @@ namespace IllRequestPortal.Web.ApiController
 
             var records = await kohaBiblioGetHttpService.FetchAll(url);
             return records.FirstOrDefault();
-
         }
     }
 }

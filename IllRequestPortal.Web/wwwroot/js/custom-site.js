@@ -106,14 +106,15 @@
                     const biblioId = data.biblioId || data.BiblioId || data.biblio_id;
 
                     if (biblioId) {
+                        const discoveryUrl = texts.discoveryRecordUrlTemplate.replace('{biblioId}', biblioId);
+
                         $status
                             .removeClass('lookup-error')
                             .addClass('lookup-ok')
                             .html(
-                                `${texts.foundInKohaMessage} <a target="_blank" href="https://soh-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=SOH_KOHA${biblioId}&vid=SOH_main&lang=sv_SE">${texts.kohaBorrowLinkText}</a>`
+                                `${texts.foundInKohaMessage} <a target="_blank" href="${discoveryUrl}">${texts.kohaBorrowLinkText}</a>`
                             );
-                    }
-                    else {
+                    } else {
                         $status
                             .removeClass('lookup-ok')
                             .addClass('lookup-error')
