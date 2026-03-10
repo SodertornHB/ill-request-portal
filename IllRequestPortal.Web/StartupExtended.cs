@@ -56,6 +56,7 @@ namespace Web
             services.AddTransient<ILibrisService, LibrisService>();
             services.AddTransient<IJsonGetHttpService, JsonGetHttpService>();
             services.AddTransient<IKohaBiblioGetHttpService, BiblioPatronGetHttpService>();
+            services.AddTransient<IIllRequestServiceExtended, IllRequestServiceExtended>();
             services.Configure<RouteOptions>(options =>
             {
                 options.LowercaseUrls = true;

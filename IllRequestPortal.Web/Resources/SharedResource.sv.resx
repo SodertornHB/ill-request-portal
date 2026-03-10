@@ -184,6 +184,10 @@
     <value>Lagd</value>
   </data>
 
+  <data name="Created" xml:space="preserve">
+    <value>Skapad</value>
+  </data>
+
   <data name="UpdatedOn" xml:space="preserve">
     <value>Uppdaterad</value>
   </data>
@@ -280,7 +284,11 @@
     <value>Din fjärrlånebeställning har registrerats och kommer att hanteras vidare.</value>
   </data>
 
-  <data name="RegisterInLibris" xml:space="preserve">
-    <value>Registrera i Libris</value>
+  <data name="RegisteredInLibris" xml:space="preserve">
+    <value>Registrerad i Libris</value>
+  </data>
+
+  <data name="Exported" xml:space="preserve">
+    <value>Klar</value>
   </data>
 </root>

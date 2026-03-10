@@ -101,10 +101,26 @@
                     @item.CardNumber
                 </td>
                 <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.Status">
-                    @item.Status
+                    @SharedLocalizer.GetLocalizedHtmlString(item.Status)
                 </td>
 
                 <td class="ill-actions">
+
+                    <form asp-controller="IllRequest"
+                          asp-action="MarkAsRegisteredInLibris"
+                          asp-route-id="@item.Id"
+                          method="post"
+                          style="display:inline">
+
+                        <button type="submit"
+                                class="btn btn-sm btn-outline-success icon-btn tooltip-r"
+                                data-toggle="tooltip"
+                                title="@SharedLocalizer.GetLocalizedHtmlString("RegisteredInLibris")">
+
+                            <i class="bi bi-check-circle"></i>
+                        </button>
+
+                    </form>
 
                     <a asp-controller="IllRequest"
                        asp-action="Edit"
@@ -113,15 +129,6 @@
                        data-toggle="tooltip"
                        title="@SharedLocalizer.GetLocalizedHtmlString("Edit")">
                         <i class="bi bi-pencil"></i>
-                    </a>
-
-                    <a asp-controller="IllRequest"
-                       asp-action="MarkAsRegisteredInLibris"
-                       asp-route-id="@item.Id"
-                       class="btn btn-sm btn-outline-success icon-btn tooltip-r"
-                       data-toggle="tooltip"
-                       title="@SharedLocalizer.GetLocalizedHtmlString("RegisterInLibris")">
-                        <i class="bi bi-check-lg"></i>
                     </a>
 
                     <a asp-controller="IllRequest"

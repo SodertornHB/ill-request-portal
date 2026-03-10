@@ -79,6 +79,10 @@
     <value>Create New</value>
   </data>
 
+  <data name="Created" xml:space="preserve">
+    <value>Created</value>
+  </data>
+
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
   </data>
@@ -319,7 +323,12 @@
     <value>Your interlibrary loan request has been registered and will be processed further.</value>
   </data>
 
-  <data name="RegisterInLibris" xml:space="preserve">
-    <value>Register in Libris</value>
+  <data name="RegisteredInLibris" xml:space="preserve">
+    <value>Registered in Libris</value>
+  </data>
+
+
+  <data name="Exported" xml:space="preserve">
+    <value>Done</value>
   </data>
 </root>
