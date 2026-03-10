@@ -2,7 +2,6 @@
 @* Warning! This is an auto generated file. Changes may be overwritten *@
 @* --------------------------------------------------------------------*@
 @using Localization
-@using Microsoft.Extensions.Options
 @inject LocService SharedLocalizer
 @model IllRequestPortal.Web.ViewModel.IllRequestViewModel
 
@@ -10,124 +9,106 @@
     ViewData["Title"] = $"{SharedLocalizer.GetLocalizedHtmlString("Delete")} {SharedLocalizer.GetLocalizedHtmlString("IllRequest")}";
 }
 
-<h1>@($"{SharedLocalizer.GetLocalizedHtmlString("Delete")} {@SharedLocalizer.GetLocalizedHtmlString("IllRequest")}")</h1>
+<h1>@SharedLocalizer.GetLocalizedHtmlString("Delete") @SharedLocalizer.GetLocalizedHtmlString("IllRequest")</h1>
 
-<h3>@SharedLocalizer.GetLocalizedHtmlString("Are you sure you want to delete this?")</h3>
-<div>
-    <hr />
-    <dl class="row">
+<div class="alert alert-warning">
+    <strong>@SharedLocalizer.GetLocalizedHtmlString("Delete"):</strong>
+    @SharedLocalizer.GetLocalizedHtmlString("Are you sure you want to delete this?")
+</div>
 
-        <dt class = "col-sm-2">
-            <label asp-for="Title" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Title")</label>
-        </dt>
-        <dd class = "col-sm-10">
-            @Model.Title
-        </dd>
-        <dt class = "col-sm-2">
-            <label asp-for="Author" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Author")</label>
-        </dt>
-        <dd class = "col-sm-10">
-            @Model.Author
-        </dd>
-        <dt class = "col-sm-2">
-            <label asp-for="PublicationYear" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("PublicationYear")</label>
-        </dt>
-        <dd class = "col-sm-10">
-            @Model.PublicationYear
-        </dd>
-        <dt class = "col-sm-2">
-            <label asp-for="Edition" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Edition")</label>
-        </dt>
-        <dd class = "col-sm-10">
-            @Model.Edition
-        </dd>
-        <dt class = "col-sm-2">
-            <label asp-for="Isbn" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Isbn")</label>
-        </dt>
-        <dd class = "col-sm-10">
-            @Model.Isbn
-        </dd>
-        <dt class = "col-sm-2">
-            <label asp-for="Issn" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Issn")</label>
-        </dt>
-        <dd class = "col-sm-10">
-            @Model.Issn
-        </dd>
-        <dt class = "col-sm-2">
-            <label asp-for="MaterialType" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("MaterialType")</label>
-        </dt>
-        <dd class = "col-sm-10">
-            @Model.MaterialType
-        </dd>
-        <dt class = "col-sm-2">
-            <label asp-for="RequestType" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("RequestType")</label>
-        </dt>
-        <dd class = "col-sm-10">
-            @Model.RequestType
-        </dd>
-        <dt class = "col-sm-2">
-            <label asp-for="RequesterName" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("RequesterName")</label>
-        </dt>
-        <dd class = "col-sm-10">
-            @Model.RequesterName
-        </dd>
-        <dt class = "col-sm-2">
-            <label asp-for="RequesterEmail" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("RequesterEmail")</label>
-        </dt>
-        <dd class = "col-sm-10">
-            @Model.RequesterEmail
-        </dd>
-        <dt class = "col-sm-2">
-            <label asp-for="CardNumber" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("CardNumber")</label>
-        </dt>
-        <dd class = "col-sm-10">
-            @Model.CardNumber
-        </dd>
-        <dt class = "col-sm-2">
-            <label asp-for="Status" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Status")</label>
-        </dt>
-        <dd class = "col-sm-10">
-            @Model.Status
-        </dd>
-        <dt class = "col-sm-2">
-            <label asp-for="ExternalRequestId" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("ExternalRequestId")</label>
-        </dt>
-        <dd class = "col-sm-10">
-            @Model.ExternalRequestId
-        </dd>
-        <dt class = "col-sm-2">
-            <label asp-for="ExportedOn" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("ExportedOn")</label>
-        </dt>
-        <dd class = "col-sm-10">
-            @Model.ExportedOn
-        </dd>
-        <dt class = "col-sm-2">
-            <label asp-for="ExportError" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("ExportError")</label>
-        </dt>
-        <dd class = "col-sm-10">
-            @Model.ExportError
-        </dd>
-        <dt class = "col-sm-2">
-            <label asp-for="CreatedOn" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("CreatedOn")</label>
-        </dt>
-        <dd class = "col-sm-10">
-            @Model.CreatedOn
-        </dd>
-        <dt class = "col-sm-2">
-            <label asp-for="UpdatedOn" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("UpdatedOn")</label>
-        </dt>
-        <dd class = "col-sm-10">
-            @Model.UpdatedOn
-        </dd>
-    </dl>
-    <form method="post"  enctype="multipart/form-data" asp-controller="IllRequest" asp-action="Remove">    
-        @Html.HiddenFor(x => x.Id)
-        <input type="submit" value="@SharedLocalizer.GetLocalizedHtmlString("Delete")" class="btn btn-danger" /> |
-        <a asp-controller="IllRequest" asp-action="Index">@SharedLocalizer.GetLocalizedHtmlString("Back to List")</a>
-    </form>
+<div class="row">
+    <div class="col-lg-10 col-xl-8">
+
+        <div class="ill-section">
+            <div class="ill-section-title">@SharedLocalizer.GetLocalizedHtmlString("RequestInformation")</div>
+
+            <dl class="row mb-0">
+                <dt class="col-sm-4">@SharedLocalizer.GetLocalizedHtmlString("Title")</dt>
+                <dd class="col-sm-8">@Model.Title</dd>
+
+                <dt class="col-sm-4">@SharedLocalizer.GetLocalizedHtmlString("Author")</dt>
+                <dd class="col-sm-8">@Model.Author</dd>
+
+                <dt class="col-sm-4">@SharedLocalizer.GetLocalizedHtmlString("PublicationYear")</dt>
+                <dd class="col-sm-8">@Model.PublicationYear</dd>
+
+                <dt class="col-sm-4">@SharedLocalizer.GetLocalizedHtmlString("Edition")</dt>
+                <dd class="col-sm-8">@Model.Edition</dd>
+
+                <dt class="col-sm-4">@SharedLocalizer.GetLocalizedHtmlString("Isbn")</dt>
+                <dd class="col-sm-8">@Model.Isbn</dd>
+
+                <dt class="col-sm-4">@SharedLocalizer.GetLocalizedHtmlString("Issn")</dt>
+                <dd class="col-sm-8">@Model.Issn</dd>
+
+                <dt class="col-sm-4">@SharedLocalizer.GetLocalizedHtmlString("MaterialType")</dt>
+                <dd class="col-sm-8">@SharedLocalizer.GetLocalizedHtmlString(Model.MaterialType)</dd>
+
+                <dt class="col-sm-4">@SharedLocalizer.GetLocalizedHtmlString("RequestType")</dt>
+                <dd class="col-sm-8">@SharedLocalizer.GetLocalizedHtmlString(Model.RequestType)</dd>
+            </dl>
+        </div>
+
+        <div class="ill-section">
+            <div class="ill-section-title">@SharedLocalizer.GetLocalizedHtmlString("RequesterInformation")</div>
+
+            <dl class="row mb-0">
+                <dt class="col-sm-4">@SharedLocalizer.GetLocalizedHtmlString("RequesterName")</dt>
+                <dd class="col-sm-8">@Model.RequesterName</dd>
+
+                <dt class="col-sm-4">@SharedLocalizer.GetLocalizedHtmlString("RequesterEmail")</dt>
+                <dd class="col-sm-8">@Model.RequesterEmail</dd>
+
+                <dt class="col-sm-4">@SharedLocalizer.GetLocalizedHtmlString("CardNumber")</dt>
+                <dd class="col-sm-8">@Model.CardNumber</dd>
+            </dl>
+        </div>
+
+        <div class="ill-section">
+            <div class="ill-section-title">@SharedLocalizer.GetLocalizedHtmlString("Status")</div>
+
+            <dl class="row mb-0">
+                <dt class="col-sm-4">@SharedLocalizer.GetLocalizedHtmlString("Status")</dt>
+                <dd class="col-sm-8">@Model.Status</dd>
+
+                <dt class="col-sm-4">@SharedLocalizer.GetLocalizedHtmlString("ExternalRequestId")</dt>
+                <dd class="col-sm-8">@Model.ExternalRequestId</dd>
+
+                <dt class="col-sm-4">@SharedLocalizer.GetLocalizedHtmlString("ExportedOn")</dt>
+                <dd class="col-sm-8">@Model.ExportedOn</dd>
+
+                <dt class="col-sm-4">@SharedLocalizer.GetLocalizedHtmlString("ExportError")</dt>
+                <dd class="col-sm-8 text-break">@Model.ExportError</dd>
+
+                <dt class="col-sm-4">@SharedLocalizer.GetLocalizedHtmlString("CreatedOn")</dt>
+                <dd class="col-sm-8">@Model.CreatedOn</dd>
+
+                <dt class="col-sm-4">@SharedLocalizer.GetLocalizedHtmlString("UpdatedOn")</dt>
+                <dd class="col-sm-8">@Model.UpdatedOn</dd>
+            </dl>
+        </div>
+
+        <form method="post" enctype="multipart/form-data" asp-controller="IllRequest" asp-action="Remove">
+            @Html.HiddenFor(x => x.Id)
+
+            <div class="ill-form-actions">
+                <input type="submit"
+                       value="@SharedLocalizer.GetLocalizedHtmlString("Delete")"
+                       class="btn btn-danger" />
+
+                <a asp-controller="IllRequest"
+                   asp-action="Index"
+                   class="btn btn-outline-secondary">
+                    @SharedLocalizer.GetLocalizedHtmlString("Back to List")
+                </a>
+            </div>
+        </form>
+
     </div>
+</div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
-
