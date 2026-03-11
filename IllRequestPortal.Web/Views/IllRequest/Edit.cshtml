@@ -129,9 +129,7 @@
                         <label asp-for="Status" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Status")</label>
                         <select asp-for="Status" class="form-control">
                             <option value="@IllRequestConstants.Statuses.Created">@IllRequestConstants.Statuses.Created</option>
-                            <option value="@IllRequestConstants.Statuses.PendingExport">@IllRequestConstants.Statuses.PendingExport</option>
-                            <option value="@IllRequestConstants.Statuses.Exported">@IllRequestConstants.Statuses.Exported</option>
-                            <option value="@IllRequestConstants.Statuses.Failed">@IllRequestConstants.Statuses.Failed</option>
+                            <option value="@IllRequestConstants.Statuses.RegisteredInLibris">@IllRequestConstants.Statuses.RegisteredInLibris</option>
                         </select>
                         <span asp-validation-for="Status" class="text-danger"></span>
                     </div>

@@ -26,9 +26,7 @@ namespace Logic.Model
         public static class Statuses
         {
             public const string Created = "Created";
-            public const string PendingExport = "PendingExport";
-            public const string Exported = "Exported";
-            public const string Failed = "Failed";
+            public const string RegisteredInLibris = "RegisteredInLibris";
         }
     }
 }

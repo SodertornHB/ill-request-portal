@@ -32,7 +32,7 @@ namespace IllRequestPortal.Logic.Services
 
             if (request == null) return null;
 
-            request.Status = IllRequestConstants.Statuses.Exported;
+            request.Status = IllRequestConstants.Statuses.RegisteredInLibris;
             request.UpdatedOn = DateTime.UtcNow;
 
             await Update(request);
