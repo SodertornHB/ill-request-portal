@@ -216,8 +216,8 @@
   <data name="BibliographicLookup" xml:space="preserve">
     <value>Bibliografisk uppslagning</value>
   </data>
-  <data name="EnterIsbnIssnFirst" xml:space="preserve">
-    <value>Ange ISBN eller ISSN först</value>
+  <data name="EnterMatrialTypeAndIsbnIssnFirst" xml:space="preserve">
+    <value>Ange materialtyp först och sedan isbn eller issn</value>
   </data>
   <data name="IsbnIssn" xml:space="preserve">
     <value>ISBN eller ISSN</value>

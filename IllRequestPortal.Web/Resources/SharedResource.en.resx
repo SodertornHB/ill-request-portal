@@ -243,8 +243,8 @@
   <data name="BibliographicLookup" xml:space="preserve">
     <value>Bibliographic Lookup</value>
   </data>
-  <data name="EnterIsbnIssnFirst" xml:space="preserve">
-    <value>Please enter ISBN or ISSN first</value>
+  <data name="EnterMatrialTypeAndIsbnIssnFirst" xml:space="preserve">
+    <value>Please enter type of material</value>
   </data>
   <data name="IsbnIssn" xml:space="preserve">
     <value>ISBN or ISSN</value>

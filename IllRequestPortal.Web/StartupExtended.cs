@@ -122,10 +122,10 @@ namespace Web
                             .ForMember(d => d.ContainerAuthorOrEditor, o => o.Ignore())
                             .ForMember(d => d.Isbn, o => o.MapFrom(s => s.Isbn))
                             .ForMember(d => d.Issn, o => o.MapFrom(s => s.Issn))
-                            .ForMember(d => d.PublicationYear, o => o.MapFrom(s => s.PublicationYear))
+                            .ForMember(d => d.PublicationYear, o => o.Ignore())
                             .ForMember(d => d.Volume, o => o.MapFrom(s => s.Volume))
                             .ForMember(d => d.Issue, o => o.MapFrom(s => s.Issue))
-                            .ForMember(d => d.Pages, o => o.MapFrom(s => s.Pages))
+                            .ForMember(d => d.Pages, o => o.Ignore())
                             .ForMember(d => d.MaterialType, o => o.MapFrom(s => s.MaterialType))
                             .ForMember(d => d.RequestType, o => o.MapFrom(s => s.RequestType))
                             .ForMember(d => d.RequesterName, o => o.MapFrom(s => s.RequesterName))
@@ -143,13 +143,15 @@ namespace Web
                                     dest.MainAuthor = src.BookAuthor ?? "";
                                     dest.ContainerTitle = "";
                                     dest.ContainerAuthorOrEditor = "";
+                                    dest.PublicationYear = src.BookPublicationYear ?? "";
                                 }
                                 else if (src.MaterialType == IllRequestConstants.MaterialTypes.Chapter)
                                 {
                                     dest.MainTitle = src.ChapterTitle ?? "";
                                     dest.MainAuthor = src.ChapterAuthor ?? "";
-                                    dest.ContainerTitle = src.BookTitle ?? "";
+                                    dest.ContainerTitle = src.ChapterBookTitle ?? "";
                                     dest.ContainerAuthorOrEditor = src.BookAuthor ?? "";
+                                    dest.Pages = src.ChapterPages ?? "";
                                 }
                                 else if (src.MaterialType == IllRequestConstants.MaterialTypes.Article)
                                 {
@@ -157,6 +159,8 @@ namespace Web
                                     dest.MainAuthor = src.ArticleAuthor ?? "";
                                     dest.ContainerTitle = src.JournalTitle ?? "";
                                     dest.ContainerAuthorOrEditor = src.JournalAuthor ?? "";
+                                    dest.PublicationYear = src.ArticlePublicationYear ?? "";
+                                    dest.Pages = src.ArticlePages?? "";
                                 }
                                 else
                                 {

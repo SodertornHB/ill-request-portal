@@ -35,7 +35,7 @@ namespace IllRequestPortal.Web.Controllers
         public virtual async Task<IActionResult> Index()
         {
             var list = await service.GetAll();
-            var viewModels = mapper.Map<IEnumerable<CreateIllRequestViewModel>>(list.OrderByDescending(x => x.CreatedOn));
+            var viewModels = mapper.Map<IEnumerable<IllRequestViewModel>>(list.OrderByDescending(x => x.CreatedOn));
             return View(viewModels.OrderByDescending(x => x.Id));
         }
 
@@ -76,12 +76,12 @@ namespace IllRequestPortal.Web.Controllers
         public virtual async Task<ActionResult> Edit(int id)
         {
             var entity = await service.Get(id);
-            return View(mapper.Map<CreateIllRequestViewModel>(entity));
+            return View(mapper.Map<IllRequestViewModel>(entity));
         }
 
 
         [HttpPost]
-        public virtual async Task<ActionResult> Edit([FromForm] CreateIllRequestViewModel viewModel)
+        public virtual async Task<ActionResult> Edit([FromForm] IllRequestViewModel viewModel)
         {
             var model = mapper.Map<IllRequest>(viewModel);
             await service.Update(model);
@@ -91,11 +91,11 @@ namespace IllRequestPortal.Web.Controllers
         public virtual async Task<ActionResult> Remove(int id)
         {
             var entity = await service.Get(id);
-            return View(mapper.Map<CreateIllRequestViewModel>(entity));
+            return View(mapper.Map<IllRequestViewModel>(entity));
         }
 
         [HttpPost]
-        public virtual async Task<ActionResult> Remove([FromForm] CreateIllRequestViewModel viewModel)
+        public virtual async Task<ActionResult> Remove([FromForm] IllRequestViewModel viewModel)
         {
             var model = mapper.Map<IllRequest>(viewModel);
             await service.Delete(viewModel.Id);

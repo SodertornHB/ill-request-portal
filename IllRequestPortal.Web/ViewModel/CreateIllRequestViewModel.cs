@@ -21,7 +21,9 @@ namespace IllRequestPortal.Web.ViewModel
 
         public string BookTitle { get; set; } = "";
         public string BookAuthor { get; set; } = "";
+        public string BookPublicationYear { get; set; } = "";
 
+        public string ChapterBookTitle { get; set; } = "";
         public string ChapterTitle { get; set; } = "";
         public string ChapterAuthor { get; set; } = "";
 
@@ -31,10 +33,11 @@ namespace IllRequestPortal.Web.ViewModel
         public string JournalTitle { get; set; } = "";
         public string JournalAuthor { get; set; } = "";
 
-        public string PublicationYear { get; set; } = "";
+        public string ArticlePublicationYear { get; set; } = "";
         public string Volume { get; set; } = "";
         public string Issue { get; set; } = "";
-        public string Pages { get; set; } = "";
+        public string ChapterPages { get; set; } = "";
+        public string ArticlePages { get; set; } = "";
 
         [RegularExpression(@"^\d{10}$", ErrorMessage = "CardNumberMustBe10Digits")]
         public string CardNumber { get; set; } = "";

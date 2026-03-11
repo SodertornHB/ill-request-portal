@@ -1,7 +1,7 @@
 ﻿function updatematerialTypeSelectFields() {
     const materialType = $('#materialTypeSelect').val();
 
-    $('.field-book, .field-article, .field-chapter').hide();
+    $('.field-book, .field-article, .field-chapter .bibliographicLookupStatus').hide();
 
     if (materialType === 'Book') {
         $('.field-book').show();
@@ -18,31 +18,38 @@ function setBibliographicFieldsDisabled(disabled) {
     $('#Issn').prop('disabled', disabled);
     $('#MainTitle').prop('disabled', disabled);
     $('#MainAuthor').prop('disabled', disabled);
+    $('#BookTitle').prop('disabled', disabled);
+    $('#BookAuthor').prop('disabled', disabled);
+    $('#BookPublicationYear').prop('disabled', disabled);
     $('#ContainerTitle').prop('disabled', disabled);
-    $('#PublicationYear').prop('disabled', disabled);
+    $('#ArticlePublicationYear').prop('disabled', disabled);
+    $('#ArticleAuthor').prop('disabled', disabled);
+    $('#ArticleTitle').prop('disabled', disabled);
+    $('#ChapterPages').prop('disabled', disabled);
+    $('#ChapterBookTitle').prop('disabled', disabled);
     $('#Volume').prop('disabled', disabled);
     $('#Issue').prop('disabled', disabled);
-    $('#Pages').prop('disabled', disabled);
+    $('#ArticlePages').prop('disabled', disabled);
+    $('#JournalTitle').prop('disabled', disabled);
     $('#materialTypeSelect').prop('disabled', disabled);
 }
 
 function populateBibliographicFields(data) {
     const materialType = $('#materialTypeSelect').val();
 
-    if (materialType === 'Book') {
+    if (materialType === 'Book' || materialType === 'Chapter') {
 
         $('#BookTitle').val(data.title || '');
         $('#BookAuthor').val(data.author || '');
-        $('#PublicationYear').val(data.publicationYear || '');
+        $('#BookPublicationYear').val(data.publicationYear || '');
 
     }
 
     if (materialType === 'Chapter') {
 
-        $('#BookTitle').val(data.bookTitle || data.title || '');
-        $('#ChapterTitle').val(data.title || '');
+        $('#ChapterTitle').val('');
+        $('#ChapterBookTitle').val(data.title || '');
         $('#ChapterAuthor').val(data.author || '');
-        $('#PublicationYear').val(data.publicationYear || '');
         $('#Pages').val(data.pages || '');
 
     }
@@ -55,7 +62,7 @@ function populateBibliographicFields(data) {
 
         $('#Volume').val(data.volume || '');
         $('#Issue').val(data.issue || '');
-        $('#PublicationYear').val(data.publicationYear || '');
+        $('#ArticlePublicationYear').val(data.publicationYear || '');
         $('#Pages').val(data.pages || '');
 
     }
