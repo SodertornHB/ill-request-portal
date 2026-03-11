@@ -357,4 +357,46 @@
   <data name="LookingUpBibliographicRecord" xml:space="preserve">
     <value>Looking Up Bibliographic Record</value>
   </data>
+  <data name="NoBibliographicRecordFoundMessage" xml:space="preserve">
+  <value>No bibliographic record found.</value>
+</data>
+
+  <data name="LibrarySystemErrorMessage" xml:space="preserve">
+  <value>An error occurred while contacting the library system.</value>
+</data>
+
+  <data name="BookTitle" xml:space="preserve">
+  <value>Book title</value>
+</data>
+
+  <data name="BookAuthor" xml:space="preserve">
+  <value>Book author</value>
+</data>
+
+  <data name="ArticleTitle" xml:space="preserve">
+  <value>Article title</value>
+</data>
+
+  <data name="ArticleAuthor" xml:space="preserve">
+  <value>Article author</value>
+</data>
+
+  <data name="JournalTitle" xml:space="preserve">
+  <value>Journal title</value>
+</data>
+
+  <data name="JournalAuthor" xml:space="preserve">
+  <value>Journal author</value>
+</data>
+
+
+
+  <data name="ChapterTitle" xml:space="preserve">
+  <value>Chapter title</value>
+</data>
+
+  <data name="ChapterAuthor" xml:space="preserve">
+  <value>Chapter author</value>
+</data>
+  
 </root>

@@ -56,7 +56,7 @@ namespace IllRequestPortal.Logic.Services
         private LibrisBiblioLookupResult Convert(string json)
         {
             var result = JsonToLibrisBiblioLookupResult.Convert(json, logger);
-            if (string.IsNullOrEmpty(result.Id))
+            if (string.IsNullOrEmpty(result?.Id))
             {
                 result = JsonToLibrisBiblioLookupResult.ConvertFromGraph(json, logger);
                 if (string.IsNullOrEmpty(result.Id))

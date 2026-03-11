@@ -330,4 +330,51 @@
   <data name="LookingUpBibliographicRecord" xml:space="preserve">
     <value>Söker efter posten</value>
   </data>
+
+  <data name="NoBibliographicRecordFoundMessage" xml:space="preserve">
+  <value>Ingen bibliografisk post hittades. Skriv in uppgifterna nedan.</value>
+</data>
+
+  <data name="LibrarySystemErrorMessage" xml:space="preserve">
+  <value>Ett fel uppstod vid kontakt med bibliotekssystemet.</value>
+</data>
+
+  <data name="BookTitle" xml:space="preserve">
+  <value>Bokens titel</value>
+</data>
+
+  <data name="BookAuthor" xml:space="preserve">
+  <value>Bookens författare</value>
+</data>
+
+  <data name="ArticleTitle" xml:space="preserve">
+  <value>Artikelns titel</value>
+</data>
+
+  <data name="ArticleAuthor" xml:space="preserve">
+  <value>Artikelnförfattare</value>
+</data>
+
+  <data name="JournalTitle" xml:space="preserve">
+  <value>Tidskriftens titel</value>
+</data>
+
+  <data name="JournalAuthor" xml:space="preserve">
+  <value>Tidskriftens författare</value>
+</data>
+
+  <data name="ChapterTitle" xml:space="preserve">
+  <value>Kapitlets titel</value>
+</data>
+
+  <data name="ChapterAuthor" xml:space="preserve">
+  <value>Kapitlets författare</value>
+</data>
+
+  <data name="Issue" xml:space="preserve">
+  <value>Nummer</value>
+    </data>
+  <data name="Pages" xml:space="preserve">
+  <value>Sidor</value>
+</data>
 </root>

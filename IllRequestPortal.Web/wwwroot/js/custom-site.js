@@ -1,6 +1,168 @@
-﻿$(document).ready(function () {
+﻿function updatematerialTypeSelectFields() {
+    const materialType = $('#materialTypeSelect').val();
+
+    $('.field-book, .field-article, .field-chapter').hide();
+
+    if (materialType === 'Book') {
+        $('.field-book').show();
+    }
+    else if (materialType === 'Article') {
+        $('.field-article').show();
+    }
+    else if (materialType === 'Chapter') {
+        $('.field-chapter').show();
+    }
+}
+function setBibliographicFieldsDisabled(disabled) {
+    $('#Isbn').prop('disabled', disabled);
+    $('#Issn').prop('disabled', disabled);
+    $('#MainTitle').prop('disabled', disabled);
+    $('#MainAuthor').prop('disabled', disabled);
+    $('#ContainerTitle').prop('disabled', disabled);
+    $('#PublicationYear').prop('disabled', disabled);
+    $('#Volume').prop('disabled', disabled);
+    $('#Issue').prop('disabled', disabled);
+    $('#Pages').prop('disabled', disabled);
+    $('#materialTypeSelect').prop('disabled', disabled);
+}
+
+function populateBibliographicFields(data) {
+    const materialType = $('#materialTypeSelect').val();
+
+    if (materialType === 'Book') {
+
+        $('#BookTitle').val(data.title || '');
+        $('#BookAuthor').val(data.author || '');
+        $('#PublicationYear').val(data.publicationYear || '');
+
+    }
+
+    if (materialType === 'Chapter') {
+
+        $('#BookTitle').val(data.bookTitle || data.title || '');
+        $('#ChapterTitle').val(data.title || '');
+        $('#ChapterAuthor').val(data.author || '');
+        $('#PublicationYear').val(data.publicationYear || '');
+        $('#Pages').val(data.pages || '');
+
+    }
+
+    if (materialType === 'Article') {
+
+        $('#JournalTitle').val(data.journalTitle || data.title || '');
+        $('#ArticleTitle').val(data.title || '');
+        $('#ArticleAuthor').val(data.author || '');
+
+        $('#Volume').val(data.volume || '');
+        $('#Issue').val(data.issue || '');
+        $('#PublicationYear').val(data.publicationYear || '');
+        $('#Pages').val(data.pages || '');
+
+    }
+    
+}
+
+function getStandardNumber() {
+    const materialType = $('#materialTypeSelect').val();
+
+    if (materialType === 'Article') {
+        return $('#Issn').val();
+    }
+
+    return $('#Isbn').val();
+}
+
+function bindBibliographicLookup(texts) {
+    $('#Isbn, #Issn').on('change', function () {
+        const materialType = $('#materialTypeSelect').val();
+        console.log(materialType);
+        const standardNumber = getStandardNumber();
+
+        if (!materialType)
+            return;
+
+        if (!standardNumber)
+            return;
+
+        const $field = $(this);
+
+        if (!$field.valid())
+            return;
+
+        setBibliographicFieldsDisabled(true);
+
+        $('#bibliographicLookupSpinner').removeClass('hidden');
+
+        $('#bibliographicLookupStatus')
+            .removeClass('hidden lookup-status-success lookup-error')
+            .addClass('lookup-status-neutral')
+            .text(texts.lookingUpBibliographicRecord);
+
+        $.get('/api/v1/bibliographic-records/lookup?standardNumber=' + encodeURIComponent(standardNumber))
+            .done(function (data) {
+
+                const $status = $('#bibliographicLookupStatus');
+
+                if (data.status === 'FoundInKoha' || data.status === 'FoundInLibris') {
+                    populateBibliographicFields(data);
+                }
+
+                if (data.status === 'FoundInKoha') {
+
+                    const biblioId = data.biblioId || data.BiblioId || data.biblio_id;
+                    const template = texts.discoveryRecordUrlTemplate;
+
+                    if (biblioId) {
+                        $status
+                            .removeClass('hidden lookup-status-neutral lookup-error')
+                            .addClass('lookup-status-success');
+
+                        if (template) {
+                            const discoveryUrl = template.replace('{biblioId}', biblioId);
+                            $status.html(`${texts.foundInKohaMessage} <a target="_blank" href="${discoveryUrl}">${texts.kohaBorrowLinkText}</a>`);
+                        } else {
+                            $status.text(texts.foundInKohaMessage);
+                        }
+                    } else {
+                        $status
+                            .removeClass('hidden lookup-status-neutral lookup-ok')
+                            .addClass('lookup-error')
+                            .text(texts.missingBiblioIdMessage);
+                    }
+                }
+                else if (data.status === 'FoundInLibris') {
+                    $status
+                        .removeClass('hidden lookup-status-neutral lookup-error')
+                        .addClass('lookup-status-success')
+                        .text(texts.foundInLibrisMessage);
+                }
+                else {
+                    $status
+                        .removeClass('hidden lookup-status-neutral lookup-ok')
+                        .addClass('lookup-error')
+                        .text(texts.noBibliographicRecordFoundMessage);
+                }
+            })
+            .fail(function () {
+                $('#bibliographicLookupStatus')
+                    .removeClass('hidden lookup-status-neutral lookup-ok')
+                    .addClass('lookup-error')
+                    .text(texts.librarySystemErrorMessage);
+            })
+            .always(function () {
+                setBibliographicFieldsDisabled(false);
+                $('#bibliographicLookupSpinner').addClass('hidden');
+            });
+    });
+}
+$(document).ready(function () {
 
     const texts = window.illTexts;
+
+    updatematerialTypeSelectFields();
+    $('#materialTypeSelect').on('change', function () {
+        updatematerialTypeSelectFields();
+    });
 
     $('#CardNumber').on('change', function () {
 
@@ -68,109 +230,6 @@
 
     });
 
-    $('#IsbnIssn').on('change', function () {
-
-        const $field = $(this);
-        const standardNumber = $field.val();
-
-        if (!standardNumber)
-            return;
-
-        if (!$field.valid())
-            return;
-
-        $('#Title').prop('disabled', true);
-        $('#Author').prop('disabled', true);
-        $('#PublicationYear').prop('disabled', true);
-        $('#Edition').prop('disabled', true);
-        $('#MaterialType').prop('disabled', true);
-
-        $('#bibliographicLookupSpinner').removeClass('hidden');
-
-        $('#bibliographicLookupStatus')
-            .removeClass('hidden lookup-status-success lookup-error')
-            .addClass('lookup-status-neutral')
-            .text(texts.lookingUpBibliographicRecord);
-
-        $.get('/api/v1/bibliographic-records/lookup?standardNumber=' + encodeURIComponent(standardNumber))
-
-            .done(function (data) {
-
-                const $status = $('#bibliographicLookupStatus');
-
-                if (data.status === 'FoundInKoha' || data.status === 'FoundInLibris') {
-
-                    $('#Title').val(data.title || '');
-                    $('#Author').val(data.author || '');
-                    $('#PublicationYear').val(data.publicationYear || '');
-                    $('#Edition').val(data.edition || '');
-
-                }
-
-                if (data.status === 'FoundInKoha') {
-
-                    const biblioId = data.biblioId || data.BiblioId || data.biblio_id;
-                    const template = texts.discoveryRecordUrlTemplate;
-
-                    if (biblioId) {
-
-                        $status
-                            .removeClass('hidden lookup-status-neutral lookup-error')
-                            .addClass('lookup-status-success');
-
-                        if (template) {
-                            const discoveryUrl = template.replace('{biblioId}', biblioId);
-                            $status.html(`${texts.foundInKohaMessage} <a target="_blank" href="${discoveryUrl}">${texts.kohaBorrowLinkText}</a>`);
-                        } else {
-                            $status.text(texts.foundInKohaMessage);
-                        }
-
-                    } else {
-
-                        $status
-                            .removeClass('hidden lookup-status-neutral lookup-ok')
-                            .addClass('lookup-error')
-                            .text(texts.missingBiblioIdMessage);
-
-                    }
-
-                }
-                else if (data.status === 'FoundInLibris') {
-                    $status
-                        .removeClass('hidden lookup-status-neutral lookup-error')
-                        .addClass('lookup-status-success')
-                        .text(texts.foundInLibrisMessage);
-                }
-                else {
-                    $status
-                        .removeClass('hidden lookup-status-neutral lookup-ok')
-                        .addClass('lookup-error')
-                        .text(texts.noBibliographicRecordFoundMessage);
-                }
-
-            })
-
-            .fail(function () {
-
-                $('#bibliographicLookupStatus')
-                    .removeClass('hidden lookup-status-neutral lookup-ok')
-                    .addClass('lookup-error')
-                    .text(texts.librarySystemErrorMessage);
-
-            })
-
-            .always(function () {
-
-                $('#Title').prop('disabled', false);
-                $('#Author').prop('disabled', false);
-                $('#PublicationYear').prop('disabled', false);
-                $('#Edition').prop('disabled', false);
-                $('#MaterialType').prop('disabled', false);
-
-                $('#bibliographicLookupSpinner').addClass('hidden');
-
-            });
-
-    });
-
+    bindBibliographicLookup(texts)    
 });
+

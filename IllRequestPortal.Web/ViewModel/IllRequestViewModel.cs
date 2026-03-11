@@ -1,11 +1,6 @@
-
-//--------------------------------------------------------------------------------------------------------------------
-// Warning! This is an auto generated file. Changes may be overwritten. 
-// Generator version: 0.0.1.0
-//-------------------------------------------------------------------------------------------------------------------- 
-
-using System;
+﻿using IllRequestPortal.Web.ViewModel;
 using System.ComponentModel.DataAnnotations;
+using System;
 
 namespace IllRequestPortal.Web.ViewModel
 {
@@ -16,7 +11,7 @@ namespace IllRequestPortal.Web.ViewModel
         public virtual string MainAuthor { get; set; } = "";
         public virtual string ContainerTitle { get; set; } = "";
         public virtual string ContainerAuthorOrEditor { get; set; }
-        
+
         [Required(ErrorMessage = "IsbnIssnRequired")]
         [MinLength(8, ErrorMessage = "IsbnIssnTooShort")]
         public string IsbnIssn { get; set; } = "";
@@ -36,18 +31,18 @@ namespace IllRequestPortal.Web.ViewModel
         [Required(ErrorMessage = "RequesterEmailRequired")]
         [EmailAddress(ErrorMessage = "RequesterEmailInvalid")]
         public string RequesterEmail { get; set; } = "";
-        public virtual string PublicationYear {get;set;}  = ""; 
-        public virtual string Isbn {get;set;}  = ""; 
-        public virtual string Issn {get;set;}  = ""; 
-        public virtual string Volume {get;set;}  = ""; 
-        public virtual string Issue {get;set;}  = ""; 
-        public virtual string Pages {get;set;}  = ""; 
-        public virtual string Status {get;set;}  = ""; 
+        public virtual string PublicationYear { get; set; } = "";
+        public virtual string Isbn { get; set; } = "";
+        public virtual string Issn { get; set; } = "";
+        public virtual string Volume { get; set; } = "";
+        public virtual string Issue { get; set; } = "";
+        public virtual string Pages { get; set; } = "";
+        public virtual string Status { get; set; } = "";
         [DataType(DataType.Text)]
-        public virtual DateTime? CreatedOn {get;set;} 
+        public virtual DateTime? CreatedOn { get; set; }
         [DataType(DataType.Text)]
-        public virtual DateTime? UpdatedOn {get;set;} 
+        public virtual DateTime? UpdatedOn { get; set; }
         [DataType(DataType.Text)]
-        public virtual DateTime? AddedInLibrisOn {get;set;} 
+        public virtual DateTime? AddedInLibrisOn { get; set; }
     }
-} 
+}

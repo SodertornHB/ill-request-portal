@@ -44,6 +44,12 @@
     margin-top: 12px;
 }
 
+.field-book,
+.field-article,
+.field-chapter {
+    display: none;
+}
+
 .lookup-status-panel {
     margin-top: 8px;
     padding: 10px 12px;
