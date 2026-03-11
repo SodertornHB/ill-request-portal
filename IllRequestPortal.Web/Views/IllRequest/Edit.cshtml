@@ -37,6 +37,18 @@
                     <span asp-validation-for="MainAuthor" class="text-danger"></span>
                 </div>
 
+                <div class="form-group">
+                    <label asp-for="ContainerTitle" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Title")</label>
+                    <input asp-for="ContainerTitle" class="form-control" />
+                    <span asp-validation-for="ContainerTitle" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ContainerAuthorOrEditor" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Author")</label>
+                    <input asp-for="ContainerAuthorOrEditor" class="form-control" />
+                    <span asp-validation-for="ContainerAuthorOrEditor" class="text-danger"></span>
+                </div>
+
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label asp-for="PublicationYear" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("PublicationYear")</label>

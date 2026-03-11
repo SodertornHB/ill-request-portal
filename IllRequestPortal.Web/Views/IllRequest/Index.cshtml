@@ -28,6 +28,12 @@
                 @SharedLocalizer.GetLocalizedHtmlString("Author")
             </th>
             <th>
+                @SharedLocalizer.GetLocalizedHtmlString("Title")
+            </th>
+            <th>
+                @SharedLocalizer.GetLocalizedHtmlString("Author")
+            </th>
+            <th>
                 @SharedLocalizer.GetLocalizedHtmlString("PublicationYear")
             </th>
             <th>
@@ -72,6 +78,12 @@
                 </td>
                 <td class="truncate tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.MainAuthor">
                     @item.MainAuthor
+                </td>
+                <td class="truncate tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.ContainerTitle">
+                    @item.ContainerTitle
+                </td>
+                <td class="truncate tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.ContainerAuthorOrEditor">
+                    @item.ContainerAuthorOrEditor
                 </td>
                 <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.PublicationYear">
                     @item.PublicationYear
