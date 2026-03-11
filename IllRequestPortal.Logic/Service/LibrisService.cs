@@ -11,14 +11,15 @@ using static Logic.Util.StandardNumberUtil;
 
 namespace IllRequestPortal.Logic.Services
 {
-    public partial interface ILibrisService 
+    public partial interface ILibrisService
     {
         Task<LibrisBiblioLookupResult> FetchBiblio(string standardNumber);
 
     }
 
-    public partial class LibrisService :  ILibrisService
+    public partial class LibrisService : ILibrisService
     {
+        private readonly ILogger<LibrisService> logger;
         private readonly IJsonGetHttpService jsonGetHttpService;
         private readonly LibrisApiSettings librisApiSettings;
 
@@ -26,6 +27,7 @@ namespace IllRequestPortal.Logic.Services
            IJsonGetHttpService jsonGetHttpService,
            IOptions<LibrisApiSettings> apiSettingsOption)
         {
+            this.logger = logger;
             this.jsonGetHttpService = jsonGetHttpService;
             this.librisApiSettings = apiSettingsOption.Value;
         }
@@ -51,18 +53,18 @@ namespace IllRequestPortal.Logic.Services
             return result;
         }
 
-        private static LibrisBiblioLookupResult Convert(string json)
+        private LibrisBiblioLookupResult Convert(string json)
         {
-            var result = JsonToLibrisBiblioLookupResult.Convert(json);
+            var result = JsonToLibrisBiblioLookupResult.Convert(json, logger);
             if (string.IsNullOrEmpty(result.Id))
             {
-                result = JsonToLibrisBiblioLookupResult.ConvertFromGraph(json);
+                result = JsonToLibrisBiblioLookupResult.ConvertFromGraph(json, logger);
                 if (string.IsNullOrEmpty(result.Id))
                 {
                     return null;
                 }
             }
-                return result;
+            return result;
         }
 
         private string FixUrl(string id)
@@ -84,182 +86,199 @@ namespace IllRequestPortal.Logic.Services
 
     public static class JsonToLibrisBiblioLookupResult
     {
-        public static LibrisBiblioLookupResult Convert(string json)
+        public static LibrisBiblioLookupResult Convert(string json, ILogger logger)
         {
-            var result = new LibrisBiblioLookupResult();
-
-            if (string.IsNullOrWhiteSpace(json))
-                return result;
-
-            var root = JObject.Parse(json);
-
-            var items = root["items"] as JArray;
-            if (items == null || !items.Any())
-                return result;
-
-            var instance = items
-                .OfType<JObject>()
-                .FirstOrDefault();
-
-            if (instance == null)
-                return result;
-
-            result.Id = (string)instance["@id"] ?? "";
-
-            var work = instance["instanceOf"] as JObject;
-
-            var titleObject =
-                (work?["hasTitle"] as JArray)?.OfType<JObject>().FirstOrDefault()
-                ?? (instance["hasTitle"] as JArray)?.OfType<JObject>().FirstOrDefault();
-
-            var mainTitle = (string)titleObject?["mainTitle"] ?? "";
-            var subtitle = (string)titleObject?["subtitle"] ?? "";
-
-            result.Title = string.IsNullOrWhiteSpace(subtitle)
-                ? mainTitle
-                : $"{mainTitle}: {subtitle}";
-
-            var contributionArray =
-                (work?["contribution"] as JArray)
-                ?? (instance["contribution"] as JArray);
-
-            var firstContribution = contributionArray?
-                .OfType<JObject>()
-                .FirstOrDefault();
-
-            var agent = firstContribution?["agent"] as JObject;
-
-            var givenName = (string)agent?["givenName"] ?? "";
-            var familyName = (string)agent?["familyName"] ?? "";
-            var agentLabel = ((agent?["label"] as JArray)?.FirstOrDefault()?.ToString()) ?? "";
-
-            var combinedName = $"{givenName} {familyName}".Trim();
-
-            result.Author = !string.IsNullOrWhiteSpace(combinedName)
-                ? combinedName
-                : agentLabel;
-
-            var publicationArray = instance["publication"] as JArray;
-            var firstPublication = publicationArray?
-                .OfType<JObject>()
-                .FirstOrDefault();
-
-            result.PublicationYear = (string)firstPublication?["year"] ?? "";
-            result.Edition = (string)instance["editionStatement"] ?? "";
-
-            var identifiedBy = instance["identifiedBy"] as JArray;
-            if (identifiedBy != null)
+            try
             {
-                var identifier = identifiedBy
-                    .OfType<JObject>()
-                    .FirstOrDefault(x =>
-                        string.Equals((string)x["@type"], "ISBN", StringComparison.OrdinalIgnoreCase) ||
-                        string.Equals((string)x["@type"], "ISSN", StringComparison.OrdinalIgnoreCase));
+                var result = new LibrisBiblioLookupResult();
 
-                result.IsbnIssn = (string)identifier?["value"] ?? "";
-            }
+                if (string.IsNullOrWhiteSpace(json))
+                    return result;
 
-            var materialType = (string)work?["@type"] ?? (string)instance["@type"] ?? "";
+                var root = JObject.Parse(json);
 
-            result.MaterialType = materialType switch
-            {
-                "Text" => IllRequestConstants.MaterialTypes.Book,
-                "Instance" => IllRequestConstants.MaterialTypes.Book,
-                _ => materialType
-            };
+                var items = root["items"] as JArray;
+                if (items == null || !items.Any())
+                    return result;
 
-            var holdings = instance["@reverse"]?["itemOf"] as JArray;
-
-            if (holdings != null)
-            {
-                result.ExistsInLocalCatalog = holdings
-                    .OfType<JObject>()
-                    .Any(h =>
-                        ((string)h["heldBy"]?["@id"])?
-                        .EndsWith("/library/D", StringComparison.OrdinalIgnoreCase) == true);
-            }
-
-            return result;
-        }
-        public static LibrisBiblioLookupResult ConvertFromGraph(string json)
-        {
-            var result = new LibrisBiblioLookupResult();
-
-            if (string.IsNullOrWhiteSpace(json))
-                return result;
-
-            var root = JObject.Parse(json);
-
-            var entity = FindMainBibliographicEntity(root);
-
-            if (entity == null)
-                return result;
-
-            result.Id = (string)entity["@id"] ?? "";
-
-            var titleObject = (entity["hasTitle"] as JArray)?
-                .OfType<JObject>()
-                .FirstOrDefault(x => string.Equals((string)x["@type"], "Title", StringComparison.OrdinalIgnoreCase))
-                ?? (entity["hasTitle"] as JArray)?
+                var instance = items
                     .OfType<JObject>()
                     .FirstOrDefault();
 
-            var mainTitle = (string)titleObject?["mainTitle"] ?? "";
-            var subtitle = (string)titleObject?["subtitle"] ?? "";
+                if (instance == null)
+                    return result;
 
-            result.Title = string.IsNullOrWhiteSpace(subtitle)
-                ? mainTitle
-                : $"{mainTitle}: {subtitle}";
+                result.Id = (string)instance["@id"] ?? "";
 
-            var work = entity["instanceOf"] as JObject;
+                var work = instance["instanceOf"] as JObject;
 
-            var contribution = (work?["contribution"] as JArray)?
-                .OfType<JObject>()
-                .FirstOrDefault();
+                var titleObject =
+                    (work?["hasTitle"] as JArray)?.OfType<JObject>().FirstOrDefault()
+                    ?? (instance["hasTitle"] as JArray)?.OfType<JObject>().FirstOrDefault();
 
-            var agent = contribution?["agent"] as JObject;
+                var mainTitle = (string)titleObject?["mainTitle"] ?? "";
+                var subtitle = (string)titleObject?["subtitle"] ?? "";
 
-            var givenName = (string)agent?["givenName"] ?? "";
-            var familyName = (string)agent?["familyName"] ?? "";
-            var label = ((agent?["label"] as JArray)?.FirstOrDefault()?.ToString()) ?? "";
+                result.Title = string.IsNullOrWhiteSpace(subtitle)
+                    ? mainTitle
+                    : $"{mainTitle}: {subtitle}";
 
-            var author = $"{givenName} {familyName}".Trim();
-            result.Author = !string.IsNullOrWhiteSpace(author) ? author : label;
+                var contributionArray =
+                    (work?["contribution"] as JArray)
+                    ?? (instance["contribution"] as JArray);
 
-            var publication = (entity["publication"] as JArray)?
-                .OfType<JObject>()
-                .FirstOrDefault();
-
-            result.PublicationYear =
-                (string)publication?["year"]
-                ?? (string)publication?["startYear"]
-                ?? "";
-
-            result.Edition = (string)entity["editionStatement"] ?? "";
-
-            var identifiedBy = entity["identifiedBy"] as JArray;
-            if (identifiedBy != null)
-            {
-                var identifier = identifiedBy
+                var firstContribution = contributionArray?
                     .OfType<JObject>()
-                    .FirstOrDefault(x =>
-                        string.Equals((string)x["@type"], "ISBN", StringComparison.OrdinalIgnoreCase) ||
-                        string.Equals((string)x["@type"], "ISSN", StringComparison.OrdinalIgnoreCase));
+                    .FirstOrDefault();
 
-                result.IsbnIssn = (string)identifier?["value"] ?? "";
+                var agent = firstContribution?["agent"] as JObject;
+
+                var givenName = (string)agent?["givenName"] ?? "";
+                var familyName = (string)agent?["familyName"] ?? "";
+                var agentLabel = ((agent?["label"] as JArray)?.FirstOrDefault()?.ToString()) ?? "";
+
+                var combinedName = $"{givenName} {familyName}".Trim();
+
+                result.Author = !string.IsNullOrWhiteSpace(combinedName)
+                    ? combinedName
+                    : agentLabel;
+
+                var publicationArray = instance["publication"] as JArray;
+                var firstPublication = publicationArray?
+                    .OfType<JObject>()
+                    .FirstOrDefault();
+
+                result.PublicationYear = (string)firstPublication?["year"] ?? "";
+                result.Edition = (string)instance["editionStatement"] ?? "";
+
+                var identifiedBy = instance["identifiedBy"] as JArray;
+                if (identifiedBy != null)
+                {
+                    var identifier = identifiedBy
+                        .OfType<JObject>()
+                        .FirstOrDefault(x =>
+                            string.Equals((string)x["@type"], "ISBN", StringComparison.OrdinalIgnoreCase) ||
+                            string.Equals((string)x["@type"], "ISSN", StringComparison.OrdinalIgnoreCase));
+
+                    result.IsbnIssn = (string)identifier?["value"] ?? "";
+                }
+
+                var materialType = (string)work?["@type"] ?? (string)instance["@type"] ?? "";
+
+                result.MaterialType = materialType switch
+                {
+                    "Text" => IllRequestConstants.MaterialTypes.Book,
+                    "Instance" => IllRequestConstants.MaterialTypes.Book,
+                    _ => materialType
+                };
+
+                var holdings = instance["@reverse"]?["itemOf"] as JArray;
+
+                if (holdings != null)
+                {
+                    result.ExistsInLocalCatalog = holdings
+                        .OfType<JObject>()
+                        .Any(h =>
+                            ((string)h["heldBy"]?["@id"])?
+                            .EndsWith("/library/D", StringComparison.OrdinalIgnoreCase) == true);
+                }
+
+                return result;
             }
-
-            var materialType = (string)work?["@type"] ?? (string)entity["@type"] ?? "";
-
-            result.MaterialType = materialType switch
+            catch (Exception e)
             {
-                "Text" => IllRequestConstants.MaterialTypes.Book,
-                "Monograph" => IllRequestConstants.MaterialTypes.Book,
-                "Serial" => IllRequestConstants.MaterialTypes.Journal,
-                _ => materialType
-            };
+                logger.LogWarning("Error when parsing json: " + e.Message);
+                return null;
+            }
+        }
+        public static LibrisBiblioLookupResult ConvertFromGraph(string json, ILogger logger)
+        {
+            try
+            {
+                var result = new LibrisBiblioLookupResult();
 
-            return result;
+                if (string.IsNullOrWhiteSpace(json))
+                    return result;
+
+                var root = JObject.Parse(json);
+
+                var entity = FindMainBibliographicEntity(root);
+
+                if (entity == null)
+                    return result;
+
+                result.Id = (string)entity["@id"] ?? "";
+
+                var titleObject = (entity["hasTitle"] as JArray)?
+                    .OfType<JObject>()
+                    .FirstOrDefault(x => string.Equals((string)x["@type"], "Title", StringComparison.OrdinalIgnoreCase))
+                    ?? (entity["hasTitle"] as JArray)?
+                        .OfType<JObject>()
+                        .FirstOrDefault();
+
+                var mainTitle = (string)titleObject?["mainTitle"] ?? "";
+                var subtitle = (string)titleObject?["subtitle"] ?? "";
+
+                result.Title = string.IsNullOrWhiteSpace(subtitle)
+                    ? mainTitle
+                    : $"{mainTitle}: {subtitle}";
+
+                var work = entity["instanceOf"] as JObject;
+
+                var contribution = (work?["contribution"] as JArray)?
+                    .OfType<JObject>()
+                    .FirstOrDefault();
+
+                var agent = contribution?["agent"] as JObject;
+
+                var givenName = (string)agent?["givenName"] ?? "";
+                var familyName = (string)agent?["familyName"] ?? "";
+                var label = ((agent?["label"] as JArray)?.FirstOrDefault()?.ToString()) ?? "";
+
+                var author = $"{givenName} {familyName}".Trim();
+                result.Author = !string.IsNullOrWhiteSpace(author) ? author : label;
+
+                var publication = (entity["publication"] as JArray)?
+                    .OfType<JObject>()
+                    .FirstOrDefault();
+
+                result.PublicationYear =
+                    (string)publication?["year"]
+                    ?? (string)publication?["startYear"]
+                    ?? "";
+
+                result.Edition = (string)entity["editionStatement"] ?? "";
+
+                var identifiedBy = entity["identifiedBy"] as JArray;
+                if (identifiedBy != null)
+                {
+                    var identifier = identifiedBy
+                        .OfType<JObject>()
+                        .FirstOrDefault(x =>
+                            string.Equals((string)x["@type"], "ISBN", StringComparison.OrdinalIgnoreCase) ||
+                            string.Equals((string)x["@type"], "ISSN", StringComparison.OrdinalIgnoreCase));
+
+                    result.IsbnIssn = (string)identifier?["value"] ?? "";
+                }
+
+                var materialType = (string)work?["@type"] ?? (string)entity["@type"] ?? "";
+
+                result.MaterialType = materialType switch
+                {
+                    "Text" => IllRequestConstants.MaterialTypes.Book,
+                    "Monograph" => IllRequestConstants.MaterialTypes.Book,
+                    "Serial" => IllRequestConstants.MaterialTypes.Journal,
+                    _ => materialType
+                };
+
+                return result;
+
+            }
+            catch (Exception e)
+            {
+                logger.LogWarning("Error when parsing json: " + e.Message);
+                return null;
+            }
         }
 
         private static JObject? FindMainBibliographicEntity(JObject root)
