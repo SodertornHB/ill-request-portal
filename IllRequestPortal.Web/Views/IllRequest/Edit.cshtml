@@ -26,15 +26,15 @@
                 <div class="ill-section-title">@SharedLocalizer.GetLocalizedHtmlString("RequestInformation")</div>
 
                 <div class="form-group">
-                    <label asp-for="Title" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Title")</label>
-                    <input asp-for="Title" class="form-control" />
-                    <span asp-validation-for="Title" class="text-danger"></span>
+                    <label asp-for="MainTitle" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Title")</label>
+                    <input asp-for="MainTitle" class="form-control" />
+                    <span asp-validation-for="MainTitle" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Author" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Author")</label>
-                    <input asp-for="Author" class="form-control" />
-                    <span asp-validation-for="Author" class="text-danger"></span>
+                    <label asp-for="MainAuthor" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Author")</label>
+                    <input asp-for="MainAuthor" class="form-control" />
+                    <span asp-validation-for="MainAuthor" class="text-danger"></span>
                 </div>
 
                 <div class="form-row">
@@ -42,12 +42,6 @@
                         <label asp-for="PublicationYear" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("PublicationYear")</label>
                         <input asp-for="PublicationYear" class="form-control" />
                         <span asp-validation-for="PublicationYear" class="text-danger"></span>
-                    </div>
-
-                    <div class="form-group col-md-8">
-                        <label asp-for="Edition" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Edition")</label>
-                        <input asp-for="Edition" class="form-control" />
-                        <span asp-validation-for="Edition" class="text-danger"></span>
                     </div>
                 </div>
 
@@ -129,18 +123,6 @@
                         </select>
                         <span asp-validation-for="Status" class="text-danger"></span>
                     </div>
-
-                    <div class="form-group col-md-8">
-                        <label asp-for="ExternalRequestId" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("ExternalRequestId")</label>
-                        <input asp-for="ExternalRequestId" class="form-control" />
-                        <span asp-validation-for="ExternalRequestId" class="text-danger"></span>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="ExportError" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("ExportError")</label>
-                    <textarea asp-for="ExportError" class="form-control" rows="3"></textarea>
-                    <span asp-validation-for="ExportError" class="text-danger"></span>
                 </div>
             </div>
 
@@ -156,11 +138,6 @@
                     <div class="form-group col-md-4">
                         <label asp-for="UpdatedOn" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("UpdatedOn")</label>
                         <input asp-for="UpdatedOn" class="form-control" readonly />
-                    </div>
-
-                    <div class="form-group col-md-4">
-                        <label asp-for="ExportedOn" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("ExportedOn")</label>
-                        <input asp-for="ExportedOn" class="form-control" readonly />
                     </div>
                 </div>
             </div>

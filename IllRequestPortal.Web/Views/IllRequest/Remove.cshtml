@@ -24,16 +24,13 @@
 
             <dl class="row mb-0">
                 <dt class="col-sm-4">@SharedLocalizer.GetLocalizedHtmlString("Title")</dt>
-                <dd class="col-sm-8">@Model.Title</dd>
+                <dd class="col-sm-8">@Model.MainTitle</dd>
 
                 <dt class="col-sm-4">@SharedLocalizer.GetLocalizedHtmlString("Author")</dt>
-                <dd class="col-sm-8">@Model.Author</dd>
+                <dd class="col-sm-8">@Model.MainAuthor</dd>
 
                 <dt class="col-sm-4">@SharedLocalizer.GetLocalizedHtmlString("PublicationYear")</dt>
                 <dd class="col-sm-8">@Model.PublicationYear</dd>
-
-                <dt class="col-sm-4">@SharedLocalizer.GetLocalizedHtmlString("Edition")</dt>
-                <dd class="col-sm-8">@Model.Edition</dd>
 
                 <dt class="col-sm-4">@SharedLocalizer.GetLocalizedHtmlString("Isbn")</dt>
                 <dd class="col-sm-8">@Model.Isbn</dd>
@@ -70,15 +67,6 @@
             <dl class="row mb-0">
                 <dt class="col-sm-4">@SharedLocalizer.GetLocalizedHtmlString("Status")</dt>
                 <dd class="col-sm-8">@Model.Status</dd>
-
-                <dt class="col-sm-4">@SharedLocalizer.GetLocalizedHtmlString("ExternalRequestId")</dt>
-                <dd class="col-sm-8">@Model.ExternalRequestId</dd>
-
-                <dt class="col-sm-4">@SharedLocalizer.GetLocalizedHtmlString("ExportedOn")</dt>
-                <dd class="col-sm-8">@Model.ExportedOn</dd>
-
-                <dt class="col-sm-4">@SharedLocalizer.GetLocalizedHtmlString("ExportError")</dt>
-                <dd class="col-sm-8 text-break">@Model.ExportError</dd>
 
                 <dt class="col-sm-4">@SharedLocalizer.GetLocalizedHtmlString("CreatedOn")</dt>
                 <dd class="col-sm-8">@Model.CreatedOn</dd>

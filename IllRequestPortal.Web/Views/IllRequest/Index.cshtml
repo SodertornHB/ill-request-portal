@@ -67,17 +67,14 @@
                 <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@(item.CreatedOn?.ToString("yyyy-MM-dd HH:mm"))">
                     @(item.CreatedOn?.ToString("yyyy-MM-dd"))
                 </td>
-                <td class="truncate tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.Title">
-                    @item.Title
+                <td class="truncate tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.MainTitle">
+                    @item.MainTitle
                 </td>
-                <td class="truncate tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.Author">
-                    @item.Author
+                <td class="truncate tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.MainAuthor">
+                    @item.MainAuthor
                 </td>
                 <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.PublicationYear">
                     @item.PublicationYear
-                </td>
-                <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.Edition">
-                    @item.Edition
                 </td>
                 <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.Isbn">
                     @item.Isbn

@@ -53,27 +53,21 @@
                 <div class="ill-section-title">@SharedLocalizer.GetLocalizedHtmlString("RequestInformation")</div>
 
                 <div class="form-group">
-                    <label asp-for="Title" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Title")</label>
-                    <input asp-for="Title" class="form-control" />
-                    <span asp-validation-for="Title" class="text-danger"></span>
+                    <label asp-for="MainTitle" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Title")</label>
+                    <input asp-for="MainTitle" class="form-control" />
+                    <span asp-validation-for="MainTitle" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Author" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Author")</label>
-                    <input asp-for="Author" class="form-control" />
-                    <span asp-validation-for="Author" class="text-danger"></span>
+                    <label asp-for="MainAuthor" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Author")</label>
+                    <input asp-for="MainAuthor" class="form-control" />
+                    <span asp-validation-for="MainAuthor" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
                     <label asp-for="PublicationYear" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("PublicationYear")</label>
                     <input asp-for="PublicationYear" class="form-control" />
                     <span asp-validation-for="PublicationYear" class="text-danger"></span>
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="Edition" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Edition")</label>
-                    <input asp-for="Edition" class="form-control" />
-                    <span asp-validation-for="Edition" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">

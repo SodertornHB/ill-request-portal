@@ -12,8 +12,11 @@ namespace IllRequestPortal.Web.ViewModel
     public partial class IllRequestViewModel : ViewModelBase
     {
         [Required(ErrorMessage = "TitleRequired")]
-        public string Title { get; set; } = "";
-
+        public virtual string MainTitle { get; set; } = "";
+        public virtual string MainAuthor { get; set; } = "";
+        public virtual string ContainerTitle { get; set; } = "";
+        public virtual string ContainerAuthorOrEditor { get; set; }
+        
         [Required(ErrorMessage = "IsbnIssnRequired")]
         [MinLength(8, ErrorMessage = "IsbnIssnTooShort")]
         public string IsbnIssn { get; set; } = "";
@@ -33,20 +36,18 @@ namespace IllRequestPortal.Web.ViewModel
         [Required(ErrorMessage = "RequesterEmailRequired")]
         [EmailAddress(ErrorMessage = "RequesterEmailInvalid")]
         public string RequesterEmail { get; set; } = "";
-        public virtual string Author {get;set;}  = ""; 
         public virtual string PublicationYear {get;set;}  = ""; 
-        public virtual string Edition {get;set;}  = "";
-        public virtual string Isbn { get; set; } = "";
+        public virtual string Isbn {get;set;}  = ""; 
         public virtual string Issn {get;set;}  = ""; 
+        public virtual string Volume {get;set;}  = ""; 
+        public virtual string Issue {get;set;}  = ""; 
+        public virtual string Pages {get;set;}  = ""; 
         public virtual string Status {get;set;}  = ""; 
-        public virtual string ExternalRequestId {get;set;}  = ""; 
-        [DataType(DataType.Text)]
-        public virtual DateTime? ExportedOn {get;set;} 
-        public virtual string ExportError {get;set;}  = ""; 
         [DataType(DataType.Text)]
         public virtual DateTime? CreatedOn {get;set;} 
         [DataType(DataType.Text)]
         public virtual DateTime? UpdatedOn {get;set;} 
-        public virtual string GetBackToListLink(string applicationName) => $"/{applicationName}/{GetType().Name.Replace("ViewModel","")}";
+        [DataType(DataType.Text)]
+        public virtual DateTime? AddedInLibrisOn {get;set;} 
     }
 } 
