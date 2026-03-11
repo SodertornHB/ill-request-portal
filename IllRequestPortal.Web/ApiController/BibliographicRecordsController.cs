@@ -59,7 +59,7 @@ namespace IllRequestPortal.Web.ApiController
                 });
             }
 
-            var librisMatch = await librisService.FetchBiblio(standardNumber);
+            LibrisBiblioLookupResult librisMatch = await librisService.FetchBiblio(standardNumber);
 
             if (librisMatch != null)
             {
@@ -84,7 +84,7 @@ namespace IllRequestPortal.Web.ApiController
         private async Task<KohaBiblio> FetchFromKoha(string standardNumber)
         {
             var normalized = StandardNumberUtility.Normalize(standardNumber);
-            var queryField = StandardNumberUtility.Detect(normalized) == "ISSN" ? "issn" : "isbn";
+            var queryField = StandardNumberUtility.GetStandardNumberType(normalized) == "ISSN" ? "issn" : "isbn";
             var q = Uri.EscapeDataString($"{{\"{queryField}\":\"{normalized}\"}}");
             string url = $"{kohaApiSettings.BaseUrl}/biblios?q={q}";
 

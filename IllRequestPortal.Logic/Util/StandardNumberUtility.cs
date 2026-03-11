@@ -20,7 +20,7 @@ namespace Logic.Util
                 return IsValidIsbn10(normalized) || IsValidIsbn13(normalized) || IsValidIssn(normalized);
             }
 
-            public static string Detect(string input)
+            public static string GetStandardNumberType(string input)
             {
                 if (string.IsNullOrWhiteSpace(input))
                     return null;
@@ -28,10 +28,10 @@ namespace Logic.Util
                 var normalized = Normalize(input);
 
                 if (IsValidIsbn10(normalized) || IsValidIsbn13(normalized))
-                    return "ISBN";
+                    return "isbn";
 
                 if (IsValidIssn(normalized))
-                    return "ISSN";
+                    return "issn";
 
                 return null;
             }
