@@ -68,7 +68,6 @@ function populateBibliographicFields(data) {
     }
     
 }
-
 function getStandardNumber() {
     const materialType = $('#materialTypeSelect').val();
 
@@ -78,12 +77,21 @@ function getStandardNumber() {
 
     return $('#Isbn').val();
 }
+function getQueryField() {
+    const materialType = $('#materialTypeSelect').val();
+
+    if (materialType === 'Article') {
+        return 'issn';
+    }
+    return 'isbn';
+}
 
 function bindBibliographicLookup(texts) {
     $('#Isbn, #Issn').on('change', function () {
         const materialType = $('#materialTypeSelect').val();
         console.log(materialType);
         const standardNumber = getStandardNumber();
+        const queryField = getQueryField();
 
         if (!materialType)
             return;
@@ -105,7 +113,7 @@ function bindBibliographicLookup(texts) {
             .addClass('lookup-status-neutral')
             .text(texts.lookingUpBibliographicRecord);
 
-        $.get('/api/v1/bibliographic-records/lookup?standardNumber=' + encodeURIComponent(standardNumber))
+        $.get('/api/v1/bibliographic-records/lookup?standardNumber=' + encodeURIComponent(standardNumber) + '&queryField=' + encodeURIComponent(queryField))
             .done(function (data) {
 
                 const $status = $('#bibliographicLookupStatus');
