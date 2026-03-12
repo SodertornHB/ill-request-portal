@@ -20,11 +20,14 @@ namespace Logic.Util
                 return IsValidIsbn10(normalized) || IsValidIsbn13(normalized) || IsValidIssn(normalized);
             }
 
-            public static string Normalize(string input)
+            public static string Normalize(string input, bool removeDashed = false)
             {
-                return input
+                var result = input
                     .Replace(" ", "")
                     .ToUpperInvariant();
+                if (!removeDashed) return result;
+
+                return result.Replace("-", "");
             }
 
             public static bool IsValidIsbn10(string value)

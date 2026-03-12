@@ -32,24 +32,33 @@ namespace IllRequestPortal.Logic.Services
         public async Task<LibrisBiblioLookupResult> FetchBiblio(string standardNumber, string queryField)
         {
             var normalized = StandardNumberUtility.Normalize(standardNumber);
-            string url = string.Empty;
-            if (queryField == null) url = $"{librisApiSettings.BaseUrl}/find?q={normalized}&_limit=1";
-            else url = $"{librisApiSettings.BaseUrl}/find?q={queryField}:{normalized}&_limit=1";
+            LibrisBiblioLookupResult result = await FetchAndConvert(queryField, normalized);
+            if (result == null || result.IsEmpty())
+            {
+                normalized = StandardNumberUtility.Normalize(standardNumber, removeDashed: true);
+                result = await FetchAndConvert(queryField, normalized);
+                if (result == null) return null;
+            }
 
-            var json = await jsonGetHttpService.FetchSingle(url);
-            var result = Convert(json, queryField);
-            if (result == null) return null;
-
-            if (!string.IsNullOrEmpty(result.Id) && string.IsNullOrEmpty(result.Title) && string.IsNullOrEmpty(result.Author))
+            if (!string.IsNullOrEmpty(result.Id) && result.IsEmpty())
             {
                 var fixedUrl = FixUrl(result.Id);
 
-                json = await jsonGetHttpService.FetchSingle(fixedUrl);
+                var json = await jsonGetHttpService.FetchSingle(fixedUrl);
 
                 result = Convert(json, queryField);
             }
 
             return result;
+        }
+        private async Task<LibrisBiblioLookupResult> FetchAndConvert(string queryField, string normalized)
+        {
+            string url = string.Empty;
+            if (queryField == null) url = $"{librisApiSettings.BaseUrl}/find?q={normalized}&_limit=1";
+            else url = $"{librisApiSettings.BaseUrl}/find?q={queryField}:{normalized}&_limit=1";
+
+            var json = await jsonGetHttpService.FetchSingle(url);
+            return Convert(json, queryField);
         }
 
         private LibrisBiblioLookupResult Convert(string json, string type)
