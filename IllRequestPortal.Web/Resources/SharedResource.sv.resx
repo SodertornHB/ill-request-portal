@@ -336,7 +336,7 @@
 </data>
 
   <data name="LibrarySystemErrorMessage" xml:space="preserve">
-  <value>Ett fel uppstod vid kontakt med bibliotekssystemet.</value>
+  <value>Ett fel uppstod när informationen skulle hämtas. Vänligen fyll i uppgifterna manuellt.</value>
 </data>
 
   <data name="BookTitle" xml:space="preserve">

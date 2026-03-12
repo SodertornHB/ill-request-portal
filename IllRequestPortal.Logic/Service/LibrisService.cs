@@ -40,7 +40,7 @@ namespace IllRequestPortal.Logic.Services
             var result = Convert(json, queryField);
             if (result == null) return null;
 
-            if (string.IsNullOrEmpty(result.Title) && string.IsNullOrEmpty(result.Author))
+            if (!string.IsNullOrEmpty(result.Id) && string.IsNullOrEmpty(result.Title) && string.IsNullOrEmpty(result.Author))
             {
                 var fixedUrl = FixUrl(result.Id);
 

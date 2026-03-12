@@ -21,5 +21,13 @@
         public string MaterialType { get; set; } = "";
 
         public bool ExistsInLocalCatalog { get; set; }
+
+        public bool IsEmpty() =>
+            string.IsNullOrEmpty(Title) &&
+            string.IsNullOrEmpty(Author) &&
+            string.IsNullOrEmpty(ContainerTitle) &&
+            string.IsNullOrEmpty(PublicationYear) &&
+            string.IsNullOrEmpty(Edition) &&
+            string.IsNullOrEmpty(Volume);
     }
 }

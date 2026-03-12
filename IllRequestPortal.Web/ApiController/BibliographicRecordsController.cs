@@ -62,7 +62,7 @@ namespace IllRequestPortal.Web.ApiController
 
             LibrisBiblioLookupResult librisMatch = await librisService.FetchBiblio(standardNumber, queryField);
 
-            if (librisMatch != null)
+            if (librisMatch != null && !librisMatch.IsEmpty())
             {
                 return Ok(new LookupBibliographicRecordResponse
                 {

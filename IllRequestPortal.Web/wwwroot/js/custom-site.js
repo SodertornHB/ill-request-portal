@@ -12,6 +12,10 @@
     else if (materialType === 'Chapter') {
         $('.field-chapter').show();
     }
+
+    $('#bibliographicLookupStatus')
+        .addClass('hidden lookup-status-neutral lookup-error')
+        .removeClass('lookup-status-success');
 }
 function setBibliographicFieldsDisabled(disabled) {
     $('#Isbn').prop('disabled', disabled);
