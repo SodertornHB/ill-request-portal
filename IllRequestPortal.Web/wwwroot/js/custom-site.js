@@ -1,7 +1,7 @@
 ﻿function updatematerialTypeSelectFields() {
     const materialType = $('#materialTypeSelect').val();
 
-    $('.field-book, .field-article, .field-chapter .bibliographicLookupStatus').hide();
+    $('.field-book, .field-article, .field-chapter, .bibliographicLookupStatus').hide();
 
     if (materialType === 'Book') {
         $('.field-book').show();
