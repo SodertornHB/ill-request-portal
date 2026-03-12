@@ -38,12 +38,12 @@ namespace IllRequestPortal.Web.ApiController
         }
 
         [HttpGet("lookup")]
-        public async Task<IActionResult> Lookup([FromQuery] string standardNumber)
+        public async Task<IActionResult> Lookup([FromQuery] string standardNumber, [FromQuery] string queryField)
         {
             if (string.IsNullOrWhiteSpace(standardNumber))
                 return BadRequest();
 
-            KohaBiblio record = await FetchFromKoha(standardNumber);
+            KohaGetBiblioHttpModel record = await FetchFromKoha(standardNumber, queryField);
 
             if (record!=null)
             {
@@ -55,11 +55,12 @@ namespace IllRequestPortal.Web.ApiController
                     Title = record.GetTitleAndSubtitle(),
                     Author = record.Author,
                     PublicationYear = record.PublicationYear,
-                    Edition = string.Empty
+                    Edition = string.Empty,
+                    Volume = record.GetVolume()
                 });
             }
 
-            LibrisBiblioLookupResult librisMatch = await librisService.FetchBiblio(standardNumber);
+            LibrisBiblioLookupResult librisMatch = await librisService.FetchBiblio(standardNumber, queryField);
 
             if (librisMatch != null)
             {
@@ -70,7 +71,8 @@ namespace IllRequestPortal.Web.ApiController
                     Title = librisMatch.Title,
                     Author = librisMatch.Author,
                     PublicationYear = librisMatch.PublicationYear,
-                    Edition = librisMatch.Edition
+                    Edition = librisMatch.Edition,
+                    Volume = librisMatch.Volume
                 });
             }
 
@@ -81,10 +83,10 @@ namespace IllRequestPortal.Web.ApiController
             });
         }
 
-        private async Task<KohaBiblio> FetchFromKoha(string standardNumber)
+        private async Task<KohaGetBiblioHttpModel> FetchFromKoha(string standardNumber, string queryField)
         {
             var normalized = StandardNumberUtility.Normalize(standardNumber);
-            var queryField = StandardNumberUtility.GetStandardNumberType(normalized) == "ISSN" ? "issn" : "isbn";
+            
             var q = Uri.EscapeDataString($"{{\"{queryField}\":\"{normalized}\"}}");
             string url = $"{kohaApiSettings.BaseUrl}/biblios?q={q}";
 

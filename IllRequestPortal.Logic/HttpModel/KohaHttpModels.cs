@@ -15,7 +15,7 @@ namespace Logic.Model
         public string surname { get; set; } = "";
         public string email { get; set; } = "";
     }
-    public class KohaBiblio
+    public class KohaGetBiblioHttpModel
     {
         [JsonProperty("biblio_id")]
         public int BiblioId { get; set; }
@@ -41,6 +41,19 @@ namespace Logic.Model
         [JsonProperty("abstract")]
         public string Abstract { get; set; } = "";
 
-        public string GetTitleAndSubtitle() => string.IsNullOrWhiteSpace(Subtitle) ? Title?.Trim() : $"{Title?.TrimEnd(' ', ':')} : {Subtitle.Trim().TrimEnd('/')}";
+        [JsonProperty("volume")]
+        public string Volume { get; set; } = "";
+
+        [JsonProperty("volume_description")]
+        public string VolumeDescription { get; set; } = "";
+
+        public string GetTitleAndSubtitle() => string.IsNullOrWhiteSpace(Subtitle) ? Title?.Trim() : $"{Title?.TrimEnd(' ', ':')} : {Subtitle.Trim().TrimEnd('/').TrimEnd('\\')}";
+        
+        public string GetVolume()
+        {
+            if(!string.IsNullOrEmpty(Volume)) return Volume;
+            if (!string.IsNullOrEmpty(VolumeDescription)) return VolumeDescription;
+            return string.Empty;
+        }
     }
 }

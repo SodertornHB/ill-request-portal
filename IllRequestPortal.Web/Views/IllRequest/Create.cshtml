@@ -54,7 +54,6 @@
                         <input asp-for="Isbn" class="form-control lookup-input" />
                         <span id="bibliographicLookupSpinner" class="loading-spinner hidden"></span>
                     </div>
-                    <div id="bibliographicLookupStatus" class="lookup-status-panel lookup-status-neutral hidden"></div>
                     <span asp-validation-for="Isbn" class="text-danger"></span>
                 </div>
 
@@ -63,6 +62,8 @@
                     <input asp-for="Issn" class="form-control" />
                     <span asp-validation-for="Issn" class="text-danger"></span>
                 </div>
+
+                    <div id="bibliographicLookupStatus" class="lookup-status-panel lookup-status-neutral hidden"></div>
             </div>
 
             <div class="ill-section">

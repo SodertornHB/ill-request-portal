@@ -11,8 +11,7 @@ namespace IllRequestPortal.Logic.Services
 {
     public partial interface ILibrisService
     {
-        Task<LibrisBiblioLookupResult> FetchBiblio(string standardNumber);
-
+        Task<LibrisBiblioLookupResult> FetchBiblio(string standardNumber, string queryField);
     }
 
     public partial class LibrisService : ILibrisService
@@ -30,16 +29,15 @@ namespace IllRequestPortal.Logic.Services
             this.librisApiSettings = apiSettingsOption.Value;
         }
 
-        public async Task<LibrisBiblioLookupResult> FetchBiblio(string standardNumber)
+        public async Task<LibrisBiblioLookupResult> FetchBiblio(string standardNumber, string queryField)
         {
             var normalized = StandardNumberUtility.Normalize(standardNumber);
-            string type = StandardNumberUtility.GetStandardNumberType(standardNumber);
             string url = string.Empty;
-            if (type == null) url = $"{librisApiSettings.BaseUrl}/find?q={normalized}&_limit=1";
-            else url = $"{librisApiSettings.BaseUrl}/find?q={type}:{normalized}&_limit=1";
+            if (queryField == null) url = $"{librisApiSettings.BaseUrl}/find?q={normalized}&_limit=1";
+            else url = $"{librisApiSettings.BaseUrl}/find?q={queryField}:{normalized}&_limit=1";
 
             var json = await jsonGetHttpService.FetchSingle(url);
-            var result = Convert(json, type);
+            var result = Convert(json, queryField);
             if (result == null) return null;
 
             if (string.IsNullOrEmpty(result.Title) && string.IsNullOrEmpty(result.Author))
@@ -48,7 +46,7 @@ namespace IllRequestPortal.Logic.Services
 
                 json = await jsonGetHttpService.FetchSingle(fixedUrl);
 
-                result = Convert(json, type);
+                result = Convert(json, queryField);
             }
 
             return result;

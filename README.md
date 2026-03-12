@@ -1,4 +1,4 @@
- # IllRequestPortal
+# IllRequestPortal
 
 IllRequestPortal is a lightweight intake interface for interlibrary loan (ILL) requests.
 
@@ -11,9 +11,10 @@ Instead it handles:
 - capturing the request
 - validating bibliographic information
 - checking whether the item already exists in the local catalog
+- retrieving bibliographic metadata from external systems
 - storing requests in a database
 
-The application is intentionally simple and designed to integrate with systems such as Koha, Libris, and discovery systems like Primo.
+The application is intentionally simple and designed to integrate with systems such as Koha, Libris, and discovery systems such as Primo.
 
 ---
 
@@ -21,23 +22,77 @@ The application is intentionally simple and designed to integrate with systems s
 
 ## Bibliographic lookup
 
-When a user enters an ISBN or ISSN, the system performs a bibliographic lookup.
+When a user enters an ISBN or ISSN, the system performs a bibliographic lookup and attempts to populate the request form automatically.
 
-The lookup process works as follows:
+The lookup pipeline works as follows:
 
-1. The system first checks the local Koha catalog.
-2. If the title exists locally, the user is informed and shown a link to borrow the item in the discovery system.
-3. If the title does not exist locally, the system queries Libris and retrieves bibliographic metadata.
+1. The system first queries the local Koha catalog.
+1. If a matching bibliographic record is found locally, the user is informed that the item already exists in the local collection.
+1. A link to the discovery system is displayed so the user can access or borrow the item directly.
+1. If the item does not exist locally, the system queries Libris and retrieves bibliographic metadata.
 
-The request form can then automatically populate fields such as:
+The metadata returned from the lookup is used to populate fields in the request form.
+
+Typical fields that can be auto-populated include:
 
 - Title
 - Author
 - Publication year
 - Edition
+- Volume / Issue (for journal articles)
 - Material type
 
-This reduces manual input and improves data quality.
+This significantly reduces manual input and improves data quality.
+
+The client-side lookup logic is implemented in JavaScript and triggers when ISBN or ISSN fields change.
+
+---
+
+## Material types and metadata model
+
+The request form supports three different types of requested material:
+
+- Book
+- Article
+- Chapter
+
+Instead of maintaining separate fields for each material type, the system uses a normalized metadata model with shared fields.
+
+Key fields include:
+
+- MainTitle – title of the requested work
+- MainAuthor – primary author
+- ContainerTitle – title of the container publication
+
+Example mappings:
+
+Book
+
+- MainTitle → book title
+- MainAuthor → book author
+- ContainerTitle → empty
+
+Article
+
+- MainTitle → article title
+- MainAuthor → article author
+- ContainerTitle → journal title
+
+Chapter
+
+- MainTitle → chapter title
+- MainAuthor → chapter author
+- ContainerTitle → book title
+
+This model minimizes unused fields while still supporting multiple resource types.
+
+The Razor view dynamically shows or hides fields depending on the selected material type.
+
+CSS classes controlling visibility include:
+
+- .field-book
+- .field-article
+- .field-chapter
 
 ---
 
@@ -45,9 +100,13 @@ This reduces manual input and improves data quality.
 
 The system checks whether a requested title already exists in the local Koha catalog.
 
-If the item exists locally, the user receives a link to the discovery system instead of submitting an ILL request.
+If the item exists locally:
 
-This helps avoid unnecessary interlibrary loan requests for materials already available locally.
+- the user is notified immediately
+- a link to the discovery system is provided
+- the user can access the item directly instead of submitting an ILL request
+
+This prevents unnecessary interlibrary loan requests for materials that are already available locally.
 
 ---
 
@@ -57,10 +116,11 @@ Users are identified using their library card number.
 
 When the card number is entered:
 
-- the system queries Koha
-- the patron's name and email are automatically populated
+- the system queries Koha via the Koha REST API
+- the patron's name and email address are retrieved
+- the form fields are automatically populated
 
-This ensures accurate contact information and reduces manual entry.
+This ensures correct user information and reduces manual input errors.
 
 ---
 
@@ -68,9 +128,9 @@ This ensures accurate contact information and reduces manual entry.
 
 The application requires a SQL Server database.
 
-A migration script is included in the repository that creates the required tables and indexes.
+A migration script included in the repository creates the required tables and indexes.
 
-The script is idempotent, meaning it can be executed multiple times safely.
+The script is idempotent and can be executed multiple times safely.
 
 ---
 
@@ -80,30 +140,31 @@ The script is idempotent, meaning it can be executed multiple times safely.
 
 Stores incoming interlibrary loan requests.
 
-Each row represents a request submitted by a user.
+Each row represents a request submitted through the portal.
 
 Key fields include:
 
-- Title
-- Author
+- MainTitle
+- MainAuthor
+- ContainerTitle
 - PublicationYear
-- Edition
-- Isbn / Issn / IsbnIssn
+- Isbn
+- Issn
+- Volume
+- Issue
+- Pages
 - MaterialType
 - RequestType
 - RequesterName
 - RequesterEmail
 - CardNumber
 - Status
-- ExternalRequestId
-- ExportedOn
-- ExportError
 - CreatedOn
 - UpdatedOn
 
 Patron information is stored directly in the request record.
 
-The authoritative user data resides in Koha, so the request stores a snapshot of the relevant user information.
+The authoritative user data resides in Koha, so the request stores a snapshot of the relevant user information at the time the request is created.
 
 ---
 
@@ -132,7 +193,6 @@ Columns include:
 
 - ClientVersion
 - DatabaseVersion
-- AppliedOn
 
 This allows the application to verify that the database schema matches the running version of the application.
 
@@ -150,127 +210,111 @@ The script will create the required tables and indexes if they do not already ex
 
 # Configuration
 
-The application is configured through the file `appsettings.json`.
+The application is configured using appsettings.json.
 
-For security reasons, the repository contains a configuration template named `appsettings.template.json`.
-During installation, copy this file and rename it to `appsettings.json`, then update the values according to your environment.
+For security reasons, the repository contains a template file named appsettings.template.json.
+
+During installation:
+
+1. Copy the template
+2. Rename it to appsettings.json
+3. Update the values for your environment
 
 Example:
 
-```bash
-cp appsettings.template.json appsettings.json
 ```
-
-The following settings must be reviewed and updated.
+bash cp appsettings.template.json appsettings.json 
+```
+---
 
 ## Database connection
 
-`ConnectionStrings.Default` defines the SQL Server connection used by the application.
+ConnectionStrings.Default defines the SQL Server connection used by the application.
 
 Example:
 
-```json
-"ConnectionStrings": {
- "Default": "Server=localhost\\sqlexpress;Database=IllRequests;Trusted_Connection=True;TrustServerCertificate=True;"
-}
 ```
-
-Adjust the server name, authentication method, and database name according to your installation.
+json "ConnectionStrings": { "Default": "Server=localhost\\sqlexpress;Database=IllRequests;Trusted_Connection=True;TrustServerCertificate=True;" } 
+```
+---
 
 ## API authentication
 
-`Authentication.BearerToken` protects internal API endpoints used by the application.
+Authentication.BearerToken protects internal API endpoints used by the application.
 
 Set this to a strong random string.
 
-Example:
-
-```json
-"Authentication": {
- "BearerToken": "long-random-secret-token"
-}
-```
+---
 
 ## Application settings
 
-`Application.Name` is a descriptive name for the installation.
+Application.Name defines the name of the installation.
 
-`Application.KeepLogsInDays` controls how long log entries are kept in the database.
+Application.KeepLogsInDays controls how long logs are retained.
 
-`Application.KeysFolder` defines where ASP.NET Data Protection keys are stored.
-This directory must exist and be writable by the application.
+Application.KeysFolder defines where ASP.NET Data Protection keys are stored.
 
 Example:
 
-```json
-"Application": {
- "Name": "Library IllRequest Portal",
- "KeepLogsInDays": 30,
- "KeysFolder": "C:\\IllRequestPortal\\keys"
-}
 ```
+json "Application": { "Name": "Library IllRequest Portal", "KeepLogsInDays": 30, "KeysFolder": "C:\\IllRequestPortal\\keys" } 
+```
+---
 
 ## Koha API configuration
 
 The application communicates with Koha using the Koha REST API.
 
-`KohaApiSettings.BaseUrl` should point to the Koha API endpoint.
+Example configuration:
 
-`KohaApiSettings.AuthenticationHeaderValue` contains the credentials used for API access.
-
-Example:
-
-```json
-"KohaApiSettings": {
- "BaseUrl": "https://koha.example.org/api/v1/app.pl/api/v1",
- "AuthenticationHeaderValue": "username:password"
-}
 ```
+json "KohaApiSettings": { "BaseUrl": "https://koha.example.org/api/v1", "AuthenticationHeaderValue": "username:password" } 
+```
+The integration account must have permission to read:
 
-The account used for this integration should have permission to read patron information and bibliographic records.
+- patron information
+- bibliographic records
+
+---
 
 ## Libris API configuration
 
-`LibrisApiSettings.BaseUrl` defines the base URL used when querying Libris for bibliographic data.
+LibrisApiSettings.BaseUrl defines the base URL used when querying Libris for bibliographic data.
 
 Example:
 
-```json
-"LibrisApiSettings": {
- "BaseUrl": "https://libris.kb.se"
-}
 ```
+json "LibrisApiSettings": { "BaseUrl": "https://libris.kb.se" } 
+```
+The application queries Libris using the /find endpoint and parses the returned JSON-LD data.
+
+ISBN and ISSN lookups are handled by separate parsers because Libris responses differ depending on identifier type.
+
+---
 
 ## Discovery system integration
 
-`DiscoverySettings.RecordUrlTemplate` defines how the application links to records in the library's discovery system.
+DiscoverySettings.RecordUrlTemplate defines how links to local records are generated when a title already exists in Koha.
 
-The placeholder `{biblioId}` will automatically be replaced with the bibliographic identifier returned from Koha.
+The placeholder {biblioId} is replaced with the bibliographic identifier returned by Koha.
 
 Example (Primo):
 
-```json
-"DiscoverySettings": {
- "RecordUrlTemplate": "https://library.example.org/primo-explore/fulldisplay?docid=LOCAL_KOHA{biblioId}&vid=MAIN"
-}
 ```
-
+json "DiscoverySettings": { "RecordUrlTemplate": "https://library.example.org/primo-explore/fulldisplay?docid=LOCAL_KOHA{biblioId}&vid=MAIN" } 
+```
 Example (Koha OPAC):
 
-```json
-"DiscoverySettings": {
- "RecordUrlTemplate": "https://library.example.org/cgi-bin/koha/opac-detail.pl?biblionumber={biblioId}"
-}
 ```
+json "DiscoverySettings": { "RecordUrlTemplate": "https://library.example.org/cgi-bin/koha/opac-detail.pl?biblionumber={biblioId}" } 
+```
+---
 
-If this setting is left empty, the application will simply show a message that the item exists in Koha without displaying a link to the discovery interface.
+If you do not wish to use the discorvery link functionality, you can leave the value of the `RecordUrlTemplate` setting blank. 
 
-## Security note
-
-The `appsettings.json` file may contain credentials and should **not** be committed to source control.
-Only `appsettings.template.json` should be included in the repository.
-
-
+```
+json "DiscoverySettings": { "RecordUrlTemplate": "" } 
+```
 ---
 
 # Localization
@@ -283,7 +327,7 @@ Text used in:
 - JavaScript messages
 - form labels
 
-is stored in resource files and accessed through SharedLocalizer.
+is stored in resource files and accessed via SharedLocalizer.
 
 This allows the interface to support multiple languages.
 
@@ -291,19 +335,17 @@ This allows the interface to support multiple languages.
 
 # Logging
 
-Application logging is handled through NLog.
+Application logging is handled via NLog.
 
 Logs are written to the Log table and include:
 
 - log level
 - message
-- call site (origin)
+- call site
 - exception message
 - stack trace
 
-Logging configuration is defined in:
-
- NLog.config 
+Logging configuration is defined in NLog.config.
 
 ---
 
@@ -311,45 +353,46 @@ Logging configuration is defined in:
 
 The application includes a minimal administrative interface.
 
-This interface allows administrators to:
+Administrators can:
 
 - view submitted requests
+- edit and delete submitted requests
 - monitor request flow
-- inspect export errors
 
 Administrative routes are available under:
 
- /admin 
+/admin
 
 ---
 
 # System architecture
 
- User  ↓  Request form  ↓  Bibliographic lookup  (Koha → Libris)  ↓  Database (IllRequest)  ↓  Export to external ILL processing system 
+```
+User
+↓
+Request form
+↓
+Bibliographic lookup in Koha
+↓
+Bibliographic lookup in Libris
+↓
+Patron lookup in Koha
+↓
+Database (IllRequest)
+↓
+External ILL processing system (manual step)
+```
 
 The database acts primarily as a queue for outgoing requests.
 
 ---
 
-# Design principles
+# Future development
 
-The system follows a deliberately simple architecture:
+Potential future enhancements include:
 
-- minimal data model
-- no dependency on the Koha database schema
-- no direct coupling to the external ILL processing system
-- requests are self-contained
-
-This makes the application easy to deploy and integrate with existing library systems.
-
----
-
-# Future development?
-
-Possible future enhancements include:
-
-- automated export to the external ILL processing system
+- integration with discovery systems such as Primo for improved bibliographic lookup
+- automated export to external ILL processing systems
 - request status updates
 - improved administrative dashboards
-- request monitoring and reporting
-- additional catalog integrations
+- reporting and monitoring tools

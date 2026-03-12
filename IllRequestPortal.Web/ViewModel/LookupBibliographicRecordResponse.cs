@@ -9,5 +9,6 @@
         public string Author { get; set; } = "";
         public string PublicationYear { get; set; } = "";
         public string Edition { get; set; } = "";
+        public string Volume { get; set; } = "";
     }
 }

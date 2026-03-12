@@ -3,15 +3,15 @@ using Microsoft.Extensions.Logging;
 
 namespace IllRequestPortal.Logic.Http
 {
-    public interface IKohaBiblioGetHttpService : IGetHttpService<KohaBiblio>
+    public interface IKohaBiblioGetHttpService : IGetHttpService<KohaGetBiblioHttpModel>
     {
     }
 
-    public class BiblioPatronGetHttpService : GetHttpService<KohaBiblio>, IKohaBiblioGetHttpService
+    public class BiblioPatronGetHttpService : GetHttpService<KohaGetBiblioHttpModel>, IKohaBiblioGetHttpService
     {
         public BiblioPatronGetHttpService(
             IHttpClient client,
-            ILogger<HttpService<GetHttpService<KohaBiblio>>> logger)
+            ILogger<HttpService<GetHttpService<KohaGetBiblioHttpModel>>> logger)
             : base(client, logger)
         {
         }
