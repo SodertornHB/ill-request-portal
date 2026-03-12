@@ -38,7 +38,9 @@ namespace Logic.Util
 
             public static string Normalize(string input)
             {
-                return input.Replace("-", "").Replace(" ", "").ToUpperInvariant();
+                return input
+                    .Replace(" ", "")
+                    .ToUpperInvariant();
             }
 
             public static bool IsValidIsbn10(string value)
