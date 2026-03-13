@@ -95,7 +95,7 @@
                     @item.RequesterName
                 </td>
                 <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.RequesterEmail">
-                    @item.RequesterEmail
+                    @Html.Raw(item.EmailWithLink())
                 </td>
                 <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.CardNumber">
                     @item.CardNumber
