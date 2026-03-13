@@ -101,7 +101,28 @@
                     @item.CardNumber
                 </td>
                 <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.Status">
-                    @SharedLocalizer.GetLocalizedHtmlString(item.Status)
+
+                    <select class="status-select form-control form-control-sm"
+                            data-request-id="@item.Id">
+
+                        <option value="Registered" selected="@(item.Status == "Registered")">
+                            @SharedLocalizer.GetLocalizedHtmlString("Registered")
+                        </option>
+
+                        <option value="OrderedInLibris" selected="@(item.Status == "OrderedInLibris")">
+                            @SharedLocalizer.GetLocalizedHtmlString("OrderedInLibris")
+                        </option>
+
+                        <option value="Purchased" selected="@(item.Status == "Purchased")">
+                            @SharedLocalizer.GetLocalizedHtmlString("Purchased")
+                        </option>
+
+                        <option value="Rejected" selected="@(item.Status == "Rejected")">
+                            @SharedLocalizer.GetLocalizedHtmlString("Rejected")
+                        </option>
+
+                    </select>
+
                 </td>
 
                 <td class="ill-actions">

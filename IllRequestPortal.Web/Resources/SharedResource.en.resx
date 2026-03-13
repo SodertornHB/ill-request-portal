@@ -318,6 +318,21 @@
   <data name="RegisteredInLibris" xml:space="preserve">
     <value>Registered in Libris</value>
   </data>
+  <data name="Registered" xml:space="preserve">
+  <value>Registered</value>
+</data>
+
+  <data name="OrderedInLibris" xml:space="preserve">
+  <value>Ordered in Libris</value>
+</data>
+
+  <data name="Purchased" xml:space="preserve">
+  <value>Purchased</value>
+</data>
+
+  <data name="Rejected" xml:space="preserve">
+  <value>Rejected</value>
+</data>
   <data name="Exported" xml:space="preserve">
     <value>Done</value>
   </data>

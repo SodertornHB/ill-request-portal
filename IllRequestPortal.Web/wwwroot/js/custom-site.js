@@ -256,7 +256,27 @@ $(document).ready(function () {
             });
 
     });
+    $(document).on('change', '.status-select', function () {
+
+        const requestId = $(this).data('request-id');
+        const newStatus = $(this).val();
+
+        $.ajax({
+            url: '/api/v1/illrequests/' + requestId + '/status',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ status: newStatus }),
+            success: function () {
+                console.log('Status updated');
+            },
+            error: function () {
+                alert('Failed to update status');
+            }
+        });
+
+    });
 
     bindBibliographicLookup(texts)    
+
 });
 

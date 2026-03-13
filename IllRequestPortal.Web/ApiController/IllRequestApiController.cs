@@ -22,13 +22,14 @@ namespace IllRequestPortal.Web.ApiController
     public partial class IllRequestController: ControllerBase
     {
         protected readonly ILogger<IllRequestController> logger;
-        protected readonly IIllRequestService service;
+        protected readonly IIllRequestServiceExtended service;
 
-        public IllRequestController(ILogger<IllRequestController> logger, IIllRequestService service)
+        public IllRequestController(ILogger<IllRequestController> logger, IIllRequestServiceExtended service)
         {
             this.logger = logger;
             this.service = service;
         }
+      
 
         [HttpGet]
         public virtual async Task<IActionResult> Get()

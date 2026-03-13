@@ -10,6 +10,7 @@ namespace IllRequestPortal.Logic.Services
     public interface IIllRequestServiceExtended : IIllRequestService
     {
         Task<IllRequest> MarkAsRegisteredInLibris(int id);
+        Task<IllRequest> UpdateStatus(int id, string status);
     }
 
     public partial class IllRequestServiceExtended : IllRequestService, IIllRequestServiceExtended
@@ -38,6 +39,19 @@ namespace IllRequestPortal.Logic.Services
             await Update(request);
 
             return request;
+        }
+
+        public async Task<IllRequest> UpdateStatus(int id, string status)
+        {
+            var item = await Get(id);
+
+            item.Status = status;
+
+            item.UpdatedOn = DateTime.UtcNow;
+
+            await Update(item);
+            
+            return item;
         }
     }
 }

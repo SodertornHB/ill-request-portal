@@ -291,6 +291,21 @@
   <data name="RegisteredInLibris" xml:space="preserve">
     <value>Registrerad i Libris</value>
   </data>
+  <data name="Registered" xml:space="preserve">
+  <value>Registrerad</value>
+</data>
+
+  <data name="OrderedInLibris" xml:space="preserve">
+  <value>Beställd i Libris</value>
+</data>
+
+  <data name="Purchased" xml:space="preserve">
+  <value>Köps in</value>
+</data>
+
+  <data name="Rejected" xml:space="preserve">
+  <value>Avslagen</value>
+</data>
   <data name="Exported" xml:space="preserve">
     <value>Klar</value>
   </data>
