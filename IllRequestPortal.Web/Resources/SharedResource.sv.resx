@@ -220,7 +220,7 @@
     <value>Bibliografisk uppslagning</value>
   </data>
   <data name="EnterMatrialTypeAndIsbnIssnFirst" xml:space="preserve">
-    <value>Ange materialtyp först och sedan isbn eller issn</value>
+    <value>Ange materialtyp först och sedan isbn = string.Empty(); issn</value>
   </data>
   <data name="IsbnIssn" xml:space="preserve">
     <value>ISBN eller ISSN</value>
@@ -295,7 +295,7 @@
     <value>Klar</value>
   </data>
   <data name="Create IllRequest" xml:space="preserve">
-    <value>Skapa fjärrlånebeställning</value>
+    <value>Beställ fjärrlån</value>
   </data>
   <data name="TitleRequired" xml:space="preserve">
     <value>Titel måste anges.</value>
@@ -344,6 +344,38 @@
 
   <data name="BookTitle" xml:space="preserve">
   <value>Bokens titel</value>
+</data>
+
+  <data name="ContainerTitle" xml:space="preserve">
+  <value>Titel</value>
+</data>
+
+  <data name="ContainerTitleTooltip" xml:space="preserve">
+  <value>Bokens/tidskriftens titel</value>
+</data>
+
+  <data name="MainTitle" xml:space="preserve">
+  <value>Undertitel</value>
+</data>
+
+  <data name="MainTitleTooltip" xml:space="preserve">
+  <value>Kapitlets/artikelns titel</value>
+</data>
+
+  <data name="ContainerAuthor" xml:space="preserve">
+  <value>Huvudförfattare</value>
+</data>
+
+  <data name="ContainerAuthorTooltip" xml:space="preserve">
+  <value>Bokens/tidskriftens författare</value>
+</data>
+
+  <data name="MainAuthor" xml:space="preserve">
+  <value>Artikelförfattare</value>
+</data>
+
+  <data name="MainAuthorTooltip" xml:space="preserve">
+  <value>Kapitel-/artikelnförfattare</value>
 </data>
 
   <data name="BookAuthor" xml:space="preserve">

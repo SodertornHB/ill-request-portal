@@ -368,6 +368,22 @@
   <value>An error occurred while contacting the library system.</value>
 </data>
 
+  <data name="ContainerTitle" xml:space="preserve">
+  <value>Title</value>
+</data>
+
+  <data name="ContainerTitleTooltip" xml:space="preserve">
+  <value>Book/journal title</value>
+</data>
+
+  <data name="MainTitle" xml:space="preserve">
+  <value>Subtitle</value>
+</data>
+
+  <data name="MainTitleTooltip" xml:space="preserve">
+  <value>Chapter/artical title</value>
+</data>
+
   <data name="BookTitle" xml:space="preserve">
   <value>Book title</value>
 </data>

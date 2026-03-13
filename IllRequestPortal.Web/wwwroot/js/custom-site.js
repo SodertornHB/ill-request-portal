@@ -41,11 +41,19 @@ function setBibliographicFieldsDisabled(disabled) {
 function populateBibliographicFields(data) {
     const materialType = $('#materialTypeSelect').val();
 
-    if (materialType === 'Book' || materialType === 'Chapter') {
+    if (materialType === 'Book' ) {
 
         $('#BookTitle').val(data.title || '');
         $('#BookAuthor').val(data.author || '');
         $('#BookPublicationYear').val(data.publicationYear || '');
+
+    }
+
+    if ( materialType === 'Chapter') {
+
+        $('#ChapterBookTitle').val(data.title || '');
+        $('#ChapterBookAuthor').val(data.author || '');
+        $('#ChapterBookPublicationYear').val(data.publicationYear || '');
 
     }
 
