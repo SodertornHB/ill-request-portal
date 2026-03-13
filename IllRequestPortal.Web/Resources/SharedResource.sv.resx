@@ -171,6 +171,9 @@
   <data name="PublicationYear" xml:space="preserve">
     <value>Utgivningsår</value>
   </data>
+  <data name="BookPublicationYear" xml:space="preserve">
+    <value>Utgivningsår</value>
+  </data>
   <data name="Edition" xml:space="preserve">
     <value>Upplaga</value>
   </data>

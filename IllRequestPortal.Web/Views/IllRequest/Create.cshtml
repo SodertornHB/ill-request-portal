@@ -94,6 +94,12 @@
                 </div>
 
                 <div class="form-group field-chapter">
+                    <label asp-for="ChapterBookAuthor" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("BookAuthor")</label>
+                    <input asp-for="ChapterBookAuthor" class="form-control" />
+                    <span asp-validation-for="ChapterBookAuthor" class="text-danger"></span>
+                </div>
+
+                <div class="form-group field-chapter">
                     <label asp-for="ChapterAuthor" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("ChapterAuthor")</label>
                     <input asp-for="ChapterAuthor" class="form-control" />
                     <span asp-validation-for="ChapterAuthor" class="text-danger"></span>
@@ -103,6 +109,12 @@
                     <label asp-for="ChapterTitle" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("ChapterTitle")</label>
                     <input asp-for="ChapterTitle" class="form-control" />
                     <span asp-validation-for="ChapterTitle" class="text-danger"></span>
+                </div>
+
+                <div class="form-group field-chapter">
+                    <label asp-for="ChapterBookPublicationYear" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("PublicationYear")</label>
+                    <input asp-for="ChapterBookPublicationYear" class="form-control" />
+                    <span asp-validation-for="ChapterBookPublicationYear" class="text-danger"></span>
                 </div>
 
                 <div class="form-group field-chapter">

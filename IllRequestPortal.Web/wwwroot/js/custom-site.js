@@ -52,19 +52,19 @@ function populateBibliographicFields(data) {
     if (materialType === 'Chapter') {
 
         $('#ChapterTitle').val('');
-        $('#ChapterBookTitle').val(data.title || '');
-        $('#ChapterAuthor').val(data.author || '');
+        $('#BookTitle').val(data.title || '');
+        $('#ChapterBookAuthor').val(data.author || '');
         $('#Pages').val(data.pages || '');
-
+        $('#BookPublicationYear').val(data.publicationYear || '');
     }
 
     if (materialType === 'Article') {
 
         $('#JournalTitle').val(data.journalTitle || data.title || '');
-        $('#ArticleTitle').val(data.title || '');
+        $('#ArticleTitle').val('');
         $('#ArticleAuthor').val(data.author || '');
 
-        $('#Volume').val(data.volume || '');
+        $('#Volume').val('');
         $('#Issue').val(data.issue || '');
         $('#ArticlePublicationYear').val(data.publicationYear || '');
         $('#Pages').val(data.pages || '');

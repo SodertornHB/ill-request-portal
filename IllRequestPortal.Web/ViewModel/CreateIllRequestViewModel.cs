@@ -24,6 +24,8 @@ namespace IllRequestPortal.Web.ViewModel
         public string BookPublicationYear { get; set; } = "";
 
         public string ChapterBookTitle { get; set; } = "";
+        public string ChapterBookAuthor { get; set; } = "";
+        public string ChapterBookPublicationYear { get; set; } = "";
         public string ChapterTitle { get; set; } = "";
         public string ChapterAuthor { get; set; } = "";
 

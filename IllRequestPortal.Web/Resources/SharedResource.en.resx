@@ -171,6 +171,9 @@
   <data name="PublicationYear" xml:space="preserve">
     <value>Publication Year</value>
   </data>
+  <data name="BookPublicationYear" xml:space="preserve">
+    <value>Publication Year</value>
+  </data>
   <data name="Edition" xml:space="preserve">
     <value>Edition</value>
   </data>
@@ -388,8 +391,6 @@
   <data name="JournalAuthor" xml:space="preserve">
   <value>Journal author</value>
 </data>
-
-
 
   <data name="ChapterTitle" xml:space="preserve">
   <value>Chapter title</value>

@@ -139,10 +139,10 @@ namespace Web
                             {
                                 if (src.MaterialType == IllRequestConstants.MaterialTypes.Book)
                                 {
-                                    dest.MainTitle = src.BookTitle ?? "";
-                                    dest.MainAuthor = src.BookAuthor ?? "";
-                                    dest.ContainerTitle = "";
-                                    dest.ContainerAuthorOrEditor = "";
+                                    dest.MainTitle = string.Empty;
+                                    dest.MainAuthor = string.Empty;
+                                    dest.ContainerTitle = src.BookTitle ?? "";
+                                    dest.ContainerAuthorOrEditor = src.BookAuthor ?? "";
                                     dest.PublicationYear = src.BookPublicationYear ?? "";
                                 }
                                 else if (src.MaterialType == IllRequestConstants.MaterialTypes.Chapter)
@@ -150,8 +150,9 @@ namespace Web
                                     dest.MainTitle = src.ChapterTitle ?? "";
                                     dest.MainAuthor = src.ChapterAuthor ?? "";
                                     dest.ContainerTitle = src.ChapterBookTitle ?? "";
-                                    dest.ContainerAuthorOrEditor = src.BookAuthor ?? "";
+                                    dest.ContainerAuthorOrEditor = src.ChapterBookAuthor ?? "";
                                     dest.Pages = src.ChapterPages ?? "";
+                                    dest.PublicationYear = src.ChapterBookPublicationYear ?? "";
                                 }
                                 else if (src.MaterialType == IllRequestConstants.MaterialTypes.Article)
                                 {
@@ -164,10 +165,10 @@ namespace Web
                                 }
                                 else
                                 {
-                                    dest.MainTitle = "";
-                                    dest.MainAuthor = "";
-                                    dest.ContainerTitle = "";
-                                    dest.ContainerAuthorOrEditor = "";
+                                    dest.MainTitle= string.Empty;
+                                    dest.MainAuthor= string.Empty;
+                                    dest.ContainerTitle= string.Empty;
+                                    dest.ContainerAuthorOrEditor= string.Empty;
                                 }
                             });
 
