@@ -127,22 +127,6 @@
 
                 <td class="ill-actions">
 
-                    <form asp-controller="IllRequest"
-                          asp-action="MarkAsRegisteredInLibris"
-                          asp-route-id="@item.Id"
-                          method="post"
-                          style="display:inline">
-
-                        <button type="submit"
-                                class="btn btn-sm btn-outline-success icon-btn tooltip-r"
-                                data-toggle="tooltip"
-                                title="@SharedLocalizer.GetLocalizedHtmlString("RegisteredInLibris")">
-
-                            <i class="bi bi-check-circle"></i>
-                        </button>
-
-                    </form>
-
                     <a asp-controller="IllRequest"
                        asp-action="Edit"
                        asp-route-id="@item.Id"

@@ -9,7 +9,6 @@ namespace IllRequestPortal.Logic.Services
 {
     public interface IIllRequestServiceExtended : IIllRequestService
     {
-        Task<IllRequest> MarkAsRegisteredInLibris(int id);
         Task<IllRequest> UpdateStatus(int id, string status);
     }
 
@@ -22,23 +21,9 @@ namespace IllRequestPortal.Logic.Services
 
         public override async Task<IllRequest> Insert(IllRequest model)
         {
-            model.Status = IllRequestConstants.Statuses.Created;
+            model.Status = "Created";
             model.CreatedOn = System.DateTime.UtcNow;
             return await base.Insert(model);
-        }
-
-        public async Task<IllRequest> MarkAsRegisteredInLibris(int id)
-        {
-            var request = await base.Get(id);
-
-            if (request == null) return null;
-
-            request.Status = IllRequestConstants.Statuses.RegisteredInLibris;
-            request.UpdatedOn = DateTime.UtcNow;
-
-            await Update(request);
-
-            return request;
         }
 
         public async Task<IllRequest> UpdateStatus(int id, string status)

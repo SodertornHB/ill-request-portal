@@ -315,9 +315,6 @@
   <data name="Created" xml:space="preserve">
     <value>Created</value>
   </data>
-  <data name="RegisteredInLibris" xml:space="preserve">
-    <value>Registered in Libris</value>
-  </data>
   <data name="Registered" xml:space="preserve">
   <value>Registered</value>
 </data>

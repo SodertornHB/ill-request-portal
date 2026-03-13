@@ -22,11 +22,5 @@ namespace Logic.Model
             public const string Loan = "Loan";
             public const string Copy = "Copy";
         }
-
-        public static class Statuses
-        {
-            public const string Created = "Created";
-            public const string RegisteredInLibris = "RegisteredInLibris";
-        }
     }
 }

@@ -288,9 +288,6 @@
   <data name="Created" xml:space="preserve">
     <value>Skapad</value>
   </data>
-  <data name="RegisteredInLibris" xml:space="preserve">
-    <value>Registrerad i Libris</value>
-  </data>
   <data name="Registered" xml:space="preserve">
   <value>Registrerad</value>
 </data>
