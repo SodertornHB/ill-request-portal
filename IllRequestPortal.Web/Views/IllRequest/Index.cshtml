@@ -21,17 +21,17 @@
             <th>
                 @SharedLocalizer.GetLocalizedHtmlString("CreatedOn")
             </th>
-            <th class="tooltip-r" title="@SharedLocalizer.GetLocalizedHtmlString("ContainerTitleTooltip")">
-                @SharedLocalizer.GetLocalizedHtmlString("ContainerTitle")
+            <th class="tooltip-r" title="@SharedLocalizer.GetLocalizedHtmlString("TitleTooltip")">
+                @SharedLocalizer.GetLocalizedHtmlString("Title")
             </th>
-            <th class="tooltip-r" title="@SharedLocalizer.GetLocalizedHtmlString("ContainerAuthorTooltip")">
-                @SharedLocalizer.GetLocalizedHtmlString("ContainerAuthor")
+            <th class="tooltip-r" title="@SharedLocalizer.GetLocalizedHtmlString("TitleAuthorTooltip")">
+                @SharedLocalizer.GetLocalizedHtmlString("Author")
             </th>
-            <th class="tooltip-r" title="@SharedLocalizer.GetLocalizedHtmlString("MainTitleTooltip")">
-                @SharedLocalizer.GetLocalizedHtmlString("MainTitle")
+            <th class="tooltip-r" title="@SharedLocalizer.GetLocalizedHtmlString("ArticleTitleTooltip")">
+                @SharedLocalizer.GetLocalizedHtmlString("ArticleTitle")
             </th>
-            <th class="tooltip-r" title="@SharedLocalizer.GetLocalizedHtmlString("MainAuthorTooltip")">
-                @SharedLocalizer.GetLocalizedHtmlString("MainAuthor")
+            <th class="tooltip-r" title="@SharedLocalizer.GetLocalizedHtmlString("ArticleAuthorTooltip")">
+                @SharedLocalizer.GetLocalizedHtmlString("ArticleAuthor")
             </th>
             <th>
                 @SharedLocalizer.GetLocalizedHtmlString("PublicationYear")
@@ -44,9 +44,6 @@
             </th>
             <th>
                 @SharedLocalizer.GetLocalizedHtmlString("MaterialType")
-            </th>
-            <th>
-                @SharedLocalizer.GetLocalizedHtmlString("RequestType")
             </th>
             <th>
                 @SharedLocalizer.GetLocalizedHtmlString("RequesterName")
@@ -70,17 +67,17 @@
                 <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@(item.CreatedOn?.ToString("yyyy-MM-dd HH:mm"))">
                     @(item.CreatedOn?.ToString("yyyy-MM-dd"))
                 </td>
-                <td class="truncate tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.MainTitle">
-                    @item.MainTitle
+                <td class="truncate tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.ArticleTitle">
+                    @item.ArticleTitle
                 </td>
-                <td class="truncate tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.MainAuthor">
-                    @item.MainAuthor
+                <td class="truncate tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.ArticleAuthor">
+                    @item.ArticleAuthor
                 </td>
-                <td class="truncate tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.ContainerTitle">
-                    @item.ContainerTitle
+                <td class="truncate tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.Title">
+                    @item.Title
                 </td>
-                <td class="truncate tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.ContainerAuthorOrEditor">
-                    @item.ContainerAuthorOrEditor
+                <td class="truncate tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.Author">
+                    @item.Author
                 </td>
                 <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.PublicationYear">
                     @item.PublicationYear
@@ -93,9 +90,6 @@
                 </td>
                 <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.MaterialType">
                     @SharedLocalizer.GetLocalizedHtmlString(item.MaterialType)
-                </td>
-                <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.RequestType">
-                    @SharedLocalizer.GetLocalizedHtmlString(item.RequestType)
                 </td>
                 <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.RequesterName">
                     @item.RequesterName

@@ -26,27 +26,27 @@
                 <div class="ill-section-title">@SharedLocalizer.GetLocalizedHtmlString("RequestInformation")</div>
 
                 <div class="form-group">
-                    <label asp-for="MainTitle" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Title")</label>
-                    <input asp-for="MainTitle" class="form-control" />
-                    <span asp-validation-for="MainTitle" class="text-danger"></span>
+                    <label asp-for="ArticleTitle" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Title")</label>
+                    <input asp-for="ArticleTitle" class="form-control" />
+                    <span asp-validation-for="ArticleTitle" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="MainAuthor" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Author")</label>
-                    <input asp-for="MainAuthor" class="form-control" />
-                    <span asp-validation-for="MainAuthor" class="text-danger"></span>
+                    <label asp-for="ArticleAuthor" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Author")</label>
+                    <input asp-for="ArticleAuthor" class="form-control" />
+                    <span asp-validation-for="ArticleAuthor" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="ContainerTitle" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Title")</label>
-                    <input asp-for="ContainerTitle" class="form-control" />
-                    <span asp-validation-for="ContainerTitle" class="text-danger"></span>
+                    <label asp-for="Title" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Title")</label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="ContainerAuthorOrEditor" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Author")</label>
-                    <input asp-for="ContainerAuthorOrEditor" class="form-control" />
-                    <span asp-validation-for="ContainerAuthorOrEditor" class="text-danger"></span>
+                    <label asp-for="Author" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Author")</label>
+                    <input asp-for="Author" class="form-control" />
+                    <span asp-validation-for="Author" class="text-danger"></span>
                 </div>
 
                 <div class="form-row">
@@ -83,16 +83,6 @@
                             <option value="Other">@SharedLocalizer.GetLocalizedHtmlString("Other")</option>
                         </select>
                         <span asp-validation-for="MaterialType" class="text-danger"></span>
-                    </div>
-
-                    <div class="form-group col-md-6">
-                        <label asp-for="RequestType" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("RequestType")</label>
-                        <select asp-for="RequestType" class="form-control">
-                            <option value=""></option>
-                            <option value="Loan">@SharedLocalizer.GetLocalizedHtmlString("Loan")</option>
-                            <option value="Copy">@SharedLocalizer.GetLocalizedHtmlString("Copy")</option>
-                        </select>
-                        <span asp-validation-for="RequestType" class="text-danger"></span>
                     </div>
                 </div>
             </div>

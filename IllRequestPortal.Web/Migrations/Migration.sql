@@ -9,10 +9,10 @@ BEGIN
 (
     Id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
 
-    MainTitle NVARCHAR(500) NULL,
-    MainAuthor NVARCHAR(255) NULL,
-    ContainerTitle NVARCHAR(500) NULL,
-    ContainerAuthorOrEditor NVARCHAR(255) NULL,
+    Title NVARCHAR(500) NULL,
+    Author NVARCHAR(255) NULL,
+    ArticleTitle NVARCHAR(500) NULL,
+    ArticleAuthor NVARCHAR(255) NULL,
 
     PublicationYear NVARCHAR(50) NULL,
     Edition NVARCHAR(100) NULL,
@@ -23,7 +23,6 @@ BEGIN
     Pages NVARCHAR(50) NULL,
 
     MaterialType NVARCHAR(50) NOT NULL,
-    RequestType NVARCHAR(50) NOT NULL,
 
     RequesterName NVARCHAR(255) NOT NULL,
     RequesterEmail NVARCHAR(255) NOT NULL,

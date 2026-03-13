@@ -116,10 +116,9 @@ namespace Web
             profile.CreateMap<CreateIllRequestViewModel, IllRequest>();
 
             profile.CreateMap<CreateIllRequestViewModel, IllRequestExtended>()
-                            .ForMember(d => d.MainTitle, o => o.Ignore())
-                            .ForMember(d => d.MainAuthor, o => o.Ignore())
-                            .ForMember(d => d.ContainerTitle, o => o.Ignore())
-                            .ForMember(d => d.ContainerAuthorOrEditor, o => o.Ignore())
+                            .ForMember(d => d.ArticleTitle, o => o.Ignore())
+                            .ForMember(d => d.ArticleAuthor, o => o.Ignore())
+                            .ForMember(d => d.Title, o => o.Ignore())
                             .ForMember(d => d.Isbn, o => o.MapFrom(s => s.Isbn))
                             .ForMember(d => d.Issn, o => o.MapFrom(s => s.Issn))
                             .ForMember(d => d.PublicationYear, o => o.Ignore())
@@ -127,7 +126,6 @@ namespace Web
                             .ForMember(d => d.Issue, o => o.MapFrom(s => s.Issue))
                             .ForMember(d => d.Pages, o => o.Ignore())
                             .ForMember(d => d.MaterialType, o => o.MapFrom(s => s.MaterialType))
-                            .ForMember(d => d.RequestType, o => o.MapFrom(s => s.RequestType))
                             .ForMember(d => d.RequesterName, o => o.MapFrom(s => s.RequesterName))
                             .ForMember(d => d.RequesterEmail, o => o.MapFrom(s => s.RequesterEmail))
                             .ForMember(d => d.CardNumber, o => o.MapFrom(s => s.CardNumber))
@@ -139,36 +137,35 @@ namespace Web
                             {
                                 if (src.MaterialType == IllRequestConstants.MaterialTypes.Book)
                                 {
-                                    dest.MainTitle = string.Empty;
-                                    dest.MainAuthor = string.Empty;
-                                    dest.ContainerTitle = src.BookTitle ?? "";
-                                    dest.ContainerAuthorOrEditor = src.BookAuthor ?? "";
+                                    dest.ArticleAuthor = string.Empty;
+                                    dest.Title = src.BookTitle ?? "";
+                                    dest.Author = src.BookAuthor ?? "";
                                     dest.PublicationYear = src.BookPublicationYear ?? "";
                                 }
                                 else if (src.MaterialType == IllRequestConstants.MaterialTypes.Chapter)
                                 {
-                                    dest.MainTitle = src.ChapterTitle ?? "";
-                                    dest.MainAuthor = src.ChapterAuthor ?? "";
-                                    dest.ContainerTitle = src.ChapterBookTitle ?? "";
-                                    dest.ContainerAuthorOrEditor = src.ChapterBookAuthor ?? "";
+                                    dest.ArticleTitle = src.ChapterTitle ?? "";
+                                    dest.ArticleAuthor = src.ChapterAuthor ?? "";
+                                    dest.Title = src.ChapterBookTitle ?? "";
+                                    dest.Author = src.ChapterBookAuthor ?? "";
                                     dest.Pages = src.ChapterPages ?? "";
                                     dest.PublicationYear = src.ChapterBookPublicationYear ?? "";
                                 }
                                 else if (src.MaterialType == IllRequestConstants.MaterialTypes.Article)
                                 {
-                                    dest.MainTitle = src.ArticleTitle ?? "";
-                                    dest.MainAuthor = src.ArticleAuthor ?? "";
-                                    dest.ContainerTitle = src.JournalTitle ?? "";
-                                    dest.ContainerAuthorOrEditor = src.JournalAuthor ?? "";
+                                    dest.ArticleTitle = src.ArticleTitle ?? "";
+                                    dest.ArticleAuthor = src.ArticleAuthor ?? "";
+                                    dest.Title = src.JournalTitle ?? "";
+                                    dest.Author = src.JournalAuthor ?? "";
                                     dest.PublicationYear = src.ArticlePublicationYear ?? "";
                                     dest.Pages = src.ArticlePages?? "";
                                 }
                                 else
                                 {
-                                    dest.MainTitle= string.Empty;
-                                    dest.MainAuthor= string.Empty;
-                                    dest.ContainerTitle= string.Empty;
-                                    dest.ContainerAuthorOrEditor= string.Empty;
+                                    dest.ArticleTitle= string.Empty;
+                                    dest.ArticleAuthor= string.Empty;
+                                    dest.Title= string.Empty;
+                                    dest.Author= string.Empty;
                                 }
                             });
 

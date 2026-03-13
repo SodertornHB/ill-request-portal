@@ -7,7 +7,7 @@
 
         public string Title { get; set; } = "";
         public string Author { get; set; } = "";
-        public string ContainerTitle { get; set; } = "";
+        public string ArticleTitle { get; set; } = "";
 
         public string PublicationYear { get; set; } = "";
         public string Edition { get; set; } = "";
@@ -25,7 +25,7 @@
         public bool IsEmpty() =>
             string.IsNullOrEmpty(Title) &&
             string.IsNullOrEmpty(Author) &&
-            string.IsNullOrEmpty(ContainerTitle) &&
+            string.IsNullOrEmpty(ArticleTitle) &&
             string.IsNullOrEmpty(PublicationYear) &&
             string.IsNullOrEmpty(Edition) &&
             string.IsNullOrEmpty(Volume);

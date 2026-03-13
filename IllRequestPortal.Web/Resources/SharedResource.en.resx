@@ -336,9 +336,6 @@
   <data name="MaterialTypeRequired" xml:space="preserve">
     <value>Material type is required.</value>
   </data>
-  <data name="RequestTypeRequired" xml:space="preserve">
-    <value>Request type is required.</value>
-  </data>
   <data name="CardNumberRequired" xml:space="preserve">
     <value>Card number is required.</value>
   </data>
@@ -368,19 +365,11 @@
   <value>An error occurred while contacting the library system.</value>
 </data>
 
-  <data name="ContainerTitle" xml:space="preserve">
-  <value>Title</value>
-</data>
-
-  <data name="ContainerTitleTooltip" xml:space="preserve">
+  <data name="TitleTooltip" xml:space="preserve">
   <value>Book/journal title</value>
 </data>
 
-  <data name="MainTitle" xml:space="preserve">
-  <value>Subtitle</value>
-</data>
-
-  <data name="MainTitleTooltip" xml:space="preserve">
+  <data name="ArticleTitleTooltip" xml:space="preserve">
   <value>Chapter/artical title</value>
 </data>
 

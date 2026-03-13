@@ -20,12 +20,12 @@
 function setBibliographicFieldsDisabled(disabled) {
     $('#Isbn').prop('disabled', disabled);
     $('#Issn').prop('disabled', disabled);
-    $('#MainTitle').prop('disabled', disabled);
-    $('#MainAuthor').prop('disabled', disabled);
+    $('#ArticleTitle').prop('disabled', disabled);
+    $('#ArticleAuthor').prop('disabled', disabled);
     $('#BookTitle').prop('disabled', disabled);
     $('#BookAuthor').prop('disabled', disabled);
     $('#BookPublicationYear').prop('disabled', disabled);
-    $('#ContainerTitle').prop('disabled', disabled);
+    $('#Title').prop('disabled', disabled);
     $('#ArticlePublicationYear').prop('disabled', disabled);
     $('#ArticleAuthor').prop('disabled', disabled);
     $('#ArticleTitle').prop('disabled', disabled);

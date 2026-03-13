@@ -220,7 +220,7 @@
     <value>Bibliografisk uppslagning</value>
   </data>
   <data name="EnterMatrialTypeAndIsbnIssnFirst" xml:space="preserve">
-    <value>Ange materialtyp först och sedan isbn = string.Empty(); issn</value>
+    <value>Ange materialtyp först och sedan isbn/issn</value>
   </data>
   <data name="IsbnIssn" xml:space="preserve">
     <value>ISBN eller ISSN</value>
@@ -309,9 +309,6 @@
   <data name="MaterialTypeRequired" xml:space="preserve">
     <value>Materialtyp måste anges.</value>
   </data>
-  <data name="RequestTypeRequired" xml:space="preserve">
-    <value>Beställningstyp måste anges.</value>
-  </data>
   <data name="CardNumberRequired" xml:space="preserve">
     <value>Lånekortsnummer måste anges.</value>
   </data>
@@ -346,35 +343,27 @@
   <value>Bokens titel</value>
 </data>
 
-  <data name="ContainerTitle" xml:space="preserve">
-  <value>Titel</value>
-</data>
-
-  <data name="ContainerTitleTooltip" xml:space="preserve">
+  <data name="TitleTooltip" xml:space="preserve">
   <value>Bokens/tidskriftens titel</value>
 </data>
 
-  <data name="MainTitle" xml:space="preserve">
-  <value>Undertitel</value>
-</data>
-
-  <data name="MainTitleTooltip" xml:space="preserve">
+  <data name="ArticleTitleTooltip" xml:space="preserve">
   <value>Kapitlets/artikelns titel</value>
 </data>
 
-  <data name="ContainerAuthor" xml:space="preserve">
+  <data name="TitleAuthor" xml:space="preserve">
   <value>Huvudförfattare</value>
 </data>
 
-  <data name="ContainerAuthorTooltip" xml:space="preserve">
+  <data name="TitleAuthorTooltip" xml:space="preserve">
   <value>Bokens/tidskriftens författare</value>
 </data>
 
-  <data name="MainAuthor" xml:space="preserve">
+  <data name="ArticleAuthor" xml:space="preserve">
   <value>Artikelförfattare</value>
 </data>
 
-  <data name="MainAuthorTooltip" xml:space="preserve">
+  <data name="ArticleAuthorTooltip" xml:space="preserve">
   <value>Kapitel-/artikelnförfattare</value>
 </data>
 
@@ -384,10 +373,6 @@
 
   <data name="ArticleTitle" xml:space="preserve">
   <value>Artikelns titel</value>
-</data>
-
-  <data name="ArticleAuthor" xml:space="preserve">
-  <value>Artikelnförfattare</value>
 </data>
 
   <data name="JournalTitle" xml:space="preserve">
@@ -403,7 +388,7 @@
 </data>
 
   <data name="ChapterAuthor" xml:space="preserve">
-  <value>Kapitlets författare</value>
+  <value>Kapitletförfattare</value>
 </data>
 
   <data name="Issue" xml:space="preserve">

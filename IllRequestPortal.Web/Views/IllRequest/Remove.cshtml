@@ -24,16 +24,16 @@
 
             <dl class="row mb-0">
                 <dt class="col-sm-4">@SharedLocalizer.GetLocalizedHtmlString("Title")</dt>
-                <dd class="col-sm-8">@Model.MainTitle</dd>
+                <dd class="col-sm-8">@Model.ArticleTitle</dd>
 
                 <dt class="col-sm-4">@SharedLocalizer.GetLocalizedHtmlString("Author")</dt>
-                <dd class="col-sm-8">@Model.MainAuthor</dd>
+                <dd class="col-sm-8">@Model.ArticleAuthor</dd>
 
                 <dt class="col-sm-4">@SharedLocalizer.GetLocalizedHtmlString("Title")</dt>
-                <dd class="col-sm-8">@Model.ContainerTitle</dd>
+                <dd class="col-sm-8">@Model.Title</dd>
 
                 <dt class="col-sm-4">@SharedLocalizer.GetLocalizedHtmlString("Author")</dt>
-                <dd class="col-sm-8">@Model.ContainerAuthorOrEditor</dd>
+                <dd class="col-sm-8">@Model.Author</dd>
 
                 <dt class="col-sm-4">@SharedLocalizer.GetLocalizedHtmlString("PublicationYear")</dt>
                 <dd class="col-sm-8">@Model.PublicationYear</dd>
@@ -46,9 +46,6 @@
 
                 <dt class="col-sm-4">@SharedLocalizer.GetLocalizedHtmlString("MaterialType")</dt>
                 <dd class="col-sm-8">@SharedLocalizer.GetLocalizedHtmlString(Model.MaterialType)</dd>
-
-                <dt class="col-sm-4">@SharedLocalizer.GetLocalizedHtmlString("RequestType")</dt>
-                <dd class="col-sm-8">@SharedLocalizer.GetLocalizedHtmlString(Model.RequestType)</dd>
             </dl>
         </div>
 

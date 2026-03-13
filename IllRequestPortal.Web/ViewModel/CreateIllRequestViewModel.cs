@@ -14,8 +14,6 @@ namespace IllRequestPortal.Web.ViewModel
         [Required(ErrorMessage = "MaterialTypeRequired")]
         public string MaterialType { get; set; } = "";
 
-        public string RequestType { get; set; } = "";
-
         public virtual string Isbn { get; set; } = "";
         public virtual string Issn { get; set; } = "";
 
