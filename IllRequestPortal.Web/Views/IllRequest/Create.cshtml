@@ -34,7 +34,7 @@
             }
 
             <div class="ill-section">
-                
+
                 <div class="ill-section-title">@SharedLocalizer.GetLocalizedHtmlString("BibliographicLookup")</div>
                 <div class="ill-helper-text">@SharedLocalizer.GetLocalizedHtmlString("EnterMatrialTypeAndIsbnIssnFirst")</div>
                 <div class="form-group">
@@ -47,7 +47,7 @@
                     </select>
                     <span asp-validation-for="MaterialType" class="text-danger"></span>
                 </div>
-                
+
                 <div class="form-group field-book field-chapter">
                     <label asp-for="Isbn" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Isbn")</label>
                     <div class="lookup-row">
@@ -63,7 +63,7 @@
                     <span asp-validation-for="Issn" class="text-danger"></span>
                 </div>
 
-                    <div id="bibliographicLookupStatus" class="lookup-status-panel lookup-status-neutral hidden"></div>
+                <div id="bibliographicLookupStatus" class="lookup-status-panel lookup-status-neutral hidden"></div>
             </div>
 
             <div class="ill-section">
@@ -111,42 +111,24 @@
                     <span asp-validation-for="ChapterTitle" class="text-danger"></span>
                 </div>
 
-                <div class="form-group field-chapter">
-                    <label asp-for="ChapterBookPublicationYear" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("PublicationYear")</label>
-                    <input asp-for="ChapterBookPublicationYear" class="form-control" />
-                    <span asp-validation-for="ChapterBookPublicationYear" class="text-danger"></span>
-                </div>
+                <div class="form-row field-chapter">
+                    <div class="form-group col-md-5">
+                        <label asp-for="ChapterBookPublicationYear" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("PublicationYear")</label>
+                        <input asp-for="ChapterBookPublicationYear" class="form-control" />
+                        <span asp-validation-for="ChapterBookPublicationYear" class="text-danger"></span>
+                    </div>
 
-                <div class="form-group field-chapter">
-                    <label asp-for="ChapterPages" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Pages")</label>
-                    <input asp-for="ChapterPages" class="form-control" />
-                    <span asp-validation-for="ChapterPages" class="text-danger"></span>
+                    <div class="form-group col-md-5">
+                        <label asp-for="ChapterPages" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Pages")</label>
+                        <input asp-for="ChapterPages" class="form-control" />
+                        <span asp-validation-for="ChapterPages" class="text-danger"></span>
+                    </div>
                 </div>
 
                 <div class="form-group field-article">
                     <label asp-for="JournalTitle" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("JournalTitle")</label>
                     <input asp-for="JournalTitle" class="form-control containter-journal-title" />
                     <span asp-validation-for="JournalTitle" class="text-danger"></span>
-                </div>
-
-                <div class="form-row field-article">
-                    <div class="form-group col-md-4">
-                        <label asp-for="Volume" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Volume")</label>
-                        <input asp-for="Volume" class="form-control" />
-                        <span asp-validation-for="Volume" class="text-danger"></span>
-                    </div>
-
-                    <div class="form-group col-md-4">
-                        <label asp-for="ArticlePublicationYear" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("PublicationYear")</label>
-                        <input asp-for="ArticlePublicationYear" class="form-control" />
-                        <span asp-validation-for="ArticlePublicationYear" class="text-danger"></span>
-                    </div>
-
-                    <div class="form-group col-md-4">
-                        <label asp-for="Issue" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Issue")</label>
-                        <input asp-for="Issue" class="form-control" />
-                        <span asp-validation-for="Issue" class="text-danger"></span>
-                    </div>
                 </div>
 
                 <div class="form-group field-article">
@@ -161,16 +143,37 @@
                     <span asp-validation-for="ArticleTitle" class="text-danger"></span>
                 </div>
 
-                <div class="form-group field-article">
-                    <label asp-for="ArticlePages" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Pages")</label>
-                    <input asp-for="ArticlePages" class="form-control" />
-                    <span asp-validation-for="ArticlePages" class="text-danger"></span>
+
+                <div class="form-row field-article">
+                    <div class="form-group col-md-3">
+                        <label asp-for="Volume" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Volume")</label>
+                        <input asp-for="Volume" class="form-control" />
+                        <span asp-validation-for="Volume" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label asp-for="ArticlePublicationYear" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("PublicationYear")</label>
+                        <input asp-for="ArticlePublicationYear" class="form-control" />
+                        <span asp-validation-for="ArticlePublicationYear" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label asp-for="Issue" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Issue")</label>
+                        <input asp-for="Issue" class="form-control" />
+                        <span asp-validation-for="Issue" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label asp-for="ArticlePages" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Pages")</label>
+                        <input asp-for="ArticlePages" class="form-control" />
+                        <span asp-validation-for="ArticlePages" class="text-danger"></span>
+                    </div>
                 </div>
             </div>
 
             <div class="ill-section">
                 <div class="ill-section-title">@SharedLocalizer.GetLocalizedHtmlString("RequesterInformation")</div>
-                
+
 
                 <div class="form-group">
                     <label asp-for="CardNumber" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("CardNumber")</label>
@@ -207,20 +210,20 @@
 </div>
 
 <script>
- window.illTexts = @Html.Raw(JsonSerializer.Serialize(new
-{
-    foundInKohaMessage = SharedLocalizer.GetLocalizedHtmlString("FoundInKohaMessage").Value,
-    foundInLibrisMessage = SharedLocalizer.GetLocalizedHtmlString("FoundInLibrisMessage").Value,
-    kohaBorrowLinkText = SharedLocalizer.GetLocalizedHtmlString("KohaBorrowLinkText").Value,
-    missingBiblioIdMessage = SharedLocalizer.GetLocalizedHtmlString("MissingBiblioIdMessage").Value,
-    noBibliographicRecordFoundMessage = SharedLocalizer.GetLocalizedHtmlString("NoBibliographicRecordFoundMessage").Value,
-    librarySystemErrorMessage = SharedLocalizer.GetLocalizedHtmlString("LibrarySystemErrorMessage").Value,
-    noPatronFound = SharedLocalizer.GetLocalizedHtmlString("NoPatronFoundWithCardNumber").Value,
-    patronFound = SharedLocalizer.GetLocalizedHtmlString("PatronFound").Value,
-    lookingUpPatron = SharedLocalizer.GetLocalizedHtmlString("LookingUpPatron").Value,
-    lookingUpBibliographicRecord = SharedLocalizer.GetLocalizedHtmlString("LookingUpBibliographicRecord").Value,
-    discoveryRecordUrlTemplate = DiscoverySettings.Value.RecordUrlTemplate
-}));
+    window.illTexts = @Html.Raw(JsonSerializer.Serialize(new
+        {
+            foundInKohaMessage = SharedLocalizer.GetLocalizedHtmlString("FoundInKohaMessage").Value,
+            foundInLibrisMessage = SharedLocalizer.GetLocalizedHtmlString("FoundInLibrisMessage").Value,
+            kohaBorrowLinkText = SharedLocalizer.GetLocalizedHtmlString("KohaBorrowLinkText").Value,
+            missingBiblioIdMessage = SharedLocalizer.GetLocalizedHtmlString("MissingBiblioIdMessage").Value,
+            noBibliographicRecordFoundMessage = SharedLocalizer.GetLocalizedHtmlString("NoBibliographicRecordFoundMessage").Value,
+            librarySystemErrorMessage = SharedLocalizer.GetLocalizedHtmlString("LibrarySystemErrorMessage").Value,
+            noPatronFound = SharedLocalizer.GetLocalizedHtmlString("NoPatronFoundWithCardNumber").Value,
+            patronFound = SharedLocalizer.GetLocalizedHtmlString("PatronFound").Value,
+            lookingUpPatron = SharedLocalizer.GetLocalizedHtmlString("LookingUpPatron").Value,
+            lookingUpBibliographicRecord = SharedLocalizer.GetLocalizedHtmlString("LookingUpBibliographicRecord").Value,
+            discoveryRecordUrlTemplate = DiscoverySettings.Value.RecordUrlTemplate
+        }));
 </script>
 
 @section Scripts {
