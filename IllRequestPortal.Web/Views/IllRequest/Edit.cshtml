@@ -144,6 +144,15 @@
             </div>
 
             <div class="ill-section">
+                <div class="ill-section-title">@SharedLocalizer.GetLocalizedHtmlString("Description")</div>
+
+                <div class="form-group">
+                    <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="ill-section">
                 <div class="ill-section-title">Metadata</div>
 
                 <div class="form-row">
