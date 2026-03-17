@@ -10,5 +10,7 @@
         public string PublicationYear { get; set; } = "";
         public string Edition { get; set; } = "";
         public string Volume { get; set; } = "";
+        public string KohaUrl { get; set; } = "";
+        public string LibrisUrl { get; set; } = "";
     }
 }

@@ -31,7 +31,10 @@ namespace IllRequestPortal.Web.ViewModel
         public virtual string RequesterEmail {get;set;}  = "";
         [RegularExpression(@"^\d{10}$", ErrorMessage = "CardNumberMustBe10Digits")]
         public virtual string CardNumber {get;set;}  = ""; 
-        public virtual string Status {get;set;}  = ""; 
+        public virtual string Status {get;set;}  = "";
+        public virtual string KohaUrl { get; set; } = "";
+        public virtual string LibrisUrl { get; set; } = "";
+
         [DataType(DataType.Text)]
         public virtual DateTime? CreatedOn {get;set;} 
         [DataType(DataType.Text)]
