@@ -56,36 +56,6 @@ The request form supports three different types of requested material:
 - Article
 - Chapter
 
-Instead of maintaining separate fields for each material type, the system uses a normalized metadata model with shared fields.
-
-Key fields include:
-
-- MainTitle – title of the requested work
-- MainAuthor – primary author
-- ContainerTitle – title of the container publication
-
-Example mappings:
-
-Book
-
-- MainTitle → book title
-- MainAuthor → book author
-- ContainerTitle → empty
-
-Article
-
-- MainTitle → article title
-- MainAuthor → article author
-- ContainerTitle → journal title
-
-Chapter
-
-- MainTitle → chapter title
-- MainAuthor → chapter author
-- ContainerTitle → book title
-
-This model minimizes unused fields while still supporting multiple resource types.
-
 The Razor view dynamically shows or hides fields depending on the selected material type.
 
 CSS classes controlling visibility include:
