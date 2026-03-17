@@ -55,6 +55,12 @@
                         <input asp-for="PublicationYear" class="form-control" />
                         <span asp-validation-for="PublicationYear" class="text-danger"></span>
                     </div>
+
+                    <div class="form-group col-md-4">
+                        <label asp-for="Edition" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Edition")</label>
+                        <input asp-for="Edition" class="form-control" />
+                        <span asp-validation-for="Edition" class="text-danger"></span>
+                    </div>
                 </div>
 
                 <div class="form-row">
@@ -72,6 +78,26 @@
                 </div>
 
                 <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label asp-for="Volume" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Volume")</label>
+                        <input asp-for="Volume" class="form-control" />
+                        <span asp-validation-for="Volume" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label asp-for="Issue" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Issue")</label>
+                        <input asp-for="Issue" class="form-control" />
+                        <span asp-validation-for="Issue" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label asp-for="Pages" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Pages")</label>
+                        <input asp-for="Pages" class="form-control" />
+                        <span asp-validation-for="Pages" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
                     <div class="form-group col-md-6">
                         <label asp-for="MaterialType" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("MaterialType")</label>
                         <select asp-for="MaterialType" class="form-control">
@@ -83,6 +109,12 @@
                             <option value="Other">@SharedLocalizer.GetLocalizedHtmlString("Other")</option>
                         </select>
                         <span asp-validation-for="MaterialType" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label asp-for="Status" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Status")</label>
+                        <input asp-for="Status" class="form-control" />
+                        <span asp-validation-for="Status" class="text-danger"></span>
                     </div>
                 </div>
             </div>
@@ -123,6 +155,11 @@
                     <div class="form-group col-md-4">
                         <label asp-for="UpdatedOn" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("UpdatedOn")</label>
                         <input asp-for="UpdatedOn" class="form-control" readonly />
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label asp-for="AddedInLibrisOn" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("AddedInLibrisOn")</label>
+                        <input asp-for="AddedInLibrisOn" class="form-control" readonly />
                     </div>
                 </div>
             </div>
