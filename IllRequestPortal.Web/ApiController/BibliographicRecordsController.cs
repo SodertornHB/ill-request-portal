@@ -23,18 +23,24 @@ namespace IllRequestPortal.Web.ApiController
         private readonly IKohaBiblioGetHttpService kohaBiblioGetHttpService;
         private readonly ILibrisService librisService;
         private readonly KohaApiSettings kohaApiSettings;
+        private readonly DiscoverySettings discoverySettings;
+        private readonly LibrisApiSettings librisApiSettings;
 
         public BibliographicRecordsController(ILogger<BibliographicRecordsController> logger,
             IKohaPatronGetHttpService kohaGetHttpService,
             IKohaBiblioGetHttpService kohaBiblioGetHttpService,
             ILibrisService librisService,
-            IOptions<KohaApiSettings> kohaApiSettingsOptions)
+            IOptions<KohaApiSettings> kohaApiSettingsOptions,
+            IOptions<DiscoverySettings> discoverySettingsOptions,
+            IOptions<LibrisApiSettings> librisApiSettingsOptions)
         {
             this.logger = logger;
             this.kohaGetHttpService = kohaGetHttpService;
             this.kohaBiblioGetHttpService = kohaBiblioGetHttpService;
             this.librisService = librisService;
             this.kohaApiSettings = kohaApiSettingsOptions.Value;
+            this.discoverySettings = discoverySettingsOptions.Value;
+            this.librisApiSettings = librisApiSettingsOptions.Value;
         }
 
         [HttpGet("lookup")]
@@ -56,7 +62,8 @@ namespace IllRequestPortal.Web.ApiController
                     Author = record.Author,
                     PublicationYear = record.PublicationYear,
                     Edition = string.Empty,
-                    Volume = record.GetVolume()
+                    Volume = record.GetVolume(),
+                    KohaUrl = BuildKohaUrl(record.BiblioId)
                 });
             }
 
@@ -72,7 +79,8 @@ namespace IllRequestPortal.Web.ApiController
                     Author = librisMatch.Author,
                     PublicationYear = librisMatch.PublicationYear,
                     Edition = librisMatch.Edition,
-                    Volume = librisMatch.Volume
+                    Volume = librisMatch.Volume,
+                    LibrisUrl = BuildLibrisUrl(librisMatch.Id)
                 });
             }
 
@@ -81,6 +89,23 @@ namespace IllRequestPortal.Web.ApiController
                 Status = LookupStatuses.NotFound,
                 Message = "No matching record found"
             });
+        }
+
+        private string BuildKohaUrl(int biblioId)
+        {
+            if (biblioId == 0 || string.IsNullOrEmpty(discoverySettings.RecordUrlTemplate))
+                return string.Empty;
+            return discoverySettings.RecordUrlTemplate.Replace("{biblioId}", biblioId.ToString());
+        }
+
+        private string BuildLibrisUrl(string id)
+        {
+            if (string.IsNullOrWhiteSpace(id))
+                return string.Empty;
+            var clean = id.Split('#')[0];
+            if (!clean.StartsWith("http", StringComparison.OrdinalIgnoreCase))
+                clean = $"{librisApiSettings.BaseUrl}/{clean.TrimStart('/')}";
+            return clean;
         }
 
         private async Task<KohaGetBiblioHttpModel> FetchFromKoha(string standardNumber, string queryField)

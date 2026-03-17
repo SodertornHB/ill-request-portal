@@ -294,6 +294,12 @@
   <data name="KohaBorrowLinkText" xml:space="preserve">
     <value>View the record in the library catalogue</value>
   </data>
+  <data name="KohaRecord" xml:space="preserve">
+    <value>View biblio</value>
+  </data>
+  <data name="LibrisRecord" xml:space="preserve">
+    <value>View in Libris</value>
+  </data>
   <data name="MissingBiblioIdMessage" xml:space="preserve">
     <value>Could not identify the catalogue record.</value>
   </data>

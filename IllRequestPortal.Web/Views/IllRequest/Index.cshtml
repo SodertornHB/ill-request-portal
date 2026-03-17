@@ -84,6 +84,28 @@
                         <i class="bi bi-trash"></i>
                     </a>
 
+                    @if (!string.IsNullOrEmpty(item.KohaUrl))
+                    {
+                        <a href="@item.KohaUrl"
+                           target="_blank"
+                           class="btn btn-sm btn-outline-secondary icon-btn tooltip-r"
+                           data-toggle="tooltip"
+                           title="@SharedLocalizer.GetLocalizedHtmlString("KohaRecord")">
+                            <i class="bi bi-book"></i>
+                        </a>
+                    }
+
+                    @if (!string.IsNullOrEmpty(item.LibrisUrl))
+                    {
+                        <a href="@item.LibrisUrl"
+                           target="_blank"
+                           class="btn btn-sm btn-outline-secondary icon-btn tooltip-r"
+                           data-toggle="tooltip"
+                           title="@SharedLocalizer.GetLocalizedHtmlString("LibrisRecord")">
+                            <i class="bi bi-search"></i>
+                        </a>
+                    }
+
                 </td>
                 <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.Status">
 

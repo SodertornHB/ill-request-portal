@@ -118,6 +118,9 @@ function bindBibliographicLookup(texts) {
 
         setBibliographicFieldsDisabled(true);
 
+        $('#KohaUrl').val('');
+        $('#LibrisUrl').val('');
+
         $('#bibliographicLookupSpinner').removeClass('hidden');
 
         $('#bibliographicLookupStatus')
@@ -137,16 +140,17 @@ function bindBibliographicLookup(texts) {
                 if (data.status === 'FoundInKoha') {
 
                     const biblioId = data.biblioId || data.BiblioId || data.biblio_id;
-                    const template = texts.discoveryRecordUrlTemplate;
+                    const kohaUrl = data.kohaUrl || data.KohaUrl || '';
 
                     if (biblioId) {
+                        $('#KohaUrl').val(kohaUrl);
+
                         $status
                             .removeClass('hidden lookup-status-neutral lookup-error')
                             .addClass('lookup-status-success');
 
-                        if (template) {
-                            const discoveryUrl = template.replace('{biblioId}', biblioId);
-                            $status.html(`${texts.foundInKohaMessage} <a target="_blank" href="${discoveryUrl}">${texts.kohaBorrowLinkText}</a>`);
+                        if (kohaUrl) {
+                            $status.html(`${texts.foundInKohaMessage} <a target="_blank" href="${kohaUrl}">${texts.kohaBorrowLinkText}</a>`);
                         } else {
                             $status.text(texts.foundInKohaMessage);
                         }
@@ -158,6 +162,9 @@ function bindBibliographicLookup(texts) {
                     }
                 }
                 else if (data.status === 'FoundInLibris') {
+                    const librisUrl = data.librisUrl || data.LibrisUrl || '';
+                    $('#LibrisUrl').val(librisUrl);
+
                     $status
                         .removeClass('hidden lookup-status-neutral lookup-error')
                         .addClass('lookup-status-success')
