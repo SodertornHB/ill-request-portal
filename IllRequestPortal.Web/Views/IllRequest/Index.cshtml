@@ -18,6 +18,10 @@
 <table class="table table-striped table-sm data-table ill-table">
     <thead>
         <tr>
+            <th></th>
+            <th>
+                @SharedLocalizer.GetLocalizedHtmlString("Status")
+            </th>
             <th>
                 @SharedLocalizer.GetLocalizedHtmlString("CreatedOn")
             </th>
@@ -54,16 +58,57 @@
             <th>
                 @SharedLocalizer.GetLocalizedHtmlString("CardNumber")
             </th>
-            <th>
-                @SharedLocalizer.GetLocalizedHtmlString("Status")
-            </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
             <tr>
+                <td class="ill-actions">
+
+                    <a asp-controller="IllRequest"
+                       asp-action="Edit"
+                       asp-route-id="@item.Id"
+                       class="btn btn-sm btn-outline-primary icon-btn tooltip-r"
+                       data-toggle="tooltip"
+                       title="@item.Description">
+                        <i class="bi bi-pencil"></i>
+                    </a>
+
+                    <a asp-controller="IllRequest"
+                       asp-action="Remove"
+                       asp-route-id="@item.Id"
+                       class="btn btn-sm btn-outline-danger icon-btn tooltip-r"
+                       data-toggle="tooltip"
+                       title="@SharedLocalizer.GetLocalizedHtmlString("Delete")">
+                        <i class="bi bi-trash"></i>
+                    </a>
+
+                </td>
+                <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.Status">
+
+                    <select class="status-select form-control form-control-sm"
+                            data-request-id="@item.Id">
+
+                        <option value="Registered" selected="@(item.Status == "Registered")">
+                            @SharedLocalizer.GetLocalizedHtmlString("Registered")
+                        </option>
+
+                        <option value="OrderedInLibris" selected="@(item.Status == "OrderedInLibris")">
+                            @SharedLocalizer.GetLocalizedHtmlString("OrderedInLibris")
+                        </option>
+
+                        <option value="Purchased" selected="@(item.Status == "Purchased")">
+                            @SharedLocalizer.GetLocalizedHtmlString("Purchased")
+                        </option>
+
+                        <option value="Rejected" selected="@(item.Status == "Rejected")">
+                            @SharedLocalizer.GetLocalizedHtmlString("Rejected")
+                        </option>
+
+                    </select>
+
+                </td>
                 <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@(item.CreatedOn?.ToString("yyyy-MM-dd HH:mm"))">
                     @(item.CreatedOn?.ToString("yyyy-MM-dd"))
                 </td>
@@ -99,52 +144,6 @@
                 </td>
                 <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.CardNumber">
                     @item.CardNumber
-                </td>
-                <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.Status">
-
-                    <select class="status-select form-control form-control-sm"
-                            data-request-id="@item.Id">
-
-                        <option value="Registered" selected="@(item.Status == "Registered")">
-                            @SharedLocalizer.GetLocalizedHtmlString("Registered")
-                        </option>
-
-                        <option value="OrderedInLibris" selected="@(item.Status == "OrderedInLibris")">
-                            @SharedLocalizer.GetLocalizedHtmlString("OrderedInLibris")
-                        </option>
-
-                        <option value="Purchased" selected="@(item.Status == "Purchased")">
-                            @SharedLocalizer.GetLocalizedHtmlString("Purchased")
-                        </option>
-
-                        <option value="Rejected" selected="@(item.Status == "Rejected")">
-                            @SharedLocalizer.GetLocalizedHtmlString("Rejected")
-                        </option>
-
-                    </select>
-
-                </td>
-
-                <td class="ill-actions">
-
-                    <a asp-controller="IllRequest"
-                       asp-action="Edit"
-                       asp-route-id="@item.Id"
-                       class="btn btn-sm btn-outline-primary icon-btn tooltip-r"
-                       data-toggle="tooltip"
-                       title="@item.Description">
-                        <i class="bi bi-pencil"></i>
-                    </a>
-
-                    <a asp-controller="IllRequest"
-                       asp-action="Remove"
-                       asp-route-id="@item.Id"
-                       class="btn btn-sm btn-outline-danger icon-btn tooltip-r"
-                       data-toggle="tooltip"
-                       title="@SharedLocalizer.GetLocalizedHtmlString("Delete")">
-                        <i class="bi bi-trash"></i>
-                    </a>
-
                 </td>
             </tr>
         }
