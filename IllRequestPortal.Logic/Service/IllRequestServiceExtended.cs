@@ -26,6 +26,12 @@ namespace IllRequestPortal.Logic.Services
             return await base.Insert(model);
         }
 
+        public override async Task Update(IllRequest model)
+        {
+            model.UpdatedOn = DateTime.UtcNow;
+            await base.Update(model);
+        }
+
         public async Task<IllRequest> UpdateStatus(int id, string status)
         {
             var item = await Get(id);
