@@ -267,6 +267,12 @@
   <data name="KohaBorrowLinkText" xml:space="preserve">
     <value>Gå till posten i bibliotekskatalogen</value>
   </data>
+  <data name="KohaRecord" xml:space="preserve">
+    <value>Visa befintlig post</value>
+  </data>
+  <data name="LibrisRecord" xml:space="preserve">
+    <value>Visa i Libris</value>
+  </data>
   <data name="MissingBiblioIdMessage" xml:space="preserve">
     <value>Kunde inte identifiera posten i katalogen. Fyll i uppgifter nedan.</value>
   </data>

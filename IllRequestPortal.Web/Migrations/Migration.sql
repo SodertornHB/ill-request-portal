@@ -125,3 +125,27 @@ BEGIN
         ADD Description NVARCHAR(MAX) NULL;
 END
 GO
+
+IF NOT EXISTS (
+    SELECT 1
+    FROM sys.columns
+    WHERE name = 'KohaUrl'
+      AND object_id = OBJECT_ID('dbo.IllRequest')
+)
+BEGIN
+    ALTER TABLE dbo.IllRequest
+        ADD KohaUrl NVARCHAR(500) NULL;
+END
+GO
+
+IF NOT EXISTS (
+    SELECT 1
+    FROM sys.columns
+    WHERE name = 'LibrisUrl'
+      AND object_id = OBJECT_ID('dbo.IllRequest')
+)
+BEGIN
+    ALTER TABLE dbo.IllRequest
+        ADD LibrisUrl NVARCHAR(500) NULL;
+END
+GO

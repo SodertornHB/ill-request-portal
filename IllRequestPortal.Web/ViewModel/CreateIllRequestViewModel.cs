@@ -51,6 +51,9 @@ namespace IllRequestPortal.Web.ViewModel
 
         public string Status { get; set; } = "";
 
+        public string KohaUrl { get; set; } = "";
+        public string LibrisUrl { get; set; } = "";
+
         [DataType(DataType.Text)]
         public DateTime? CreatedOn { get; set; }
 
