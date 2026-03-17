@@ -113,3 +113,15 @@ BEGIN
         ON dbo.Log(CreatedOn);
 END
 GO
+
+IF NOT EXISTS (
+    SELECT 1
+    FROM sys.columns
+    WHERE name = 'Description'
+      AND object_id = OBJECT_ID('dbo.IllRequest')
+)
+BEGIN
+    ALTER TABLE dbo.IllRequest
+        ADD Description NVARCHAR(MAX) NULL;
+END
+GO

@@ -174,6 +174,9 @@
   <data name="BookPublicationYear" xml:space="preserve">
     <value>Publication Year</value>
   </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
   <data name="Edition" xml:space="preserve">
     <value>Edition</value>
   </data>
