@@ -40,7 +40,9 @@ namespace IllRequestPortal.Web.ViewModel
         [DataType(DataType.Text)]
         public virtual DateTime? UpdatedOn {get;set;} 
         [DataType(DataType.Text)]
-        public virtual DateTime? AddedInLibrisOn {get;set;} 
+        public virtual DateTime? AddedInLibrisOn {get;set;}
+        public virtual string Description { get; set; } = "";
+        public virtual string PurchaseFormatPreference { get; set; } = "";
         public virtual string GetBackToListLink(string applicationName) => $"/{applicationName}/{GetType().Name.Replace("ViewModel","")}";
     }
 } 

@@ -88,6 +88,17 @@
                     </div>
                 </div>
 
+                <div class="form-group field-book">
+                    <label asp-for="PurchaseFormatPreference" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("PurchaseFormatPreference")</label>
+                    <select asp-for="PurchaseFormatPreference" class="form-control">
+                        <option value=""></option>
+                        <option value="Ebook">@SharedLocalizer.GetLocalizedHtmlString("FormatPreferenceEbook")</option>
+                        <option value="Printed">@SharedLocalizer.GetLocalizedHtmlString("FormatPreferencePrinted")</option>
+                        <option value="NoPreference">@SharedLocalizer.GetLocalizedHtmlString("FormatPreferenceNoPreference")</option>
+                    </select>
+                    <span asp-validation-for="PurchaseFormatPreference" class="text-danger"></span>
+                </div>
+
                 <div class="form-group field-chapter">
                     <label asp-for="ChapterBookTitle" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("BookTitle")</label>
                     <input asp-for="ChapterBookTitle" class="form-control" />
