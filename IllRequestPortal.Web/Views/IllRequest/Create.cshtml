@@ -75,16 +75,17 @@
                     <span asp-validation-for="BookTitle" class="text-danger"></span>
                 </div>
 
-                <div class="form-group field-book">
-                    <label asp-for="BookAuthor" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("BookAuthor")</label>
-                    <input asp-for="BookAuthor" class="form-control" />
-                    <span asp-validation-for="BookAuthor" class="text-danger"></span>
-                </div>
-
-                <div class="form-group field-book">
-                    <label asp-for="BookPublicationYear" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("PublicationYear")</label>
-                    <input asp-for="BookPublicationYear" class="form-control" />
-                    <span asp-validation-for="BookPublicationYear" class="text-danger"></span>
+                <div class="form-row field-book">
+                    <div class="form-group col-md-8">
+                        <label asp-for="BookAuthor" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("BookAuthor")</label>
+                        <input asp-for="BookAuthor" class="form-control" />
+                        <span asp-validation-for="BookAuthor" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="BookPublicationYear" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("PublicationYear")</label>
+                        <input asp-for="BookPublicationYear" class="form-control" />
+                        <span asp-validation-for="BookPublicationYear" class="text-danger"></span>
+                    </div>
                 </div>
 
                 <div class="form-group field-chapter">
@@ -93,16 +94,17 @@
                     <span asp-validation-for="ChapterBookTitle" class="text-danger"></span>
                 </div>
 
-                <div class="form-group field-chapter">
-                    <label asp-for="ChapterBookAuthor" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("BookAuthor")</label>
-                    <input asp-for="ChapterBookAuthor" class="form-control" />
-                    <span asp-validation-for="ChapterBookAuthor" class="text-danger"></span>
-                </div>
-
-                <div class="form-group field-chapter">
-                    <label asp-for="ChapterAuthor" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("ChapterAuthor")</label>
-                    <input asp-for="ChapterAuthor" class="form-control" />
-                    <span asp-validation-for="ChapterAuthor" class="text-danger"></span>
+                <div class="form-row field-chapter">
+                    <div class="form-group col-md-8">
+                        <label asp-for="ChapterBookAuthor" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("BookAuthor")</label>
+                        <input asp-for="ChapterBookAuthor" class="form-control" />
+                        <span asp-validation-for="ChapterBookAuthor" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="ChapterBookPublicationYear" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("PublicationYear")</label>
+                        <input asp-for="ChapterBookPublicationYear" class="form-control" />
+                        <span asp-validation-for="ChapterBookPublicationYear" class="text-danger"></span>
+                    </div>
                 </div>
 
                 <div class="form-group field-chapter">
@@ -112,13 +114,12 @@
                 </div>
 
                 <div class="form-row field-chapter">
-                    <div class="form-group col-md-5">
-                        <label asp-for="ChapterBookPublicationYear" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("PublicationYear")</label>
-                        <input asp-for="ChapterBookPublicationYear" class="form-control" />
-                        <span asp-validation-for="ChapterBookPublicationYear" class="text-danger"></span>
+                    <div class="form-group col-md-8">
+                        <label asp-for="ChapterAuthor" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("ChapterAuthor")</label>
+                        <input asp-for="ChapterAuthor" class="form-control" />
+                        <span asp-validation-for="ChapterAuthor" class="text-danger"></span>
                     </div>
-
-                    <div class="form-group col-md-5">
+                    <div class="form-group col-md-4">
                         <label asp-for="ChapterPages" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Pages")</label>
                         <input asp-for="ChapterPages" class="form-control" />
                         <span asp-validation-for="ChapterPages" class="text-danger"></span>
@@ -132,15 +133,15 @@
                 </div>
 
                 <div class="form-group field-article">
-                    <label asp-for="ArticleAuthor" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("ArticleAuthor")</label>
-                    <input asp-for="ArticleAuthor" class="form-control" />
-                    <span asp-validation-for="ArticleAuthor" class="text-danger"></span>
-                </div>
-
-                <div class="form-group field-article">
                     <label asp-for="ArticleTitle" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("ArticleTitle")</label>
                     <input asp-for="ArticleTitle" class="form-control" />
                     <span asp-validation-for="ArticleTitle" class="text-danger"></span>
+                </div>
+
+                <div class="form-group field-article">
+                    <label asp-for="ArticleAuthor" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("ArticleAuthor")</label>
+                    <input asp-for="ArticleAuthor" class="form-control" />
+                    <span asp-validation-for="ArticleAuthor" class="text-danger"></span>
                 </div>
 
 
