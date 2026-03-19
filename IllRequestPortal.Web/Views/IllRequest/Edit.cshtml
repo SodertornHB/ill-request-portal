@@ -26,13 +26,13 @@
                 <div class="ill-section-title">@SharedLocalizer.GetLocalizedHtmlString("RequestInformation")</div>
 
                 <div class="form-group">
-                    <label asp-for="ArticleTitle" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Title")</label>
+                    <label asp-for="ArticleTitle" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("ArticleTitle")</label>
                     <input asp-for="ArticleTitle" class="form-control" />
                     <span asp-validation-for="ArticleTitle" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="ArticleAuthor" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Author")</label>
+                    <label asp-for="ArticleAuthor" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("ArticleAuthor")</label>
                     <input asp-for="ArticleAuthor" class="form-control" />
                     <span asp-validation-for="ArticleAuthor" class="text-danger"></span>
                 </div>
@@ -113,7 +113,13 @@
 
                     <div class="form-group col-md-6">
                         <label asp-for="Status" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Status")</label>
-                        <input asp-for="Status" class="form-control" />
+                        <select asp-for="Status" class="form-control">
+                            <option value="Registered">@SharedLocalizer.GetLocalizedHtmlString("Registered")</option>
+                            <option value="UnderArbete">@SharedLocalizer.GetLocalizedHtmlString("UnderArbete")</option>
+                            <option value="OrderedInLibris">@SharedLocalizer.GetLocalizedHtmlString("OrderedInLibris")</option>
+                            <option value="Purchased">@SharedLocalizer.GetLocalizedHtmlString("Purchased")</option>
+                            <option value="Rejected">@SharedLocalizer.GetLocalizedHtmlString("Rejected")</option>
+                        </select>
                         <span asp-validation-for="Status" class="text-danger"></span>
                     </div>
                 </div>
@@ -165,15 +171,12 @@
                         <label asp-for="UpdatedOn" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("UpdatedOn")</label>
                         <input asp-for="UpdatedOn" class="form-control" readonly />
                     </div>
-
-                    <div class="form-group col-md-4">
-                        <label asp-for="AddedInLibrisOn" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("AddedInLibrisOn")</label>
-                        <input asp-for="AddedInLibrisOn" class="form-control" readonly />
-                    </div>
                 </div>
             </div>
 
             <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="KohaUrl" />
+            <input type="hidden" asp-for="LibrisUrl" />
 
             <div class="form-group ill-form-actions">
                 <input type="submit" value="@SharedLocalizer.GetLocalizedHtmlString("Save")" class="btn btn-primary" />
