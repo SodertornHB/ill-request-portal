@@ -19,6 +19,9 @@ out/
 # VS Code
 .vscode/
 
+# Claude Code
+.claude/
+
 # NuGet
 *.nupkg
 *.snupkg

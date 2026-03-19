@@ -116,6 +116,10 @@
                             @SharedLocalizer.GetLocalizedHtmlString("Registered")
                         </option>
 
+                        <option value="UnderArbete" selected="@(item.Status == "UnderArbete")">
+                            @SharedLocalizer.GetLocalizedHtmlString("UnderArbete")
+                        </option>
+
                         <option value="OrderedInLibris" selected="@(item.Status == "OrderedInLibris")">
                             @SharedLocalizer.GetLocalizedHtmlString("OrderedInLibris")
                         </option>
