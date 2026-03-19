@@ -59,6 +59,8 @@ iisexpress/
 # Local configuration overrides
 appsettings.Development.json
 appsettings.Local.json
+appsettings.Production.json
+appsettings.Staging.json
 
 # NLog / other runtime logs
 *.nlog
