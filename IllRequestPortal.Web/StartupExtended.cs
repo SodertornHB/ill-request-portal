@@ -130,6 +130,7 @@ namespace Web
                             .ForMember(d => d.RequesterEmail, o => o.MapFrom(s => s.RequesterEmail))
                             .ForMember(d => d.CardNumber, o => o.MapFrom(s => s.CardNumber))
                             .ForMember(d => d.Status, o => o.MapFrom(s => s.Status))
+                            .ForMember(d => d.PurchaseFormatPreference, o => o.MapFrom(s => s.PurchaseFormatPreference))
                             .ForMember(d => d.CreatedOn, o => o.MapFrom(s => s.CreatedOn))
                             .ForMember(d => d.UpdatedOn, o => o.MapFrom(s => s.UpdatedOn))
                             .ForMember(d => d.AddedInLibrisOn, o => o.MapFrom(s => s.AddedInLibrisOn))

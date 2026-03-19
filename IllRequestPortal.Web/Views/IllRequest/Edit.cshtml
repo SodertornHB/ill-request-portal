@@ -112,6 +112,19 @@
                     </div>
 
                     <div class="form-group col-md-6">
+                        <label asp-for="PurchaseFormatPreference" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("PurchaseFormatPreference")</label>
+                        <select asp-for="PurchaseFormatPreference" class="form-control">
+                            <option value=""></option>
+                            <option value="Ebook">@SharedLocalizer.GetLocalizedHtmlString("FormatPreferenceEbook")</option>
+                            <option value="Printed">@SharedLocalizer.GetLocalizedHtmlString("FormatPreferencePrinted")</option>
+                            <option value="NoPreference">@SharedLocalizer.GetLocalizedHtmlString("FormatPreferenceNoPreference")</option>
+                        </select>
+                        <span asp-validation-for="PurchaseFormatPreference" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
                         <label asp-for="Status" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Status")</label>
                         <select asp-for="Status" class="form-control">
                             <option value="Registered">@SharedLocalizer.GetLocalizedHtmlString("Registered")</option>

@@ -316,6 +316,26 @@
   <data name="UnderArbete" xml:space="preserve">
   <value>Under arbete</value>
 </data>
+
+  <data name="PurchaseFormatPreferenceHeader" xml:space="preserve">
+  <value>Typ</value>
+</data>
+
+  <data name="PurchaseFormatPreference" xml:space="preserve">
+  <value>Om biblioteket köper in boken, vilket format föredrar du?</value>
+</data>
+
+  <data name="FormatPreferenceEbook" xml:space="preserve">
+  <value>E-bok</value>
+</data>
+
+  <data name="FormatPreferencePrinted" xml:space="preserve">
+  <value>Tryckt</value>
+</data>
+
+  <data name="FormatPreferenceNoPreference" xml:space="preserve">
+  <value>Ingen preferens</value>
+</data>
   <data name="Exported" xml:space="preserve">
     <value>Klar</value>
   </data>

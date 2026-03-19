@@ -50,6 +50,9 @@
                 @SharedLocalizer.GetLocalizedHtmlString("MaterialType")
             </th>
             <th>
+                @SharedLocalizer.GetLocalizedHtmlString("PurchaseFormatPreferenceHeader")
+            </th>
+            <th>
                 @SharedLocalizer.GetLocalizedHtmlString("RequesterName")
             </th>
             <th>
@@ -161,6 +164,12 @@
                 </td>
                 <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.MaterialType">
                     @SharedLocalizer.GetLocalizedHtmlString(item.MaterialType)
+                </td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.PurchaseFormatPreference))
+                    {
+                        @SharedLocalizer.GetLocalizedHtmlString("FormatPreference" + item.PurchaseFormatPreference)
+                    }
                 </td>
                 <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.RequesterName">
                     @item.RequesterName
