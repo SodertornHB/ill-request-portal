@@ -22,6 +22,9 @@ out/
 # Claude Code
 .claude/
 
+# Deployment scripts (contain server details)
+staging-deploy.ps1
+
 # NuGet
 *.nupkg
 *.snupkg
