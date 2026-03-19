@@ -343,6 +343,26 @@
   <data name="UnderArbete" xml:space="preserve">
   <value>In progress</value>
 </data>
+
+  <data name="PurchaseFormatPreferenceHeader" xml:space="preserve">
+  <value>Type</value>
+</data>
+
+  <data name="PurchaseFormatPreference" xml:space="preserve">
+  <value>If the library purchases the book, which format do you prefer?</value>
+</data>
+
+  <data name="FormatPreferenceEbook" xml:space="preserve">
+  <value>E-book</value>
+</data>
+
+  <data name="FormatPreferencePrinted" xml:space="preserve">
+  <value>Printed</value>
+</data>
+
+  <data name="FormatPreferenceNoPreference" xml:space="preserve">
+  <value>No preference</value>
+</data>
   <data name="Exported" xml:space="preserve">
     <value>Done</value>
   </data>
