@@ -74,7 +74,6 @@ function populateBibliographicFields(data) {
 
         $('#Volume').val('');
         $('#Issue').val(data.issue || '');
-        $('#ArticlePublicationYear').val(data.publicationYear || '');
         $('#Pages').val(data.pages || '');
 
     }
