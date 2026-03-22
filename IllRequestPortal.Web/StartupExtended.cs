@@ -105,7 +105,7 @@ namespace Web
                 mc.AddProfile(profile);
             });
 
-            return mapperConfig.CreateMapper();
+            return mapperConfig.CreateMapper(Activator.CreateInstance);
         }
 
         public static MappingConfiguration AddAdditionalMappingConfig(MappingConfiguration profile)
@@ -159,14 +159,14 @@ namespace Web
                                     dest.Title = src.JournalTitle ?? "";
                                     dest.Author = src.JournalAuthor ?? "";
                                     dest.PublicationYear = src.ArticlePublicationYear ?? "";
-                                    dest.Pages = src.ArticlePages?? "";
+                                    dest.Pages = src.ArticlePages ?? "";
                                 }
                                 else
                                 {
-                                    dest.ArticleTitle= string.Empty;
-                                    dest.ArticleAuthor= string.Empty;
-                                    dest.Title= string.Empty;
-                                    dest.Author= string.Empty;
+                                    dest.ArticleTitle = string.Empty;
+                                    dest.ArticleAuthor = string.Empty;
+                                    dest.Title = string.Empty;
+                                    dest.Author = string.Empty;
                                 }
                             });
 

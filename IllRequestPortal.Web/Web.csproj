@@ -11,12 +11,13 @@
   <ItemGroup>  
     
     <PackageReference Include="DotNet.NLog.NetCore" Version="7.0.0" />
-    <PackageReference Include="AutoMapper" Version="12.0.1" />
+        <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Localization" Version="2.2.0" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.4" />
     <PackageReference Include="NLog" Version="5.2.8" />
     <PackageReference Include="NLog.Database" Version="5.2.8" />
     <PackageReference Include="NLog.Web.AspNetCore" Version="5.3.8" />
+        <PackageReference Include="Sustainsys.Saml2.AspNetCore2" Version="2.10.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
 
     
