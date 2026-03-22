@@ -120,6 +120,40 @@ label {
     color: #2a7a2a;
 }
 
+.truncate {
+    max-width: 180px;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.truncate .truncate-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+}
+
+.copy-icon-btn {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    padding: 0 2px;
+    cursor: pointer;
+    color: #ccc;
+    font-size: 0.7rem;
+    line-height: 1;
+    transition: color 0.15s;
+}
+
+.copy-icon-btn:hover {
+    color: #555;
+}
+
+.copy-icon-btn:focus {
+    outline: none;
+}
+
 @keyframes spin {
     from {
         transform: rotate(0deg);
