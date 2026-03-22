@@ -123,19 +123,22 @@ label {
 .truncate {
     max-width: 180px;
     white-space: nowrap;
-    display: flex;
-    align-items: center;
-    gap: 3px;
+    overflow: hidden;
 }
 
 .truncate .truncate-text {
     overflow: hidden;
     text-overflow: ellipsis;
-    min-width: 0;
+    white-space: nowrap;
+    display: inline-block;
+    vertical-align: middle;
+    max-width: 155px;
 }
 
 .copy-icon-btn {
-    flex-shrink: 0;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 3px;
     background: none;
     border: none;
     padding: 0 2px;
