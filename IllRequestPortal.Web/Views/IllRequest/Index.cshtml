@@ -142,16 +142,16 @@
                     @(item.CreatedOn?.ToString("yyyy-MM-dd"))
                 </td>
                 <td class="truncate tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.Title">
-                    @item.Title
+                    <span class="truncate-text">@item.Title</span>@if (!string.IsNullOrEmpty(item.Title)) {<button class="copy-icon-btn" data-copy="@item.Title" tabindex="-1"><i class="fas fa-copy"></i></button>}
                 </td>
                 <td class="truncate tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.Author">
-                    @item.Author
+                    <span class="truncate-text">@item.Author</span>@if (!string.IsNullOrEmpty(item.Author)) {<button class="copy-icon-btn" data-copy="@item.Author" tabindex="-1"><i class="fas fa-copy"></i></button>}
                 </td>
                 <td class="truncate tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.ArticleTitle">
-                    @item.ArticleTitle
+                    <span class="truncate-text">@item.ArticleTitle</span>@if (!string.IsNullOrEmpty(item.ArticleTitle)) {<button class="copy-icon-btn" data-copy="@item.ArticleTitle" tabindex="-1"><i class="fas fa-copy"></i></button>}
                 </td>
                 <td class="truncate tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.ArticleAuthor">
-                    @item.ArticleAuthor
+                    <span class="truncate-text">@item.ArticleAuthor</span>@if (!string.IsNullOrEmpty(item.ArticleAuthor)) {<button class="copy-icon-btn" data-copy="@item.ArticleAuthor" tabindex="-1"><i class="fas fa-copy"></i></button>}
                 </td>
                 <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.PublicationYear">
                     @item.PublicationYear

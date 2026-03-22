@@ -282,7 +282,13 @@ $(document).ready(function () {
 
     });
 
-    bindBibliographicLookup(texts)    
+    bindBibliographicLookup(texts);
+
+    $(document).on('click', '.copy-icon-btn', function (e) {
+        e.stopPropagation();
+        const text = $(this).data('copy');
+        navigator.clipboard.writeText(text);
+    });
 
 });
 
