@@ -1,9 +1,3 @@
-
-//--------------------------------------------------------------------------------------------------------------------
-// Warning! This is an auto generated file. Changes may be overwritten. 
-// Generator version: 0.0.1.0
-//--------------------------------------------------------------------------------------------------------------------
-
 using AutoMapper;
 using IllRequestPortal.Logic.Model;
 using IllRequestPortal.Logic.Services;
@@ -14,6 +8,7 @@ using System.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Sh.Library.Authentication;
 
 namespace IllRequestPortal.Web.Controllers
 {
@@ -39,11 +34,13 @@ namespace IllRequestPortal.Web.Controllers
             return View(viewModels.OrderByDescending(x => x.Id));
         }
 
+        [NoLibraryAuth]
         public ActionResult Create()
         {
             return View(new CreateIllRequestViewModel());
         }
 
+        [NoLibraryAuth]
         [HttpPost]
         public virtual async Task<ActionResult> Create([FromForm] CreateIllRequestViewModel viewModel)
         {

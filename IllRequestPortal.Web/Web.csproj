@@ -1,71 +1,77 @@
-﻿<!-- Warning! This is an auto generated file. Changes may be overwritten -->
+<!-- Warning! This is an auto generated file. Changes may be overwritten -->
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework> 
-    <Version>0.0.1</Version>
-    <SatelliteResourceLanguages>none</SatelliteResourceLanguages>
-    <Description>Auto generated project</Description>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Version>0.0.1</Version>
+        <SatelliteResourceLanguages>none</SatelliteResourceLanguages>
+        <Description>Auto generated project</Description>
+    </PropertyGroup>
 
-  <ItemGroup>  
-    
-    <PackageReference Include="DotNet.NLog.NetCore" Version="7.0.0" />
-        <PackageReference Include="AutoMapper" Version="13.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Localization" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.4" />
-    <PackageReference Include="NLog" Version="5.2.8" />
-    <PackageReference Include="NLog.Database" Version="5.2.8" />
-    <PackageReference Include="NLog.Web.AspNetCore" Version="5.3.8" />
-        <PackageReference Include="Sustainsys.Saml2.AspNetCore2" Version="2.10.0" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
-
-    
-  </ItemGroup>  
-  
-  <ItemGroup>
-    <ProjectReference Include="..\IllRequestPortal.Logic\Logic.csproj" />    
-  </ItemGroup>
-  
-  <ItemGroup>
-    <Folder Include="logs\" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <Content Update="nlog.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="nlog.Development.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot\js\custom-site.js">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-  </ItemGroup>
-
-
-  <Target Name="CopyOrgSpecificFiles" BeforeTargets="Build">
     <ItemGroup>
-      <OrgSpecificFiles Include="..\organizational-specific\web\**\*.css" />
-      <OrgSpecificFiles Include="..\organizational-specific\web\**\*.js" />
-      <OrgSpecificFiles Include="..\organizational-specific\web\**\*.cs" />
-      <OrgSpecificFiles Include="..\organizational-specific\web\**\*.png" />
-      <OrgSpecificFiles Include="..\organizational-specific\web\*.json" />
-      <OrgSpecificFiles Include="..\organizational-specific\web\*.csproj" />
-      <OrgSpecificFiles Include="..\organizational-specific\web\*.ps1" />
-      <OrgSpecificFiles Include="..\organizational-specific\web\**\*.resx" />
-      <OrgSpecificFiles Include="..\organizational-specific\web\**\*.xml" />
-      <OrgSpecificFiles Include="..\organizational-specific\web\**\*.cshtml" />
+
+        <PackageReference Include="DotNet.NLog.NetCore" Version="7.0.0" />
+        <PackageReference Include="AutoMapper" Version="13.0.1" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Localization" Version="2.2.0" />
+        <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.4" />
+        <PackageReference Include="NLog" Version="5.2.8" />
+        <PackageReference Include="NLog.Database" Version="5.2.8" />
+        <PackageReference Include="NLog.Web.AspNetCore" Version="5.3.8" />
+        <PackageReference Include="Sustainsys.Saml2.AspNetCore2" Version="2.10.0" />
+        <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+        <PackageReference Include="Sh.Library.MailSender" Version="1.0.1" />
+        <PackageReference Include="Sh.Library.Authentication" Version="1.2.12" />
+
     </ItemGroup>
 
-    <Message Text="Copying @(OrgSpecificFiles) to $(ProjectDir)%(OrgSpecificFiles.RecursiveDir)%(Filename)%(Extension)" Importance="high" />
+    <ItemGroup>
+        <Folder Include="logs\" />
+        <Folder Include="wwwroot\img\" />
+    </ItemGroup>
 
-    <Copy SourceFiles="@(OrgSpecificFiles)" DestinationFiles="@(OrgSpecificFiles->'$(ProjectDir)%(RecursiveDir)%(Filename)%(Extension)')" OverwriteReadOnlyFiles="true" />
-  </Target>
+    <ItemGroup>
+        <ProjectReference Include="..\IllRequestPortal.Logic\Logic.csproj" />
+    </ItemGroup>
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="echo  -------------------------------------------------------------------------------------------- &#xD;&#xA;echo  *** Start custom post build events *** &#xD;&#xA;echo  --------------------------------------------------------------------------------------------&#xD;&#xA;echo.&#xD;&#xA;echo  If you are making changes to files that are updated by the code generator application&#xD;&#xA;echo  it's a good idea to wite protect them here. E.g. attrib +r &quot;/{path}/Web.csproj&quot; &#xD;&#xA;echo.&#xD;&#xA;echo  -------------------------------------------------------------------------------------------- &#xD;&#xA;echo  *** End custom post build events *** &#xD;&#xA;echo  --------------------------------------------------------------------------------------------" />
-  </Target>
+    <ItemGroup>
+        <Content Update="nlog.config">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="nlog.Development.config">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Update="Migration\Migrations.sql">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Sustainsys.Saml2.Tests.pfx">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+
+    <Target Name="CopyOrgSpecificFiles" BeforeTargets="Build">
+        <ItemGroup>
+            <OrgSpecificFiles Include="..\organizational-specific\web\**\*.css" />
+            <OrgSpecificFiles Include="..\organizational-specific\web\**\*.js" />
+            <OrgSpecificFiles Include="..\organizational-specific\web\**\*.cs" />
+            <OrgSpecificFiles Include="..\organizational-specific\web\**\*.png" />
+            <OrgSpecificFiles Include="..\organizational-specific\web\*.json" />
+            <OrgSpecificFiles Include="..\organizational-specific\web\*.csproj" />
+            <OrgSpecificFiles Include="..\organizational-specific\web\*.ps1" />
+            <OrgSpecificFiles Include="..\organizational-specific\web\**\*.resx" />
+            <OrgSpecificFiles Include="..\organizational-specific\web\**\*.xml" />
+            <OrgSpecificFiles Include="..\organizational-specific\web\**\*.cshtml" />
+        </ItemGroup>
+
+        <Message Text="Copying @(OrgSpecificFiles) to $(ProjectDir)%(OrgSpecificFiles.RecursiveDir)%(Filename)%(Extension)" Importance="high" />
+
+        <Copy SourceFiles="@(OrgSpecificFiles)" DestinationFiles="@(OrgSpecificFiles->'$(ProjectDir)%(RecursiveDir)%(Filename)%(Extension)')" OverwriteReadOnlyFiles="true" />
+    </Target>
+
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+        <Exec Command="echo  -------------------------------------------------------------------------------------------- &#xD;&#xA;echo  *** Start custom post build events *** &#xD;&#xA;echo  --------------------------------------------------------------------------------------------&#xD;&#xA;echo.&#xD;&#xA;echo  If you are making changes to files that are updated by the code generator application&#xD;&#xA;echo  it's a good idea to wite protect them here. E.g. attrib +r &quot;/{path}/Web.csproj&quot; &#xD;&#xA;echo.&#xD;&#xA;echo  -------------------------------------------------------------------------------------------- &#xD;&#xA;echo  *** End custom post build events *** &#xD;&#xA;echo  --------------------------------------------------------------------------------------------" />
+    </Target>
 
 </Project>
