@@ -442,4 +442,7 @@
   <data name="Pages" xml:space="preserve">
   <value>Sidor</value>
 </data>
+  <data name="ClearForm" xml:space="preserve">
+    <value>Rensa formulär</value>
+  </data>
 </root>

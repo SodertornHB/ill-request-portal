@@ -282,6 +282,20 @@ $(document).ready(function () {
 
     });
 
+    $('#clearFormBtn').on('click', function () {
+        setBibliographicFieldsDisabled(false);
+        $('#RequesterName').prop('disabled', false);
+        $('#RequesterEmail').prop('disabled', false);
+
+        $('form input[type="text"], form input[type="email"], form textarea, form select').val('');
+        $('form input[type="hidden"]').val('');
+
+        $('.bibliographicLookupStatus, #bibliographicLookupStatus, #patronLookupStatus').addClass('hidden').text('');
+        $('#bibliographicLookupSpinner, #patronLookupSpinner').addClass('hidden');
+
+        updatematerialTypeSelectFields();
+    });
+
     bindBibliographicLookup(texts);
 
     $(document).on('click', '.copy-icon-btn', function (e) {

@@ -449,5 +449,8 @@
   <data name="ChapterAuthor" xml:space="preserve">
   <value>Chapter author</value>
 </data>
-  
+  <data name="ClearForm" xml:space="preserve">
+    <value>Clear form</value>
+  </data>
+
 </root>

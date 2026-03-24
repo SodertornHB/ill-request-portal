@@ -19,6 +19,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using Sh.Library.Authentication;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -71,11 +72,14 @@ namespace Web
                 },
                 Formatting = Formatting.Indented
             };
+
+            services.AddLibraryAuthentication(authenticationHost: Configuration["Authentication:Host"]);
         }
 
         protected override void CustomConfiguration(IApplicationBuilder app, IWebHostEnvironment env)
         {
-           
+            app.UseLibraryAuthentication();
+            app.UseLibraryApiAuthentication();
         }
 
         protected override void ConfigureExceptionHandler(IApplicationBuilder app)
