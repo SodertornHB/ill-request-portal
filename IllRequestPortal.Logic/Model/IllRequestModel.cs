@@ -33,6 +33,7 @@ namespace IllRequestPortal.Logic.Model
         public virtual DateTime? CreatedOn {get;set;}
         public virtual DateTime? UpdatedOn {get;set;}
         public virtual DateTime? AddedInLibrisOn {get;set;}
-      
+        public virtual DateTime? DeletedOn {get;set;}
+
     }
 } 
