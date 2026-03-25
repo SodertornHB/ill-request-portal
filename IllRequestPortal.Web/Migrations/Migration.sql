@@ -161,3 +161,15 @@ BEGIN
         ADD PurchaseFormatPreference NVARCHAR(50) NULL;
 END
 GO
+
+IF NOT EXISTS (
+    SELECT 1
+    FROM sys.columns
+    WHERE name = 'DeletedOn'
+      AND object_id = OBJECT_ID('dbo.IllRequest')
+)
+BEGIN
+    ALTER TABLE dbo.IllRequest
+        ADD DeletedOn DATETIME2 NULL;
+END
+GO
