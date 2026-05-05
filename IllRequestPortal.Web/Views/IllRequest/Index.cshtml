@@ -18,6 +18,10 @@
 <table class="table table-striped table-sm data-table ill-table">
     <thead>
         <tr>
+            <th></th>
+            <th>
+                @SharedLocalizer.GetLocalizedHtmlString("Status")
+            </th>
             <th>
                 @SharedLocalizer.GetLocalizedHtmlString("CreatedOn")
             </th>
@@ -46,6 +50,9 @@
                 @SharedLocalizer.GetLocalizedHtmlString("MaterialType")
             </th>
             <th>
+                @SharedLocalizer.GetLocalizedHtmlString("PurchaseFormatPreferenceHeader")
+            </th>
+            <th>
                 @SharedLocalizer.GetLocalizedHtmlString("RequesterName")
             </th>
             <th>
@@ -54,51 +61,54 @@
             <th>
                 @SharedLocalizer.GetLocalizedHtmlString("CardNumber")
             </th>
-            <th>
-                @SharedLocalizer.GetLocalizedHtmlString("Status")
-            </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
             <tr>
-                <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@(item.CreatedOn?.ToString("yyyy-MM-dd HH:mm"))">
-                    @(item.CreatedOn?.ToString("yyyy-MM-dd"))
-                </td>
-                <td class="truncate tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.Title">
-                    @item.Title
-                </td>
-                <td class="truncate tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.Author">
-                    @item.Author
-                </td>
-                <td class="truncate tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.ArticleTitle">
-                    @item.ArticleTitle
-                </td>
-                <td class="truncate tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.ArticleAuthor">
-                    @item.ArticleAuthor
-                </td>
-                <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.PublicationYear">
-                    @item.PublicationYear
-                </td>
-                <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.Isbn">
-                    @item.Isbn
-                </td>
-                <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.Issn">
-                    @item.Issn
-                </td>
-                <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.MaterialType">
-                    @SharedLocalizer.GetLocalizedHtmlString(item.MaterialType)
-                </td>
-                <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.RequesterName">
-                    @item.RequesterName
-                </td>
-                <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.RequesterEmail">
-                    @Html.Raw(item.EmailWithLink())
-                </td>
-                <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.CardNumber">
-                    @item.CardNumber
+                <td class="ill-actions">
+
+                    <a asp-controller="IllRequest"
+                       asp-action="Edit"
+                       asp-route-id="@item.Id"
+                       class="btn btn-sm btn-outline-primary icon-btn tooltip-r"
+                       data-toggle="tooltip"
+                       title="@item.Description">
+                        <i class="bi bi-pencil"></i>
+                    </a>
+
+                    <a asp-controller="IllRequest"
+                       asp-action="Remove"
+                       asp-route-id="@item.Id"
+                       class="btn btn-sm btn-outline-danger icon-btn tooltip-r"
+                       data-toggle="tooltip"
+                       title="@SharedLocalizer.GetLocalizedHtmlString("Delete")">
+                        <i class="bi bi-trash"></i>
+                    </a>
+
+                    @if (!string.IsNullOrEmpty(item.KohaUrl))
+                    {
+                        <a href="@item.KohaUrl"
+                           target="_blank"
+                           class="btn btn-sm btn-outline-secondary icon-btn tooltip-r"
+                           data-toggle="tooltip"
+                           title="@SharedLocalizer.GetLocalizedHtmlString("KohaRecord")">
+                            <i class="bi bi-book"></i>
+                        </a>
+                    }
+
+                    @if (!string.IsNullOrEmpty(item.LibrisUrl))
+                    {
+                        <a href="@item.LibrisUrl"
+                           target="_blank"
+                           class="btn btn-sm btn-outline-secondary icon-btn tooltip-r"
+                           data-toggle="tooltip"
+                           title="@SharedLocalizer.GetLocalizedHtmlString("LibrisRecord")">
+                            <i class="bi bi-search"></i>
+                        </a>
+                    }
+
                 </td>
                 <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.Status">
 
@@ -107,6 +117,10 @@
 
                         <option value="Registered" selected="@(item.Status == "Registered")">
                             @SharedLocalizer.GetLocalizedHtmlString("Registered")
+                        </option>
+
+                        <option value="UnderArbete" selected="@(item.Status == "UnderArbete")">
+                            @SharedLocalizer.GetLocalizedHtmlString("UnderArbete")
                         </option>
 
                         <option value="OrderedInLibris" selected="@(item.Status == "OrderedInLibris")">
@@ -124,27 +138,47 @@
                     </select>
 
                 </td>
-
-                <td class="ill-actions">
-
-                    <a asp-controller="IllRequest"
-                       asp-action="Edit"
-                       asp-route-id="@item.Id"
-                       class="btn btn-sm btn-outline-primary icon-btn tooltip-r"
-                       data-toggle="tooltip"
-                       title="@SharedLocalizer.GetLocalizedHtmlString("Edit")">
-                        <i class="bi bi-pencil"></i>
-                    </a>
-
-                    <a asp-controller="IllRequest"
-                       asp-action="Remove"
-                       asp-route-id="@item.Id"
-                       class="btn btn-sm btn-outline-danger icon-btn tooltip-r"
-                       data-toggle="tooltip"
-                       title="@SharedLocalizer.GetLocalizedHtmlString("Delete")">
-                        <i class="bi bi-trash"></i>
-                    </a>
-
+                <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@(item.CreatedOn?.ToString("yyyy-MM-dd HH:mm"))">
+                    @(item.CreatedOn?.ToString("yyyy-MM-dd"))
+                </td>
+                <td class="truncate tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.Title">
+                    <span class="truncate-text">@item.Title</span>@if (!string.IsNullOrEmpty(item.Title)) {<button class="copy-icon-btn" data-copy="@item.Title" tabindex="-1"><i class="fas fa-copy"></i></button>}
+                </td>
+                <td class="truncate tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.Author">
+                    <span class="truncate-text">@item.Author</span>@if (!string.IsNullOrEmpty(item.Author)) {<button class="copy-icon-btn" data-copy="@item.Author" tabindex="-1"><i class="fas fa-copy"></i></button>}
+                </td>
+                <td class="truncate tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.ArticleTitle">
+                    <span class="truncate-text">@item.ArticleTitle</span>@if (!string.IsNullOrEmpty(item.ArticleTitle)) {<button class="copy-icon-btn" data-copy="@item.ArticleTitle" tabindex="-1"><i class="fas fa-copy"></i></button>}
+                </td>
+                <td class="truncate tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.ArticleAuthor">
+                    <span class="truncate-text">@item.ArticleAuthor</span>@if (!string.IsNullOrEmpty(item.ArticleAuthor)) {<button class="copy-icon-btn" data-copy="@item.ArticleAuthor" tabindex="-1"><i class="fas fa-copy"></i></button>}
+                </td>
+                <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.PublicationYear">
+                    @item.PublicationYear
+                </td>
+                <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.Isbn">
+                    @item.Isbn
+                </td>
+                <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.Issn">
+                    @item.Issn
+                </td>
+                <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.MaterialType">
+                    @SharedLocalizer.GetLocalizedHtmlString(item.MaterialType)
+                </td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.PurchaseFormatPreference))
+                    {
+                        @SharedLocalizer.GetLocalizedHtmlString("FormatPreference" + item.PurchaseFormatPreference)
+                    }
+                </td>
+                <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.RequesterName">
+                    @item.RequesterName
+                </td>
+                <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.RequesterEmail">
+                    @Html.Raw(item.EmailWithLink())
+                </td>
+                <td class="tooltip-r" data-toggle="tooltip" data-placement="left" title="@item.CardNumber">
+                    @item.CardNumber
                 </td>
             </tr>
         }

@@ -26,9 +26,14 @@ namespace IllRequestPortal.Logic.Model
         public virtual string RequesterEmail {get;set;}
         public virtual string CardNumber {get;set;}
         public virtual string Status {get;set;}
+        public virtual string Description { get; set; }
+        public virtual string KohaUrl { get; set; }
+        public virtual string LibrisUrl { get; set; }
+        public virtual string PurchaseFormatPreference { get; set; }
         public virtual DateTime? CreatedOn {get;set;}
         public virtual DateTime? UpdatedOn {get;set;}
         public virtual DateTime? AddedInLibrisOn {get;set;}
-      
+        public virtual DateTime? DeletedOn {get;set;}
+
     }
 } 

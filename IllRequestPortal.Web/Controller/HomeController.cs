@@ -1,9 +1,3 @@
-
-//--------------------------------------------------------------------------------------------------------------------
-// Warning! This is an auto generated file. Changes may be overwritten. 
-// Generator version: 0.0.1.0
-//-------------------------------------------------------------------------------------------------------------------- 
-
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
@@ -42,7 +36,7 @@ namespace Web.Controllers
             SetCookie(culture);
 
             return Redirect(returnUrl);
-        }        
+        }
 
         [HttpGet("error")]
         public IActionResult Error()
@@ -50,7 +44,7 @@ namespace Web.Controllers
             return View();
         }
 
-        [HttpGet("no-auth")]
+       [HttpGet("no-auth")]
         public IActionResult NoAuth()
         {
             return View();
