@@ -194,7 +194,8 @@
                                class="form-control lookup-input"
                                maxlength="10"
                                inputmode="numeric"
-                               pattern="\d{10}" />
+                               pattern="\d{10}"
+                               required/>
                         <span id="patronLookupSpinner" class="loading-spinner hidden"></span>
                     </div>
                     <div id="patronLookupStatus" class="lookup-status-panel lookup-status-neutral hidden"></div>
@@ -218,7 +219,7 @@
             <input type="hidden" asp-for="LibrisUrl" />
 
             <div class="form-group">
-                <input type="submit" value="@SharedLocalizer.GetLocalizedHtmlString("Create")" class="btn btn-primary" />
+                <input type="submit" value="@SharedLocalizer.GetLocalizedHtmlString("Send")" class="btn btn-primary" />
                 <button type="button" id="clearFormBtn" class="btn btn-secondary ms-2">@SharedLocalizer.GetLocalizedHtmlString("ClearForm")</button>
             </div>
         </form>
