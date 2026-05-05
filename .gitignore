@@ -56,3 +56,4 @@ appsettings.Local.json
 
 # NLog / other runtime logs
 *.nlog
+/IllRequestPortal.Web/appsettings.production.secret.json
