@@ -174,6 +174,9 @@
   <data name="BookPublicationYear" xml:space="preserve">
     <value>Publication Year</value>
   </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
   <data name="Edition" xml:space="preserve">
     <value>Edition</value>
   </data>
@@ -291,6 +294,12 @@
   <data name="KohaBorrowLinkText" xml:space="preserve">
     <value>View the record in the library catalogue</value>
   </data>
+  <data name="KohaRecord" xml:space="preserve">
+    <value>View biblio</value>
+  </data>
+  <data name="LibrisRecord" xml:space="preserve">
+    <value>View in Libris</value>
+  </data>
   <data name="MissingBiblioIdMessage" xml:space="preserve">
     <value>Could not identify the catalogue record.</value>
   </data>
@@ -329,6 +338,30 @@
 
   <data name="Rejected" xml:space="preserve">
   <value>Rejected</value>
+</data>
+
+  <data name="UnderArbete" xml:space="preserve">
+  <value>In progress</value>
+</data>
+
+  <data name="PurchaseFormatPreferenceHeader" xml:space="preserve">
+  <value>Type</value>
+</data>
+
+  <data name="PurchaseFormatPreference" xml:space="preserve">
+  <value>If the library purchases the book, which format do you prefer?</value>
+</data>
+
+  <data name="FormatPreferenceEbook" xml:space="preserve">
+  <value>E-book</value>
+</data>
+
+  <data name="FormatPreferencePrinted" xml:space="preserve">
+  <value>Printed</value>
+</data>
+
+  <data name="FormatPreferenceNoPreference" xml:space="preserve">
+  <value>No preference</value>
 </data>
   <data name="Exported" xml:space="preserve">
     <value>Done</value>
@@ -416,5 +449,8 @@
   <data name="ChapterAuthor" xml:space="preserve">
   <value>Chapter author</value>
 </data>
-  
+  <data name="ClearForm" xml:space="preserve">
+    <value>Clear form</value>
+  </data>
+
 </root>

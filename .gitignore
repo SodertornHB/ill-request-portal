@@ -19,6 +19,12 @@ out/
 # VS Code
 .vscode/
 
+# Claude Code
+.claude/
+
+# Deployment scripts (contain server details)
+staging-deploy.ps1
+
 # NuGet
 *.nupkg
 *.snupkg
@@ -53,6 +59,8 @@ iisexpress/
 # Local configuration overrides
 appsettings.Development.json
 appsettings.Local.json
+appsettings.Production.json
+appsettings.Staging.json
 
 # NLog / other runtime logs
 *.nlog

@@ -75,7 +75,6 @@ namespace Web
 
         protected override void CustomConfiguration(IApplicationBuilder app, IWebHostEnvironment env)
         {
-           
         }
 
         protected override void ConfigureExceptionHandler(IApplicationBuilder app)
@@ -105,7 +104,7 @@ namespace Web
                 mc.AddProfile(profile);
             });
 
-            return mapperConfig.CreateMapper();
+            return mapperConfig.CreateMapper(Activator.CreateInstance);
         }
 
         public static MappingConfiguration AddAdditionalMappingConfig(MappingConfiguration profile)
@@ -130,6 +129,7 @@ namespace Web
                             .ForMember(d => d.RequesterEmail, o => o.MapFrom(s => s.RequesterEmail))
                             .ForMember(d => d.CardNumber, o => o.MapFrom(s => s.CardNumber))
                             .ForMember(d => d.Status, o => o.MapFrom(s => s.Status))
+                            .ForMember(d => d.PurchaseFormatPreference, o => o.MapFrom(s => s.PurchaseFormatPreference))
                             .ForMember(d => d.CreatedOn, o => o.MapFrom(s => s.CreatedOn))
                             .ForMember(d => d.UpdatedOn, o => o.MapFrom(s => s.UpdatedOn))
                             .ForMember(d => d.AddedInLibrisOn, o => o.MapFrom(s => s.AddedInLibrisOn))
@@ -158,14 +158,14 @@ namespace Web
                                     dest.Title = src.JournalTitle ?? "";
                                     dest.Author = src.JournalAuthor ?? "";
                                     dest.PublicationYear = src.ArticlePublicationYear ?? "";
-                                    dest.Pages = src.ArticlePages?? "";
+                                    dest.Pages = src.ArticlePages ?? "";
                                 }
                                 else
                                 {
-                                    dest.ArticleTitle= string.Empty;
-                                    dest.ArticleAuthor= string.Empty;
-                                    dest.Title= string.Empty;
-                                    dest.Author= string.Empty;
+                                    dest.ArticleTitle = string.Empty;
+                                    dest.ArticleAuthor = string.Empty;
+                                    dest.Title = string.Empty;
+                                    dest.Author = string.Empty;
                                 }
                             });
 
