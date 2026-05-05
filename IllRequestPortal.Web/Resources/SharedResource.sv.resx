@@ -217,10 +217,10 @@
     <value>Uppdaterad</value>
   </data>
   <data name="BibliographicLookup" xml:space="preserve">
-    <value>Bibliografisk uppslagning</value>
+    <value>Ange materialtyp</value>
   </data>
   <data name="EnterMatrialTypeAndIsbnIssnFirst" xml:space="preserve">
-    <value>Ange materialtyp först och sedan isbn/issn</value>
+    <value>Ange materialtyp först och sedan ISBN/ISSN om möjligt. Fyll annars i beställningsinformationen manuellt.</value>
   </data>
   <data name="IsbnIssn" xml:space="preserve">
     <value>ISBN eller ISSN</value>
@@ -408,5 +408,8 @@
     </data>
   <data name="Pages" xml:space="preserve">
   <value>Sidor</value>
+</data>
+	<data name="Send" xml:space="preserve">
+  <value>Skicka</value>
 </data>
 </root>
