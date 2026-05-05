@@ -325,44 +325,35 @@
     <value>Created</value>
   </data>
   <data name="Registered" xml:space="preserve">
-  <value>Registered</value>
-</data>
-
+    <value>Registered</value>
+  </data>
   <data name="OrderedInLibris" xml:space="preserve">
-  <value>Ordered in Libris</value>
-</data>
-
+    <value>Ordered in Libris</value>
+  </data>
   <data name="Purchased" xml:space="preserve">
-  <value>Purchased</value>
-</data>
-
+    <value>Purchased</value>
+  </data>
   <data name="Rejected" xml:space="preserve">
-  <value>Rejected</value>
-</data>
-
+    <value>Rejected</value>
+  </data>
   <data name="UnderArbete" xml:space="preserve">
-  <value>In progress</value>
-</data>
-
+    <value>In progress</value>
+  </data>
   <data name="PurchaseFormatPreferenceHeader" xml:space="preserve">
-  <value>Type</value>
-</data>
-
+    <value>Type</value>
+  </data>
   <data name="PurchaseFormatPreference" xml:space="preserve">
-  <value>If the library purchases the book, which format do you prefer?</value>
-</data>
-
+    <value>If the library purchases the book, which format do you prefer?</value>
+  </data>
   <data name="FormatPreferenceEbook" xml:space="preserve">
-  <value>E-book</value>
-</data>
-
+    <value>E-book</value>
+  </data>
   <data name="FormatPreferencePrinted" xml:space="preserve">
-  <value>Printed</value>
-</data>
-
+    <value>Printed</value>
+  </data>
   <data name="FormatPreferenceNoPreference" xml:space="preserve">
-  <value>No preference</value>
-</data>
+    <value>No preference</value>
+  </data>
   <data name="Exported" xml:space="preserve">
     <value>Done</value>
   </data>
@@ -403,54 +394,48 @@
     <value>Looking Up Bibliographic Record</value>
   </data>
   <data name="NoBibliographicRecordFoundMessage" xml:space="preserve">
-  <value>No bibliographic record found.</value>
-</data>
-
+    <value>No bibliographic record found.</value>
+  </data>
   <data name="LibrarySystemErrorMessage" xml:space="preserve">
-  <value>An error occurred while contacting the library system.</value>
-</data>
-
+    <value>An error occurred while contacting the library system.</value>
+  </data>
   <data name="TitleTooltip" xml:space="preserve">
-  <value>Book/journal title</value>
-</data>
-
+    <value>Book/journal title</value>
+  </data>
   <data name="ArticleTitleTooltip" xml:space="preserve">
-  <value>Chapter/artical title</value>
-</data>
-
+    <value>Chapter/artical title</value>
+  </data>
   <data name="BookTitle" xml:space="preserve">
-  <value>Book title</value>
-</data>
-
+    <value>Book title</value>
+  </data>
   <data name="BookAuthor" xml:space="preserve">
-  <value>Book author</value>
-</data>
-
+    <value>Book author</value>
+  </data>
   <data name="ArticleTitle" xml:space="preserve">
-  <value>Article title</value>
-</data>
-
+    <value>Article title</value>
+  </data>
   <data name="ArticleAuthor" xml:space="preserve">
-  <value>Article author</value>
-</data>
-
+    <value>Article author</value>
+  </data>
   <data name="JournalTitle" xml:space="preserve">
-  <value>Journal title</value>
-</data>
-
+    <value>Journal title</value>
+  </data>
   <data name="JournalAuthor" xml:space="preserve">
-  <value>Journal author</value>
-</data>
-
+    <value>Journal author</value>
+  </data>
   <data name="ChapterTitle" xml:space="preserve">
-  <value>Chapter title</value>
-</data>
-
+    <value>Chapter title</value>
+  </data>
   <data name="ChapterAuthor" xml:space="preserve">
-  <value>Chapter author</value>
-</data>
+    <value>Chapter author</value>
+  </data>
   <data name="ClearForm" xml:space="preserve">
     <value>Clear form</value>
   </data>
-
+  <data name="ArticleAuthorTooltip" xml:space="preserve">
+    <value>Chapter/article author</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Send</value>
+  </data>
 </root>
