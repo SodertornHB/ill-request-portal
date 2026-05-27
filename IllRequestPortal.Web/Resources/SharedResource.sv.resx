@@ -219,18 +219,6 @@
   <data name="UpdatedOn" xml:space="preserve">
     <value>Uppdaterad</value>
   </data>
-  <data name="Origin" xml:space="preserve">
-    <value>Ursprung</value>
-  </data>
-  <data name="Message" xml:space="preserve">
-    <value>Meddelande</value>
-  </data>
-  <data name="ClientVersion" xml:space="preserve">
-    <value>Version</value>
-  </data>
-  <data name="DatabaseVersion" xml:space="preserve">
-    <value>Databasversion</value>
-  </data>
   <data name="BibliographicLookup" xml:space="preserve">
     <value>Ange materialtyp</value>
   </data>
@@ -280,7 +268,7 @@
     <value>Gå till posten i bibliotekskatalogen</value>
   </data>
   <data name="KohaRecord" xml:space="preserve">
-    <value>Visa bibliografi</value>
+    <value>Visa befintlig post</value>
   </data>
   <data name="LibrisRecord" xml:space="preserve">
     <value>Visa i Libris</value>
@@ -310,35 +298,44 @@
     <value>Skapad</value>
   </data>
   <data name="Registered" xml:space="preserve">
-    <value>Registrerad</value>
-  </data>
+  <value>Registrerad</value>
+</data>
+
   <data name="OrderedInLibris" xml:space="preserve">
-    <value>Beställd i Libris</value>
-  </data>
+  <value>Beställd i Libris</value>
+</data>
+
   <data name="Purchased" xml:space="preserve">
-    <value>Köps in</value>
-  </data>
+  <value>Köps in</value>
+</data>
+
   <data name="Rejected" xml:space="preserve">
-    <value>Avslagen</value>
-  </data>
+  <value>Avslagen</value>
+</data>
+
   <data name="UnderArbete" xml:space="preserve">
-    <value>Under arbete</value>
-  </data>
+  <value>Under arbete</value>
+</data>
+
   <data name="PurchaseFormatPreferenceHeader" xml:space="preserve">
-    <value>Format</value>
-  </data>
+  <value>Typ</value>
+</data>
+
   <data name="PurchaseFormatPreference" xml:space="preserve">
-    <value>Om biblioteket köper boken, vilket format föredrar du?</value>
-  </data>
+  <value>Om biblioteket köper in boken, vilket format föredrar du?</value>
+</data>
+
   <data name="FormatPreferenceEbook" xml:space="preserve">
-    <value>Ebok</value>
-  </data>
+  <value>E-bok</value>
+</data>
+
   <data name="FormatPreferencePrinted" xml:space="preserve">
-    <value>Tryckt</value>
-  </data>
+  <value>Tryckt</value>
+</data>
+
   <data name="FormatPreferenceNoPreference" xml:space="preserve">
-    <value>Ingen preferens</value>
-  </data>
+  <value>Ingen preferens</value>
+</data>
   <data name="Exported" xml:space="preserve">
     <value>Klar</value>
   </data>
@@ -378,61 +375,71 @@
   <data name="LookingUpBibliographicRecord" xml:space="preserve">
     <value>Söker efter posten</value>
   </data>
+
   <data name="NoBibliographicRecordFoundMessage" xml:space="preserve">
-    <value>Ingen bibliografisk post hittades. Skriv in uppgifterna nedan.</value>
-  </data>
+  <value>Ingen bibliografisk post hittades. Skriv in uppgifterna nedan.</value>
+</data>
+
   <data name="LibrarySystemErrorMessage" xml:space="preserve">
-    <value>Ett fel uppstod när informationen skulle hämtas. Vänligen fyll i uppgifterna manuellt.</value>
-  </data>
-  <data name="TitleTooltip" xml:space="preserve">
-    <value>Bokens/tidskriftens titel</value>
-  </data>
-  <data name="ArticleTitleTooltip" xml:space="preserve">
-    <value>Kapitlets/artikelns titel</value>
-  </data>
+  <value>Ett fel uppstod när informationen skulle hämtas. Vänligen fyll i uppgifterna manuellt.</value>
+</data>
+
   <data name="BookTitle" xml:space="preserve">
-    <value>Bokens titel</value>
-  </data>
-  <data name="BookAuthor" xml:space="preserve">
-    <value>Bokens författare</value>
-  </data>
-  <data name="ArticleTitle" xml:space="preserve">
-    <value>Artikelns titel</value>
-  </data>
-  <data name="ArticleAuthor" xml:space="preserve">
-    <value>Artikelförfattare</value>
-  </data>
-  <data name="JournalTitle" xml:space="preserve">
-    <value>Tidskriftens titel</value>
-  </data>
-  <data name="JournalAuthor" xml:space="preserve">
-    <value>Tidskriftens författare</value>
-  </data>
-  <data name="ChapterTitle" xml:space="preserve">
-    <value>Kapitlets titel</value>
-  </data>
-  <data name="ChapterAuthor" xml:space="preserve">
-    <value>Kapitletförfattare</value>
-  </data>
-  <data name="ClearForm" xml:space="preserve">
-    <value>Rensa formulär</value>
-  </data>
+  <value>Bokens titel</value>
+</data>
+
+  <data name="TitleTooltip" xml:space="preserve">
+  <value>Bokens/tidskriftens titel</value>
+</data>
+
+  <data name="ArticleTitleTooltip" xml:space="preserve">
+  <value>Kapitlets/artikelns titel</value>
+</data>
+
   <data name="TitleAuthor" xml:space="preserve">
-    <value>Huvudförfattare</value>
-  </data>
+  <value>Huvudförfattare</value>
+</data>
+
   <data name="TitleAuthorTooltip" xml:space="preserve">
-    <value>Bokens/tidskriftens författare</value>
-  </data>
+  <value>Bokens/tidskriftens författare</value>
+</data>
+
+  <data name="ArticleAuthor" xml:space="preserve">
+  <value>Artikelförfattare</value>
+</data>
+
   <data name="ArticleAuthorTooltip" xml:space="preserve">
-    <value>Kapitel-/artikelnförfattare</value>
-  </data>
+  <value>Kapitel-/artikelnförfattare</value>
+</data>
+
+  <data name="BookAuthor" xml:space="preserve">
+  <value>Bokens författare</value>
+</data>
+
+  <data name="ArticleTitle" xml:space="preserve">
+  <value>Artikelns titel</value>
+</data>
+
+  <data name="JournalTitle" xml:space="preserve">
+  <value>Tidskriftens titel</value>
+</data>
+
+  <data name="JournalAuthor" xml:space="preserve">
+  <value>Tidskriftens författare</value>
+</data>
+
+  <data name="ChapterTitle" xml:space="preserve">
+  <value>Kapitlets titel</value>
+</data>
+
+  <data name="ChapterAuthor" xml:space="preserve">
+  <value>Kapitletförfattare</value>
+</data>
+
   <data name="Issue" xml:space="preserve">
-    <value>Nummer</value>
-  </data>
+  <value>Nummer</value>
+    </data>
   <data name="Pages" xml:space="preserve">
-    <value>Sidor</value>
-  </data>
-  <data name="Send" xml:space="preserve">
-    <value>Skicka</value>
-  </data>
+  <value>Sidor</value>
+</data>
 </root>
