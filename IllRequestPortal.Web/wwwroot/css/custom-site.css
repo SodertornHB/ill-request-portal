@@ -120,10 +120,16 @@ label {
     color: #2a7a2a;
 }
 
-.truncate {
-    max-width: 180px;
-    white-space: nowrap;
+.ill-table {
+    table-layout: fixed;
+    width: 100% !important;
+}
+
+.ill-table th,
+.ill-table td {
     overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .truncate .truncate-text {
@@ -132,7 +138,7 @@ label {
     white-space: nowrap;
     display: inline-block;
     vertical-align: middle;
-    max-width: 155px;
+    max-width: calc(100% - 20px);
 }
 
 .copy-icon-btn {

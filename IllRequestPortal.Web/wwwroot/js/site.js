@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             "paging": false,
             "order": [],
+            "autoWidth": false,
             dom: 'Bfrtip',
             buttons: [
                 { extend: 'copy',  className: 'btn btn-secondary btn-sm table-button' },
