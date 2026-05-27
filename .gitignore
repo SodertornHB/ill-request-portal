@@ -65,3 +65,5 @@ appsettings.Staging.json
 # NLog / other runtime logs
 *.nlog
 /IllRequestPortal.Web/appsettings.production.secret.json
+/IllRequestPortal.Web/appsettings.production.json
+/IllRequestPortal.Web/appsettings.Staging.json
