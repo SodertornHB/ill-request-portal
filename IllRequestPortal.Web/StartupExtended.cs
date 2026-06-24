@@ -1,5 +1,6 @@
 ﻿// This is an organization specific file 
 using AutoMapper;
+using IllRequestPortal.Logic.DataAccess;
 using IllRequestPortal.Logic.Http;
 using IllRequestPortal.Logic.Model;
 using IllRequestPortal.Logic.Services;
@@ -54,6 +55,9 @@ namespace Web
 
             services.AddTransient<IIllRequestService, IllRequestServiceExtended>();
             services.AddTransient<IKohaPatronGetHttpService, KohaPatronGetHttpService>();
+            services.AddTransient<ISettingService, SettingService>();
+            services.AddTransient<SqlStringBuilder<Setting>>();
+            services.AddTransient<ISettingDataAccess, SettingDataAccess>();
             services.AddTransient<ILibrisService, LibrisService>();
             services.AddTransient<IJsonGetHttpService, JsonGetHttpService>();
             services.AddTransient<IKohaBiblioGetHttpService, BiblioPatronGetHttpService>();
@@ -168,6 +172,7 @@ namespace Web
                                     dest.Author = string.Empty;
                                 }
                             });
+            profile.CreateMap<Setting, SettingViewModel>().ReverseMap();
 
             return profile;
         }

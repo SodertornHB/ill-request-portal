@@ -1,0 +1,43 @@
+@* --------------------------------------------------------------------*@
+@* Warning! This is an auto generated file. Changes may be overwritten *@
+@* --------------------------------------------------------------------*@
+@using Localization
+@using Microsoft.Extensions.Options
+@inject LocService SharedLocalizer
+@model IllRequestPortal.Web.ViewModel.SettingViewModel
+
+@{
+    ViewData["Title"] = $"{SharedLocalizer.GetLocalizedHtmlString("Delete")} {SharedLocalizer.GetLocalizedHtmlString("Setting")}";
+}
+
+<h1>@($"{SharedLocalizer.GetLocalizedHtmlString("Delete")} {@SharedLocalizer.GetLocalizedHtmlString("Setting")}")</h1>
+
+<h3>@SharedLocalizer.GetLocalizedHtmlString("Are you sure you want to delete this?")</h3>
+<div>
+    <hr />
+    <dl class="row">
+
+        <dt class = "col-sm-2">
+            <label asp-for="Key" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Key")</label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.Key
+        </dd>
+        <dt class = "col-sm-2">
+            <label asp-for="Value" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Value")</label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.Value
+        </dd>
+    </dl>
+    <form method="post"  enctype="multipart/form-data" asp-controller="Setting" asp-action="Remove">    
+        @Html.HiddenFor(x => x.Id)
+        <input type="submit" value="@SharedLocalizer.GetLocalizedHtmlString("Delete")" class="btn btn-danger" /> |
+        <a asp-controller="Setting" asp-action="Index">@SharedLocalizer.GetLocalizedHtmlString("Back to List")</a>
+    </form>
+    </div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

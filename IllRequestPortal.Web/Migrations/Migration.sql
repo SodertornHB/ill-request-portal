@@ -173,3 +173,8 @@ BEGIN
         ADD DeletedOn DATETIME2 NULL;
 END
 GO
+
+CREATE TABLE [dbo].[Setting](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Key] [nvarchar](255) NOT NULL,
+	[Value] [nvarchar](max) NULL)
