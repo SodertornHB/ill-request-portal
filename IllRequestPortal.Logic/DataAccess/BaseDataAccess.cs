@@ -39,8 +39,17 @@ namespace IllRequestPortal.Logic.DataAccess
         protected string Table { get; }
         
         public async virtual Task<T> Insert(T model)
-        {            
-            var sql = await HasIdentityColumn() ? sqlStringBuilder.GetInsertString(model,Table) : sqlStringBuilder.GetInsertString(model, await GetNextId(), Table);
+        {
+            string sql;
+            if (await HasIdentityColumn())
+            {
+                sql = sqlStringBuilder.GetInsertString(model, Table);
+            }
+            else
+            {
+                model.Id = await GetNextId();
+                sql = sqlStringBuilder.GetInsertString(model, model.Id, Table);
+            }
 
             model.Id = await db.InsertData(sql, model);
 
@@ -103,12 +112,12 @@ namespace IllRequestPortal.Logic.DataAccess
 
         private async Task<bool> HasIdentityColumn()
         {
-            var sql = @$"select b.name as IdentityColumn 
-                        from sysobjects a inner join syscolumns b on a.id = b.id 
-                       where a.name = '{Table}' and    
-                            columnproperty(a.id, b.name, 'isIdentity') = 1 and 
+            var sql = @"select b.name as IdentityColumn
+                        from sysobjects a inner join syscolumns b on a.id = b.id
+                       where a.name = @table and
+                            columnproperty(a.id, b.name, 'isIdentity') = 1 and
                             objectproperty(a.id, 'isTable') = 1";
-            var result = await ExecuteSelectMany(sql);
+            var result = await db.LoadData<string, dynamic>(sql, new { table = Table });
             return result.Any();
         }
 
