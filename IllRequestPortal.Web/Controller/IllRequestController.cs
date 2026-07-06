@@ -2,12 +2,13 @@ using AutoMapper;
 using IllRequestPortal.Logic.Model;
 using IllRequestPortal.Logic.Services;
 using IllRequestPortal.Web.ViewModel;
-using Microsoft.Extensions.Logging;
+using Localization;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace IllRequestPortal.Web.Controllers
 {
@@ -16,14 +17,20 @@ namespace IllRequestPortal.Web.Controllers
         private readonly ILogger<IllRequestController> logger;
         private readonly IIllRequestService service;
         private readonly IMapper mapper;
+        private readonly ISettingService settingService;
+        private readonly LocService locService;
 
         public IllRequestController(ILogger<IllRequestController> logger,
         IIllRequestService service,
-        IMapper mapper)
+        IMapper mapper,
+        ISettingService settingService,
+        LocService locService)
         {
             this.logger = logger;
             this.service = service;
             this.mapper = mapper;
+            this.settingService = settingService;
+            this.locService = locService;
         }
 
         public virtual async Task<IActionResult> Index()
@@ -33,9 +40,37 @@ namespace IllRequestPortal.Web.Controllers
             return View(viewModels.OrderByDescending(x => x.Id));
         }
 
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
+            var settings = await settingService.GetAll();
+
+            var closedPeriodStart = settings.FirstOrDefault(x => x.Key == "FormClosedStart");
+            var closedPeriodEnd = settings.FirstOrDefault(x => x.Key == "FormClosedEnd");
+
+            if (closedPeriodStart != null && closedPeriodEnd != null)
+            {
+
+
+                DateTime.TryParse(closedPeriodStart.Value, out DateTime startDate);
+                DateTime.TryParse(closedPeriodEnd.Value, out DateTime endDate);
+                if (FormClosedForPeriod(startDate, endDate))
+                {
+                    return View(nameof(FormClosed), new FeedbackViewModel
+                    {
+                        Message = String.Format(locService.GetLocalizedHtmlString("FormClosed"),
+                startDate.ToString("d MMMM"),  // {0}
+                endDate.ToString("d MMMM")     // {1}
+                    )
+                    });
+                }
+            }
             return View(new CreateIllRequestViewModel());
+        }
+
+
+        public ActionResult FormClosed()
+        {
+            return View();
         }
 
         [HttpPost]
@@ -95,5 +130,14 @@ namespace IllRequestPortal.Web.Controllers
             await service.Delete(viewModel.Id);
             return RedirectToAction(nameof(Index));
         }
+
+        #region private
+        private bool FormClosedForPeriod(DateTime start, DateTime end)
+        {
+            //closed for longer period. Do not forget to change the SharedResource res file for the value FormClosed to match with the interval below.
+            var now = DateTime.Now;
+            return now >= start && now <= end;
+        }
+        #endregion private
     }
 }
